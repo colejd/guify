@@ -47,15 +47,20 @@
 
         // Create the GUI
         var gui = new guify.GUI({
-            title: 'Test',
+            title: 'Test App',
             //theme: 'dark',
             align: 'left',
-            width: 400,
+            width: 300,
             insertAboveRoot: false,
-            barMode: 'offset', // overlay, above, offset
+            barMode: 'overlay', // overlay, above, offset
             opacity: 0.95,
             root: container,
             useMenuBar: true,
+        });
+
+        gui.Register({
+            type: 'title',
+            label: 'Test Title'
         });
 
         var testNumber = 0;

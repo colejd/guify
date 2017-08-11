@@ -27,13 +27,11 @@ export default class GUI {
 
         this.uuid = uuid();
 
-        this.LoadStyles();
-        this.ConstructElements();
-
-        require('./components/title')(this.panel, { label: 'Test Title' }, opts.theme);
-        require('./components/title')(this.panel, { label: 'Test Title 2: Electric Boogaloo' }, opts.theme);
+        this._LoadStyles();
+        this._ConstructElements();
 
         this.components = {
+            'title': require('./components/title'),
             'range': require('./components/range'),
             'button': require('./components/button'),
             'checkbox': require('./components/checkbox'),
@@ -49,7 +47,7 @@ export default class GUI {
     /**
      * Load any runtime styling information needed here.
      */
-    LoadStyles() {
+    _LoadStyles() {
         // Load the font we'll be using and append it to the head
         var elem = document.createElement('style');
         elem.setAttribute('type', 'text/css');
@@ -61,7 +59,7 @@ export default class GUI {
     /**
      * Create container, bar, panel, and toastContainer
      */
-    ConstructElements() {
+    _ConstructElements() {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
         this.container.id = 'guify'; // Throw on a unique ID for extra specificity
@@ -183,6 +181,7 @@ export default class GUI {
         // Set opts properties from the input
         if(object && property) {
             opts.initial = object[property];
+            // If no label is specified, generate it from property name
             //opts.label = opts.label || property;
         }
 
@@ -191,19 +190,21 @@ export default class GUI {
         }
         let component = new this.components[opts.type](this.panel, opts, this.opts.theme, this.uuid);
 
-        component.on('initialized', function (data) {
-            if(opts.onInitialize)
-                opts.onInitialize(data);
-        })
+        if(component.on) {
+            component.on('initialized', function (data) {
+                if(opts.onInitialize)
+                    opts.onInitialize(data);
+            });
 
-        component.on('input', (data) => {
-            if(object && property)
-                object[property] = data;
+            component.on('input', (data) => {
+                if(object && property)
+                    object[property] = data;
 
-            if(opts.onChange) {
-                opts.onChange(data);
-            }
-        })
+                if(opts.onChange) {
+                    opts.onChange(data);
+                }
+            });
+        }
 
 
     }
@@ -265,8 +266,7 @@ export default class GUI {
             fontFamily: 'inherit',
             top: '0',
             bottom: '0',
-            left: this.opts.align == 'left' ? '8px' : 'unset',
-            right: this.opts.align == 'left' ? 'unset' : '8px',
+            right: '8px',
         })
 
         let timeout;
