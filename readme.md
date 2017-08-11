@@ -28,7 +28,7 @@ import GUI from 'guify'
 ```
 
 Browser:
-See (/example.html)[/example/index.html].
+See [example.html](/example/index.html).
 
 
 ## License
