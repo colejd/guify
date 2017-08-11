@@ -16,10 +16,10 @@ export default class GUI {
         opts.width = opts.width || 300;
         opts.theme = isstring(opts.theme) ? themes[opts.theme] : themes.dark;
         opts.root = opts.root || document.body;
-        opts.align = opts.align.toLowerCase() || 'right'; // Can be 'left' or 'right'
+        opts.align = (opts.align || 'right').toLowerCase(); // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
         opts.useMenuBar = opts.useMenuBar || false;
-        opts.barMode = opts.barMode.toLowerCase() || 'overlay'; // Can be 'above', 'offset', or 'overlay'
+        opts.barMode = (opts.barMode || 'overlay').toLowerCase(); // Can be 'above', 'offset', or 'overlay'
 
         this.styling = {
             barHeight: 36
