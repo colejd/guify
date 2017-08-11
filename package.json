@@ -2,7 +2,7 @@
   "//": "--------------- Metadata --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/colejd/guify#readme",
   "license": "MIT",
   "//": "--------------- Script Info --------------- ",
-  "main": "lib/guify.js",
+  "main": "lib/guify.min.js",
   "scripts": {
     "build": "webpack --env build",
     "dev": "webpack --progress --colors --env dev",
