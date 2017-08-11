@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #3e3e3e;
+        }
+    </style>
+    <script src='../lib/guify.js'></script>
+</head>
+
+
+<body>
+
+    <div>
+
+    </div>
+
+    <script>
+
+        var bootstrap = false;
+        // Ruin everything with bootstrap to simulate invasive page styling
+        if(bootstrap)
+            document.head.innerHTML += `<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+                <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
+                <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'><\/script>`;
+
+        var container = document.body.appendChild(document.createElement('div'));
+        container.style.cssText = `
+            width: 512px;
+            height: 512px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3em;
+            position: relative;
+            background-color: white;
+            `
+
+        var fakeCanvas = container.appendChild(document.createElement('div'));
+        fakeCanvas.style.cssText = `
+            width: 512px;
+            height: 512px;
+            position: relative;
+            background-color: white;
+            `
+
+        // Create the GUI
+        var gui = new guify.GUI({
+            title: 'Test',
+            //theme: 'dark',
+            align: 'left',
+            width: 400,
+            insertAboveRoot: false,
+            barMode: 'offset', // overlay, above, offset
+            opacity: 0.95,
+            root: container,
+            useMenuBar: true,
+        });
+
+        var testNumber = 0;
+        gui.RegisterVariable(this, 'testNumber', {
+            type: 'range',
+            label: 'Range Test',
+            min: 0, max: 10, step: 1,
+            onChange: (data) => {
+                console.log(testNumber);
+            }
+        })
+
+        gui.Register({
+            type: 'button',
+            label: 'Test Button',
+            action: () => {
+                console.log('Clicked');
+            }
+        })
+
+        var checkboxTest = false;
+        gui.RegisterVariable(this, 'checkboxTest', {
+            type: 'checkbox',
+            label: 'Test Checkbox',
+            onChange: (data) => {
+                console.log(checkboxTest);
+            }
+        })
+
+        gui.Register({
+            type: 'select',
+            label: 'Test Select',
+            options: ['Option 1', 'Option 2'],
+            onChange: (data) => {
+                console.log(data);
+            }
+        })
+
+        var testText = 'Some text here';
+        gui.RegisterVariable(this, 'testText', {
+            type: 'text',
+            label: '',
+            onChange: (data) => {
+                console.log(testText);
+            }
+        })
+
+        var color = 'rgb(255, 0, 0)';
+        gui.RegisterVariable(this, 'color', {
+            type: 'color',
+            label: 'Test Color',
+            format: 'rgb'
+        })
+
+        gui.Register({
+            type: 'button',
+            label: 'Toast Test',
+            action: () => {
+                gui.Toast('Test Toast');
+            }
+        })
+
+    </script>
+</body>
+

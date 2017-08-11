@@ -1,0 +1,31 @@
+@import '../theme.scss';
+
+$box-color: $background2;
+$icon-color: $foreground1;
+
+input[type=checkbox].guify-checkbox {
+    display: none;
+    cursor: pointer;
+}
+
+input[type=checkbox].guify-checkbox + label:before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    padding: 0px;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-top: 1px;
+    background-color: $box-color;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked.guify-checkbox + label:before {
+    width: 10px;
+    height: 10px;
+    background-color: $icon-color;
+    border: solid 4px $box-color;
+    cursor: pointer;
+}

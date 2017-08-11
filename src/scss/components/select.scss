@@ -1,0 +1,44 @@
+@import '../theme.scss';
+
+$bg-color: $background2;
+$text-color: $text2;
+
+.guify-select-dropdown {
+    display: inline-block;
+    position: absolute;
+    width: 62%;
+    padding-left: 1.5%;
+    height: 20px;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance:none;
+    appearance:none;
+    font-family: inherit;
+    background-color: $bg-color;
+    color: $text-color;
+}
+.guify-select-dropdown::-ms-expand {
+    display:none;
+}
+.guify-select-triangle {
+    content: ' ';
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    line-height: 20px;
+    position: absolute;
+    right: 2.5%;
+    z-index: 1;
+}
+.guify-select-triangle--down {
+    top: 11px;
+    border-top: 5px solid $text-color;
+    border-bottom: 0px transparent;
+}
+.guify-select-triangle--up {
+    top: 4px;
+    border-bottom: 5px solid $text-color;
+    border-top: 0px transparent;
+}

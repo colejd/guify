@@ -1,0 +1,23 @@
+@import '../theme.scss';
+
+$color: $text2;
+$button-bg: $background2;
+$color-hover: $text2;
+$color-bg-hover: $background2hover;
+$color-active: $background2;
+$button-bg-active: $text2;
+
+.guify-button {
+    color: $color;
+    background-color: $button-bg;
+}
+
+.guify-button:hover {
+    color: $color-hover;
+    background-color: $color-bg-hover;
+}
+
+.guify-button:active {
+    color: $color-active;
+    background-color: $button-bg-active;
+}

@@ -1,0 +1,56 @@
+{
+  "name": "guify",
+  "author": "Jonathan Cole <joncole04412@gmail.com>",
+  "version": "0.1.0",
+  "description": "A simple GUI for inspecting and changing JS variables",
+  "keywords": [
+    "gui",
+    "inspect"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colejd/guify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/colejd/guify/issues"
+  },
+  "homepage": "https://github.com/colejd/guify#readme",
+  "license": "MIT",
+  "main": "lib/guify.js",
+  "scripts": {
+    "build": "webpack --env build",
+    "dev": "webpack --progress --colors --watch --env dev",
+    "dev:watch": "webpack --progress --colors --watch --env dev & webpack-dev-server",
+    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
+    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+  },
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-loader": "7.0.0",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-preset-es2015": "6.24.1",
+    "chai": "3.5.0",
+    "css-loader": "^0.28.4",
+    "eslint": "3.19.0",
+    "eslint-loader": "1.7.1",
+    "mocha": "3.3.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "3.1.0",
+    "webpack-dev-server": "^2.7.1",
+    "yargs": "7.1.0"
+  },
+  "dependencies": {
+    "dom-css": "^2.1.0",
+    "is-numeric": "0.0.5",
+    "is-string": "^1.0.4",
+    "param-case": "^2.1.1",
+    "simple-color-picker": "^0.1.2",
+    "tinycolor2": "^1.4.1",
+    "uuid": "^3.1.0",
+    "wolfy87-eventemitter": "^5.2.2"
+  }
+}

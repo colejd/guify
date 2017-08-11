@@ -1,0 +1,1 @@
+The thing to do is write everything in ES6 (in `/src`), then provide a transpiled version in a `/lib` directory. More: https://stackoverflow.com/questions/29738381/how-to-publish-a-module-written-in-es6-to-npm
