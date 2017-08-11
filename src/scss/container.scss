@@ -1,8 +1,14 @@
 $bar-height: 36px;
 $bar-content-height: 20px;
 
+// .reset {
+//     all: initial;
+// }
+// .reset * {
+//     all: unset;
+// }
+
 #guify {
-    all: initial;
     background-color: green;
     position: absolute;
     left: 0;
@@ -10,11 +16,7 @@ $bar-content-height: 20px;
     font-family: 'Hack', monospace;
     font-size: 11px;
 
-    * {
-        //all: unset;
-    }
-
-    & .guify-bar {
+    .guify-bar {
         height: $bar-height;
         width: 100%;
         opacity: 1.0;
@@ -22,7 +24,7 @@ $bar-content-height: 20px;
         left: 0;
         top: 0;
 
-        & .guify-bar-title {
+        .guify-bar-title {
             text-align: center;
             width: 100%;
             position: absolute;
@@ -34,7 +36,7 @@ $bar-content-height: 20px;
             user-select: none;
         }
 
-        & .guify-bar-button {
+        .guify-bar-button {
             text-align: center;
             border: none;
             cursor: pointer;
@@ -42,29 +44,44 @@ $bar-content-height: 20px;
             height: $bar-content-height;
             position: absolute;
             top: ($bar-height - $bar-content-height) / 2;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
         }
     }
 
-    & .guify-panel {
-        position: absolute;
-        padding: 14px;
-        padding-bottom: 8px;
+    .guify-panel {
 
-        /* all: initial;  */
-        font-family: 'Hack', monospace;
-        font-size: 11px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        cursor: default;
-        text-align: left;
-        box-sizing: border-box;
 
-        * .input {
+        & {
+            position: absolute;
+            padding: 14px;
+            padding-bottom: 8px;
+
+            /* all: initial;  */
+            // font-family: 'Hack', monospace;
+            // font-size: 11px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: default;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: initial;
+            -webkit-box-sizing: initial;
+            -moz-box-sizing: initial;
+        }
+
+        * input {
             font-family: 'Hack';
             font-size: 11px;
+            display: inline;
         }
 
         * a {
@@ -73,7 +90,7 @@ $bar-content-height: 20px;
         }
     }
 
-    & .guify-toast-area {
+    .guify-toast-area {
 
     }
 

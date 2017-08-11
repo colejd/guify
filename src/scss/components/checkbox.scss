@@ -4,7 +4,7 @@ $box-color: $background2;
 $icon-color: $foreground1;
 
 input[type=checkbox].guify-checkbox {
-    display: none;
+    display: none !important;
     cursor: pointer;
 }
 
@@ -28,4 +28,7 @@ input[type=checkbox]:checked.guify-checkbox + label:before {
     background-color: $icon-color;
     border: solid 4px $box-color;
     cursor: pointer;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }

@@ -1,4 +1,5 @@
 var EventEmitter = require('wolfy87-eventemitter');
+let css = require('dom-css');
 
 import styles from '../scss/components/checkbox.scss';
 

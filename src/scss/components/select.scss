@@ -15,10 +15,13 @@ $text-color: $text2;
     -webkit-appearance: none;
     -moz-appearance: none;
     -o-appearance:none;
-    appearance:none;
+    appearance: none;
     font-family: inherit;
     background-color: $bg-color;
     color: $text-color;
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
 }
 .guify-select-dropdown::-ms-expand {
     display:none;

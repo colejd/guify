@@ -45,6 +45,8 @@ export default class GUI {
             this.Register(componentOpts);
         }
 
+        this.SetPanelVisible(true);
+
     }
 
     /**
@@ -66,7 +68,8 @@ export default class GUI {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
         this.container.id = 'guify'; // Throw on a unique ID for extra specificity
-        this.container.className = 'guify-container'
+        this.container.classList.add('reset');
+        this.container.classList.add('guify-container');
         css(this.container, {
             top: this.opts.barMode == 'above' && this.hasRoot ? '-36px' : '0',
         });

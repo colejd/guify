@@ -8,6 +8,7 @@ $color-active: $background2;
 $button-bg-active: $text2;
 
 .guify-button {
+    box-sizing: border-box !important;
     color: $color;
     background-color: $button-bg;
 }

@@ -26,7 +26,10 @@ export default class Text extends EventEmitter {
             background: theme.background2,
             color: theme.text2,
             fontFamily: 'inherit',
-            resize: "vertical"
+            'box-sizing': 'border-box',
+            '-moz-box-sizing': 'border-box',
+            '-webkit-box-sizing': 'border-box',
+            resize: 'vertical'
         })
 
         setTimeout(() => {
