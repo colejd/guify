@@ -1,5 +1,14 @@
 # guify
-*A simple GUI for inspecting and changing JS variables*
+
+![Example Screenshot](/docs/Guify.png)
+
+Guify provides you an easy-to-use, flexible GUI for your JS code. I made this because
+there wasn't anything really good for quick GUI creation for things like three.js or
+p5.js projects. Each component of the GUI can be bound to a variable so you don't
+have to manually poll its state.
+
+Guify gives you toast notifications, as well as an optional header bar to give your
+project a "web app" look.
 
 
 ## Installation
@@ -11,7 +20,7 @@ For browser projects, you can use the transpiled version in `/lib`.
 If you're working with ES6 (for example, in a Node project), you can 
 use the files at `/src` directly.
 
-The API can be found at [api.md](/api.md). 
+The API can be found at [api.md](/docs/api.md). 
 
 
 ### Quick Start
