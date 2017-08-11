@@ -31,6 +31,16 @@ Browser:
 See [example.html](/example/index.html).
 
 
+### Building This Package
+If you want to build this package, you can run `npm install` and then `npm run build`, which will create `/lib/guify.min.js`. 
+
+NPM commands:
+
+- `build`: Creates `/lib/guify.min.js`, the default script used by this package.
+- `dev`: Creates `/lib/guify.js`.
+- `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
+
+
 ## License
 MIT license. See [license.md](/license.md) for specifics.
 
