@@ -41,11 +41,9 @@ export default class GUI {
         }
 
         // If any objects in `componentsList`, create components from them
-        for(let componentOpts of componentsList) {
+        for (let componentOpts of componentsList) {
             this.Register(componentOpts);
         }
-
-        this.SetPanelVisible(true);
 
     }
 

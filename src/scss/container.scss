@@ -1,3 +1,6 @@
+
+@import './theme.scss';
+
 $bar-height: 36px;
 $bar-content-height: 20px;
 
@@ -9,7 +12,6 @@ $bar-content-height: 20px;
 // }
 
 #guify {
-    background-color: green;
     position: absolute;
     left: 0;
     width: 100%;
@@ -30,6 +32,7 @@ $bar-content-height: 20px;
             position: absolute;
             top: ($bar-height - $bar-content-height) / 2;
             line-height: $bar-content-height;
+            color: $text1;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -44,10 +47,16 @@ $bar-content-height: 20px;
             height: $bar-content-height;
             position: absolute;
             top: ($bar-height - $bar-content-height) / 2;
+            color: $text1;
+            background-color: $background2;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+
+            &:hover {
+                background-color: $background2hover;
+            }
 
         }
     }
