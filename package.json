@@ -6,7 +6,12 @@
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
-    "inspect"
+    "inspect",
+    "inspector",
+    "bind",
+    "ui",
+    "project",
+    "creative"
   ],
   "repository": {
     "type": "git",
