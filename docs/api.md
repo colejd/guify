@@ -45,8 +45,7 @@ The common properties are:
 - `type` (string, required): The component type that will be created. Can be `"button"`, `"checkbox"`, `"color"`, `"range"`, `"select"`, `"text"`, and `"title"`
 - `label` (string): The text label that appears next to the component
 - `initial` (Object): The initial value of the component. If you don't specify this, it will be copied from the bound value if there is one, or otherwise initialized to the variable type's default value.
-- `onChange` (callback): Fired every time the value governed by the component changes, with
-a single argument holding the value.
+- `onChange` (callback): Fired every time the value governed by the component changes, with a single argument holding the value.
 - `onInitialize` (callback): Fired when the component is initialized.
 
 Some component types have their own options:

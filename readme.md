@@ -1,14 +1,10 @@
 # guify
 
-![Example Screenshot](/docs/Guify.png)
+<img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="30%">
 
-Guify provides you an easy-to-use, flexible GUI for your JS code. I made this because
-there wasn't anything really good for quick GUI creation for things like three.js or
-p5.js projects. Each component of the GUI can be bound to a variable so you don't
-have to manually poll its state.
+Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like three.js or p5.js projects. 
 
-Guify gives you toast notifications, as well as an optional header bar to give your
-project a "web app" look.
+Guify gives you toast notifications, as well as an optional header bar to give your project a "web app" look. Each component of the GUI can be bound to a variable so you don't have to manually poll its state.
 
 
 ## Installation
