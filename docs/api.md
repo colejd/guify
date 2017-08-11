@@ -3,7 +3,7 @@ All options are optional unless marked as required.
 
 ## GUI
 
-### `constructor(opts)`
+### `constructor(opts, componentsList)`
 Creates the GUI using the `opts` object for configuration. 
 
 `opts` may have the following properties:
@@ -21,6 +21,22 @@ Creates the GUI using the `opts` object for configuration.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
 - `opacity` (float between 0 and 1): Opacity value for the panel.
+- `object` (Object): The object holding the property you wnat the component to be bound to.
+- `property` (String): The name of the property in `object` that you want the component to be bound to. Will be updated automatically when the component's value changes.
+
+`componentsList` is an optional array of objects that are used to create components during instantiation. The objects are structured just like a call to `RegisterVariable`:
+```js
+[
+    { 
+        object: someObject, property: "someProperty",
+        opts: {
+            type: 'range',
+            ...
+        }
+    },
+    ...
+]
+```
 
 ### `Toast(message, stayMS, transitionMS)`
 Displays a toast-style message on screen. `stayMS` and `transitionMS` are optional values that you can use to control the duration and removal animation time of the notification.
@@ -31,11 +47,8 @@ Makes the panel visible based on the truthiness of `show`.
 ### `TogglePanelVisible()`
 Toggles the panel on and off.
 
-### `RegisterVariable(object, property, opts)`
-Creates a new component in the panel based on `opts`, which is bound to the variable at `object[property]`.
-
 ### `Register(opts)`
-Similar to RegisterVariable but with no variable binding.
+Creates a new component in the panel based on `opts`.
 
 ## `opts`
 The properties in this object determine the type and behavior of the created component.

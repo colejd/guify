@@ -39,15 +39,18 @@
 
     <script>
 
-        var bootstrap = false;
+        var addBootstrap = false;
         // Ruin everything with bootstrap to simulate invasive page styling
-        if(bootstrap)
+        if(addBootstrap) {
             document.head.innerHTML += `<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
                 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
                 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'><\/script>`;
 
+        }
+
 
         var container = document.getElementById("fake-container");
+        var someNumber = 0;
 
         // Create the GUI
         var gui = new guify.GUI({
@@ -59,17 +62,24 @@
             opacity: 0.95,
             root: container,
             useMenuBar: true,
-        });
+        }, [
+            // You can optionally create components here
+            {type: 'range', label: 'Test', object: this, property: "someNumber", onChange: (data) => { console.log(someNumber); }}
+        ]);
 
+        // Populate the GUI
         gui.Register({
             type: 'title',
-            label: 'Test Title'
+            label: 'Test Title 2'
         });
 
+
         var testNumber = 0;
-        gui.RegisterVariable(this, 'testNumber', {
+        gui.Register({
             type: 'range',
             label: 'Range Test',
+            object: this,
+            property: 'testNumber',
             min: 0, max: 10, step: 1,
             onChange: (data) => {
                 console.log(testNumber);
@@ -85,9 +95,11 @@
         })
 
         var checkboxTest = false;
-        gui.RegisterVariable(this, 'checkboxTest', {
+        gui.Register({
             type: 'checkbox',
             label: 'Test Checkbox',
+            object: this,
+            property: 'checkboxTest',
             onChange: (data) => {
                 console.log(checkboxTest);
             }
@@ -103,19 +115,23 @@
         })
 
         var testText = 'Some text here';
-        gui.RegisterVariable(this, 'testText', {
+        gui.Register({
             type: 'text',
             label: '',
+            object: this,
+            property: 'testText',
             onChange: (data) => {
                 console.log(testText);
             }
         })
 
-        var color = 'rgb(255, 0, 0)';
-        gui.RegisterVariable(this, 'color', {
+        var testColor = 'rgb(255, 0, 0)';
+        gui.Register({
             type: 'color',
             label: 'Test Color',
-            format: 'rgb'
+            format: 'rgb',
+            object: this,
+            property: 'testColor'
         })
 
         gui.Register({

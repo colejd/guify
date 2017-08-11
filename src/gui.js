@@ -7,14 +7,14 @@ import styles from './scss/container.scss';
 
 
 export default class GUI {
-    constructor(opts) {
+    constructor(opts, componentsList = []) {
         this.opts = opts;
 
         this.hasRoot = opts.root !== undefined;
 
         opts = opts || {};
         opts.width = opts.width || 300;
-        opts.theme = typeof opts.theme === 'string' ? themes[opts.theme] : themes.dark;
+        opts.theme = isstring(opts.theme) ? themes[opts.theme] : themes.dark;
         opts.root = opts.root || document.body;
         opts.align = opts.align.toLowerCase() || 'right'; // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
@@ -40,7 +40,10 @@ export default class GUI {
             'color': require('./components/color'),
         }
 
-        //this.SetPanelVisible(false);
+        // If any objects in `componentsList`, create components from them
+        for(let componentOpts of componentsList) {
+            this.Register(componentOpts);
+        }
 
     }
 
@@ -163,24 +166,18 @@ export default class GUI {
 
     /**
      * Creates new component in the panel based on the options provided.
-     * `object[property]` is bound to the state of the component.
      *
-     * @param {Object} [object] The object that holds the inspected property
-     * @param {String} [property] The name of the inspected property
-     * @param {Object} [opts] Options for the GUI
+     * @param {Object} [opts] Options for the component
      */
-    RegisterVariable(object, property, opts) {
+    Register(opts) {
 
-        if(!isstring(property) && property != null)
-            throw new Error('Supplied property must be a string.');
-
-        if (object && property)
-            if (object[property] === undefined)
-                throw new Error(`Object ${object} has no property '${property}'`);
+        if (opts.object && opts.property)
+            if (opts.object[opts.property] === undefined)
+                throw new Error(`Object ${opts.object} has no property '${opts.property}'`);
 
         // Set opts properties from the input
-        if(object && property) {
-            opts.initial = object[property];
+        if(opts.object && opts.property) {
+            opts.initial = opts.object[opts.property];
             // If no label is specified, generate it from property name
             //opts.label = opts.label || property;
         }
@@ -197,8 +194,8 @@ export default class GUI {
             });
 
             component.on('input', (data) => {
-                if(object && property)
-                    object[property] = data;
+                if(opts.object && opts.property)
+                    opts.object[opts.property] = data;
 
                 if(opts.onChange) {
                     opts.onChange(data);
@@ -207,16 +204,6 @@ export default class GUI {
         }
 
 
-    }
-
-    /**
-     * Creates new component in the panel based on the options provided.
-     * Useful if you don't need to bind the component to a variable.
-     *
-     * @param {Object} [opts] Options for the GUI
-     */
-    Register(opts) {
-        this.RegisterVariable(null, null, opts);
     }
 
     /**
