@@ -1,6 +1,8 @@
 # guify
 
-<img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="30%">
+<p align="center">
+<img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="80%">
+</p>
 
 Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like three.js or p5.js projects. 
 
