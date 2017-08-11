@@ -41,9 +41,9 @@ export default class GUI {
         }
 
         // If any objects in `componentsList`, create components from them
-        for (let componentOpts of componentsList) {
+        componentsList.forEach((componentOpts) => {
             this.Register(componentOpts);
-        }
+        });
 
     }
 
