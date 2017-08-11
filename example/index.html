@@ -5,15 +5,36 @@
         body {
             background-color: #3e3e3e;
         }
+
+        #fake-container {
+            width: 512px;
+            height: 512px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3em;
+            position: relative;
+            background-color: white;
+        }
+
+        #fake-container-content {
+            width: 512px;
+            height: 512px;
+            position: relative;
+            background-color: white;
+        }
+
     </style>
+
+    <!-- Inserts `guify` into the global namespace -->
     <script src='../lib/guify.js'></script>
 </head>
 
 
 <body>
 
-    <div>
-
+    <div id="fake-container">
+        <div id="fake-container-content"></div>
     </div>
 
     <script>
@@ -25,33 +46,15 @@
                 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
                 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'><\/script>`;
 
-        var container = document.body.appendChild(document.createElement('div'));
-        container.style.cssText = `
-            width: 512px;
-            height: 512px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 3em;
-            position: relative;
-            background-color: white;
-            `
 
-        var fakeCanvas = container.appendChild(document.createElement('div'));
-        fakeCanvas.style.cssText = `
-            width: 512px;
-            height: 512px;
-            position: relative;
-            background-color: white;
-            `
+        var container = document.getElementById("fake-container");
 
         // Create the GUI
         var gui = new guify.GUI({
             title: 'Test App',
-            //theme: 'dark',
-            align: 'left',
+            //theme: 'dark', // dark, light
+            align: 'left', // left, right
             width: 300,
-            insertAboveRoot: false,
             barMode: 'overlay', // overlay, above, offset
             opacity: 0.95,
             root: container,
