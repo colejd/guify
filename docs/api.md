@@ -21,19 +21,11 @@ Creates the GUI using the `opts` object for configuration.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
 - `opacity` (float between 0 and 1): Opacity value for the panel.
-- `object` (Object): The object holding the property you wnat the component to be bound to.
-- `property` (String): The name of the property in `object` that you want the component to be bound to. Will be updated automatically when the component's value changes.
 
-`componentsList` is an optional array of objects that are used to create components during instantiation. The objects are structured just like a call to `RegisterVariable`:
+`componentsList` is an optional array of objects that are used to create components during instantiation. The objects are structured just those that you pass to `Register()`:
 ```js
 [
-    { 
-        object: someObject, property: "someProperty",
-        opts: {
-            type: 'range',
-            ...
-        }
-    },
+    { type: 'range', label: 'some component', ... },
     ...
 ]
 ```
@@ -60,6 +52,8 @@ The common properties are:
 - `initial` (Object): The initial value of the component. If you don't specify this, it will be copied from the bound value if there is one, or otherwise initialized to the variable type's default value.
 - `onChange` (callback): Fired every time the value governed by the component changes, with a single argument holding the value.
 - `onInitialize` (callback): Fired when the component is initialized.
+- `object` (Object): The object holding the property you want the component to be bound to.
+- `property` (String): The name of the property in `object` that you want the component to be bound to. `object[property]` and the value of the component will be bound (updating one will change the other).
 
 Some component types have their own options:
 
@@ -73,6 +67,8 @@ Some component types have their own options:
 - `min` (int): The smallest possible value on the slider.
 - `max` (int): The largest possible value on the slider.
 - `step` (int): The amount that is incremented by each movement of the slider.
+- `scale` (String): Specifies the scaling behavior of the slider.
+    - Values: `"linear"`, `"log"`
 
 ### Select
 - `options` (Array(String)): A list of strings representing the different selectable options.
