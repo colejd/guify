@@ -15,6 +15,8 @@ export default class Checkbox extends EventEmitter {
         this.input.type = 'checkbox'
         this.input.checked = opts.initial
         this.input.className = 'guify-checkbox'
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         var label = container.appendChild(document.createElement('label'))
         label.htmlFor = 'checkbox-' + opts.label + uuid

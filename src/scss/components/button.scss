@@ -22,3 +22,8 @@ $button-bg-active: $text2;
     color: $color-active;
     background-color: $button-bg-active;
 }
+
+.guify-button:focus {
+    color: $color-hover;
+    background-color: $color-bg-hover;
+}

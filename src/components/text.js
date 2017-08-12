@@ -12,6 +12,8 @@ export default class Text extends EventEmitter {
         this.input.type = 'text'
         this.input.className = 'guify-text'
         if (opts.initial) this.input.value = opts.initial
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         this.input.onfocus = () => {
             css(this.input, {outline: 'none'})

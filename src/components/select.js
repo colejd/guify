@@ -13,6 +13,8 @@ export default class Select extends EventEmitter {
 
         this.input = document.createElement('select')
         this.input.className = 'guify-select-dropdown'
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         downTriangle = document.createElement('span')
         downTriangle.className = 'guify-select-triangle guify-select-triangle--down'

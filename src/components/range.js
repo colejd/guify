@@ -20,6 +20,8 @@ export default class Range extends EventEmitter {
         this.input = container.appendChild(document.createElement('input'))
         this.input.type = 'range'
         this.input.className = 'guify-range'
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         // Get initial value:
         if (opts.scale === 'log') {

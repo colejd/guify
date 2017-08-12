@@ -23,6 +23,9 @@ $text-color: $text2;
     -moz-box-sizing: border-box !important;
     -webkit-box-sizing: border-box !important;
 }
+.guify-select-dropdown:focus {
+    background-color: $background2hover;
+}
 .guify-select-dropdown::-ms-expand {
     display:none;
 }
