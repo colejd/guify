@@ -1,7 +1,10 @@
 # guify
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="80%">
+    <img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="80%">
+</p>
+<p align="center">
+    <a href="https://badge.fury.io/js/guify"><img src="https://badge.fury.io/js/guify.svg" alt="npm version" height="18"></a>
 </p>
 
 Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like [three.js](https://threejs.org/) or [p5.js](https://p5js.org/) projects. 
