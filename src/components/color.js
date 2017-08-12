@@ -8,6 +8,7 @@ import styles from '../scss/components/color.scss';
 export default class Color extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
+        this.opts = opts;
 
         opts.format = opts.format || 'rgb'
         opts.initial = opts.initial || '#123456'
@@ -20,8 +21,8 @@ export default class Color extends EventEmitter {
 
         var value = require('./partials/value')(container, '', theme, '46%')
 
-        icon.onmouseover = function () {
-            picker.$el.style.display = ''
+        icon.onmouseover = () => {
+            this.picker.$el.style.display = ''
         }
 
         var initial = opts.initial
@@ -39,7 +40,7 @@ export default class Color extends EventEmitter {
                 break
         }
 
-        var picker = new ColorPicker({
+        this.picker = new ColorPicker({
             el: icon,
             color: initial,
             background: theme.background1,
@@ -47,7 +48,7 @@ export default class Color extends EventEmitter {
             height: 100
         })
 
-        css(picker.$el, {
+        css(this.picker.$el, {
             marginTop: '20px',
             display: 'none',
             position: 'absolute'
@@ -58,25 +59,26 @@ export default class Color extends EventEmitter {
             display: 'inline-block',
             width: '12.5%',
             height: '20px',
-            backgroundColor: picker.getHexString()
+            backgroundColor: this.picker.getHexString()
         })
 
         icon.onmouseout = (e) => {
-            picker.$el.style.display = 'none'
+            this.picker.$el.style.display = 'none'
         }
 
         setTimeout(() => {
             this.emit('initialized', initial)
         })
 
-        picker.onChange((hex) => {
-            value.innerHTML = format(hex)
+        this.picker.onChange((hex) => {
+            value.innerHTML = this.Format(hex)
             css(icon, {backgroundColor: hex})
-            this.emit('input', format(hex))
+            this.emit('input', this.Format(hex))
         })
+    }
 
-        function format (hex) {
-            switch (opts.format) {
+    Format(hex) {
+        switch (this.opts.format) {
             case 'rgb':
                 return tinycolor(hex).toRgbString()
             case 'hex':
@@ -88,7 +90,14 @@ export default class Color extends EventEmitter {
                 })
             default:
                 return hex
-            }
         }
+    }
+
+    SetValue(value) {
+        this.picker.setColor(value);
+    }
+
+    GetValue() {
+        return this.Format(this.picker.getColor());
     }
 }

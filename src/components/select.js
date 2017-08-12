@@ -6,13 +6,13 @@ export default class Select extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
 
-        var i, container, input, downTriangle, upTriangle, key, option, el, keys
+        var i, container, downTriangle, upTriangle, key, option, el, keys
 
         container = require('./partials/container')(root, opts.label)
         require('./partials/label')(container, opts.label, theme)
 
-        input = document.createElement('select')
-        input.className = 'guify-select-dropdown'
+        this.input = document.createElement('select')
+        this.input.className = 'guify-select-dropdown'
 
         downTriangle = document.createElement('span')
         downTriangle.className = 'guify-select-triangle guify-select-triangle--down'
@@ -25,32 +25,40 @@ export default class Select extends EventEmitter {
 
         if (Array.isArray(opts.options)) {
             for (i = 0; i < opts.options.length; i++) {
-            option = opts.options[i]
-            el = document.createElement('option')
-            el.value = el.textContent = option
-            if (opts.initial === option) {
-                el.selected = 'selected'
-            }
-            input.appendChild(el)
+                option = opts.options[i]
+                el = document.createElement('option')
+                el.value = el.textContent = option
+                if (opts.initial === option) {
+                    el.selected = 'selected'
+                }
+                this.input.appendChild(el)
             }
         } else {
             keys = Object.keys(opts.options)
             for (i = 0; i < keys.length; i++) {
-            key = keys[i]
-            el = document.createElement('option')
-            el.value = key
-            if (opts.initial === key) {
-                el.selected = 'selected'
-            }
-            el.textContent = opts.options[key]
-            input.appendChild(el)
+                key = keys[i]
+                el = document.createElement('option')
+                el.value = key
+                if (opts.initial === key) {
+                    el.selected = 'selected'
+                }
+                el.textContent = opts.options[key]
+                this.input.appendChild(el)
             }
         }
 
-        container.appendChild(input)
+        container.appendChild(this.input)
 
-        input.onchange = (data) => {
+        this.input.onchange = (data) => {
             this.emit('input', data.target.value)
         }
+    }
+
+    SetValue(value) {
+        this.input.value = value;
+    }
+
+    GetValue() {
+        return this.input.value;
     }
 }

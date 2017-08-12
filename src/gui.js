@@ -40,10 +40,14 @@ export default class GUI {
             'color': require('./components/color'),
         }
 
+        this.loadedComponents = [];
+
         // If any objects in `componentsList`, create components from them
         componentsList.forEach((componentOpts) => {
             this.Register(componentOpts);
         });
+
+        this._UpdateComponents();
 
     }
 
@@ -144,6 +148,22 @@ export default class GUI {
 
     }
 
+    _UpdateComponents() {
+        this.loadedComponents.forEach((component) => {
+            if(component.binding) {
+                // Update the component from its bound value
+                component.SetValue(component.binding.object[component.binding.property]);
+            }
+        });
+
+        setTimeout(() => {
+            window.requestAnimationFrame(() => {
+                this._UpdateComponents();
+            });
+        }, 100);
+
+    }
+
     /**
      * Makes the panel visible based on the truthiness of `show`.
      * @param {Bool} [show]
@@ -179,6 +199,7 @@ export default class GUI {
         // Set opts properties from the input
         if(opts.object && opts.property) {
             opts.initial = opts.object[opts.property];
+            console.log(opts.initial);
             // If no label is specified, generate it from property name
             //opts.label = opts.label || property;
         }
@@ -187,6 +208,10 @@ export default class GUI {
             throw new Error(`No component type named '${opts.type}' exists.`)
         }
         let component = new this.components[opts.type](this.panel, opts, this.opts.theme, this.uuid);
+
+        if(opts.object && opts.property) {
+            component['binding'] = { object: opts.object, property: opts.property };
+        }
 
         if(component.on) {
             component.on('initialized', function (data) {
@@ -203,6 +228,8 @@ export default class GUI {
                 }
             });
         }
+
+        this.loadedComponents.push(component);
 
 
     }

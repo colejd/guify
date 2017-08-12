@@ -64,7 +64,7 @@
             useMenuBar: true,
         }, [
             // You can optionally create components here
-            {type: 'range', label: 'Test', object: this, property: "someNumber", onChange: (data) => { console.log(someNumber); }}
+            {type: 'range', label: 'Test', min: 0, max: 10, step: 1, object: this, property: "someNumber", onChange: (data) => { console.log(someNumber); }}
         ]);
 
         // Populate the GUI
@@ -74,15 +74,15 @@
         });
 
 
-        var testNumber = 0;
+        var logNumber = 20;
         gui.Register({
             type: 'range',
-            label: 'Range Test',
+            label: 'Log Range Test',
             object: this,
-            property: 'testNumber',
-            min: 0, max: 10, step: 1,
+            property: 'logNumber',
+            min: 0.1, max: 100, scale: 'log',
             onChange: (data) => {
-                console.log(testNumber);
+                console.log(logNumber);
             }
         })
 
@@ -105,12 +105,15 @@
             }
         })
 
+        var testSelection = 'Option 1';
         gui.Register({
             type: 'select',
             label: 'Test Select',
+            object: this,
+            property: 'testSelection',
             options: ['Option 1', 'Option 2'],
             onChange: (data) => {
-                console.log(data);
+                console.log(testSelection);
             }
         })
 
@@ -125,22 +128,54 @@
             }
         })
 
-        var testColor = 'rgb(255, 0, 0)';
+        var rgbColor = 'rgb(255, 0, 0)';
         gui.Register({
             type: 'color',
-            label: 'Test Color',
+            label: 'Test RBG',
             format: 'rgb',
             object: this,
-            property: 'testColor'
+            property: 'rgbColor'
         })
 
+        var hexColor = '#00FF00';
+        gui.Register({
+            type: 'color',
+            label: 'Test Hex',
+            format: 'hex',
+            object: this,
+            property: 'hexColor'
+        })
+
+        // Test buttons
         gui.Register({
             type: 'button',
             label: 'Toast Test',
             action: () => {
+                // Send a toast
                 gui.Toast('Test Toast');
             }
         })
+
+        gui.Register({
+            type: 'button',
+            label: 'Randomize Bound Values',
+            action: () => {
+                // Randomize all the values bound to components in this example.
+                // Good test for whether component binding is actually working.
+                someNumber = Math.random() * 10;
+                logNumber = Math.random() * 99 + 0.1;
+                checkboxTest = !checkboxTest;
+
+                testText = (Math.random() + 1).toString(36).substring(7); // Random string
+                rgbColor = 'rgb(' + Math.random() * 255 + ', 0, 0)';
+                hexColor = "#";
+                for(var i = 0; i < 6; i++) hexColor += Math.floor(Math.random() * 9).toString()
+
+                testSelection = "Option " + (Math.random() < 0.5 ? "1" : "2");
+            }
+        })
+
+
 
     </script>
 </body>

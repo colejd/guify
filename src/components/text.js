@@ -8,16 +8,16 @@ export default class Text extends EventEmitter {
         var container = require('./partials/container')(root, opts.label)
         require('./partials/label')(container, opts.label, theme)
 
-        var input = container.appendChild(document.createElement('input'))
-        input.type = 'text'
-        input.className = 'guify-text'
-        if (opts.initial) input.value = opts.initial
+        this.input = container.appendChild(document.createElement('input'))
+        this.input.type = 'text'
+        this.input.className = 'guify-text'
+        if (opts.initial) this.input.value = opts.initial
 
-        input.onfocus = () => {
-            css(input, {outline: 'none'})
+        this.input.onfocus = () => {
+            css(this.input, {outline: 'none'})
         }
 
-        css(input, {
+        css(this.input, {
             position: 'absolute',
             paddingLeft: '6px',
             height: '20px',
@@ -33,11 +33,19 @@ export default class Text extends EventEmitter {
         })
 
         setTimeout(() => {
-            this.emit('initialized', input.value)
+            this.emit('initialized', this.input.value)
         })
 
-        input.oninput = (data) => {
+        this.input.oninput = (data) => {
             this.emit('input', data.target.value)
         }
+    }
+
+    SetValue(value) {
+        this.input.value = value;
+    }
+
+    GetValue() {
+        return this.input.value;
     }
 }

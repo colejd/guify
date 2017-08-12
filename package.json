@@ -1,5 +1,5 @@
 {
-  "//": "--------------- Metadata --------------- ",
+  "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
   "version": "0.2.4",
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/colejd/guify#readme",
   "license": "MIT",
-  "//": "--------------- Script Info --------------- ",
   "main": "lib/guify.min.js",
   "scripts": {
     "build": "webpack --env build",
