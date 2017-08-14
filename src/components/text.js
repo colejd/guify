@@ -5,6 +5,8 @@ export default class Text extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
 
+        this.opts = opts;
+
         var container = require('./partials/container')(root, opts.label)
         require('./partials/label')(container, opts.label, theme)
 

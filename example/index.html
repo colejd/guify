@@ -50,27 +50,35 @@
 
 
         var container = document.getElementById("fake-container");
-        var someNumber = 0;
 
         // Create the GUI
         var gui = new guify.GUI({
             title: 'Test App',
             //theme: 'dark', // dark, light
             align: 'left', // left, right
-            width: 300,
+            width: 350,
             barMode: 'offset', // overlay, above, offset
             opacity: 0.95,
             root: container,
             useMenuBar: true,
-        }, [
-            // You can optionally create components here
-            {type: 'range', label: 'Test', min: 0, max: 10, step: 1, object: this, property: "someNumber", onChange: (data) => { console.log(someNumber); }}
-        ]);
+        });
 
         // Populate the GUI
+
+        var someNumber = 0;
+        gui.Register({
+            type: 'range',
+            label: 'Test',
+            min: 0, max: 10, step: 1,
+            object: this, property: "someNumber",
+            onChange: (data) => {
+                console.log(someNumber);
+            }
+        });
+
         gui.Register({
             type: 'title',
-            label: 'Test Title 2'
+            label: 'Test Title'
         });
 
 
@@ -174,6 +182,29 @@
                 testSelection = "Option " + (Math.random() < 0.5 ? "1" : "2");
             }
         })
+
+        // Make a folder
+        gui.Register({
+            type: 'folder',
+            label: 'Test Folder'
+        });
+
+        // Add to the folder
+        gui.Register([
+            { type: 'title', label: 'Folder Title' },
+            { type: 'range', label: 'Folder Range', min: 0, max: 20, step: 1 },
+            { type: 'button', label: 'Folder Button' },
+            { type: 'checkbox', label: 'Folder Checkbox' },
+            { type: 'select', label: 'Folder Select', options: ["Option A", "Option B"] },
+            { type: 'text', label: 'Folder Text', initial: 'Some text' },
+            { type: 'color', label: 'Folder Color' },
+        ], {
+            folder: 'Test Folder'
+        });
+
+        // Add a nested folder
+        gui.Register({ type: 'folder', label: 'Nested Folder', folder: 'Test Folder', open: false });
+        gui.Register({ type: 'text', label: 'Folder Text', folder: 'Nested Folder', initial: 'Nested text' });
 
 
 

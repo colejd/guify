@@ -7,6 +7,8 @@ export default class Button extends EventEmitter {
     constructor(root, opts, theme, uuid) {
         super();
 
+        this.opts = opts;
+
         var container = require('./partials/container')(root, opts.label)
         require('./partials/label')(container, '', theme)
 

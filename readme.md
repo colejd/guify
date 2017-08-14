@@ -13,13 +13,13 @@ Guify gives you toast notifications, as well as an optional header bar to give y
 
 
 ## Installation
-`npm install --save guify`, or copy `guify.js` from `/lib`.
+`npm install --save guify`, or copy `guify.js` from [`/lib`](/lib).
 
 
 ## Usage
-For browser projects, you can use the transpiled version in `/lib`.
+For browser projects, you can use the transpiled version in [`/lib`](/lib).
 If you're working with ES6 (for example, in a Node project), you can 
-use the files at `/src` directly.
+use the files at [`/src`](/src) directly.
 
 The API can be found at [api.md](/docs/api.md). 
 
@@ -42,6 +42,10 @@ NPM commands:
 - `build`: Creates `/lib/guify.min.js`, the default script used by this package.
 - `dev`: Creates `/lib/guify.js`.
 - `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
+
+
+## Changelog
+See [changelog.md](/changelog.md).
 
 
 ## License

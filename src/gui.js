@@ -7,7 +7,7 @@ import styles from './scss/container.scss';
 
 
 export default class GUI {
-    constructor(opts, componentsList = []) {
+    constructor(opts) {
         this.opts = opts;
 
         this.hasRoot = opts.root !== undefined;
@@ -38,15 +38,12 @@ export default class GUI {
             'select': require('./components/select'),
             'text': require('./components/text'),
             'color': require('./components/color'),
+            'folder': require('./components/folder')
         }
 
         this.loadedComponents = [];
 
-        // If any objects in `componentsList`, create components from them
-        componentsList.forEach((componentOpts) => {
-            this.Register(componentOpts);
-        });
-
+        // Begin component update loop
         this._UpdateComponents();
 
     }
@@ -186,11 +183,29 @@ export default class GUI {
     }
 
     /**
+     * Creates a new component in the panel based on the provided options.
+     * @param {*} [obj] Either an opts object or an array of opts objects
+     * @param {Object} [applyToAll] Each property of this object will be applied to all opts objects
+     */
+    Register(obj, applyToAll = {}) {
+        if (Array.isArray(obj)) {
+            obj.forEach((item) => {
+                let merged = Object.assign(item, applyToAll);
+                this._Register(merged);
+            });
+        }
+        else {
+            let merged = Object.assign(obj, applyToAll);
+            this._Register(merged);
+        }
+    }
+
+    /**
      * Creates new component in the panel based on the options provided.
      *
      * @param {Object} [opts] Options for the component
      */
-    Register(opts) {
+    _Register(opts) {
 
         if (opts.object && opts.property)
             if (opts.object[opts.property] === undefined)
@@ -199,7 +214,6 @@ export default class GUI {
         // Set opts properties from the input
         if(opts.object && opts.property) {
             opts.initial = opts.object[opts.property];
-            console.log(opts.initial);
             // If no label is specified, generate it from property name
             //opts.label = opts.label || property;
         }
@@ -207,12 +221,28 @@ export default class GUI {
         if(this.components[opts.type] === undefined) {
             throw new Error(`No component type named '${opts.type}' exists.`)
         }
-        let component = new this.components[opts.type](this.panel, opts, this.opts.theme, this.uuid);
 
+        let root = this.panel;
+
+        // If a folder was specified, try to find a folder component with that name
+        // and get its folderContainer.
+        if(opts.folder) {
+            let folderComp = this.loadedComponents.find((cmp) => {
+                return cmp.opts.type === 'folder' && cmp.opts.label === opts.folder;
+            });
+
+            if(folderComp) root = folderComp.folderContainer;
+            else throw new Error(`No folder exists with the name ${opts.folder}`);
+        }
+
+        let component = new this.components[opts.type](root, opts, this.opts.theme, this.uuid);
+
+        // Add binding properties if specified
         if(opts.object && opts.property) {
             component['binding'] = { object: opts.object, property: opts.property };
         }
 
+        // If the component has events, add listeners for those events.
         if(component.on) {
             component.on('initialized', function (data) {
                 if(opts.onInitialize)

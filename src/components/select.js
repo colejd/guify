@@ -6,6 +6,8 @@ export default class Select extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
 
+        this.opts = opts;
+
         var i, container, downTriangle, upTriangle, key, option, el, keys
 
         container = require('./partials/container')(root, opts.label)
