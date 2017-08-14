@@ -11,6 +11,8 @@ Guify provides you a simple GUI for your JS code. I made this because there wasn
 
 Guify gives you toast notifications, as well as an optional header bar to give your project a "web app" look. Each component of the GUI can be bound to a variable so you don't have to manually poll its state.
 
+Guify is designed to be accessibility-friendly, but I don't have a good way to test it. If something doesn't work for you, please file an issue and I'll do my best to help!
+
 
 ## Installation
 `npm install --save guify`, or copy `guify.js` from [`/lib`](/lib).
