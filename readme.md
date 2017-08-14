@@ -27,13 +27,26 @@ The API can be found at [api.md](/docs/api.md).
 
 
 ### Quick Start
-Node (ES6):
-```
-import GUI from 'guify'
+First import using either `require` or ES6 imports:
+```js
+// ES6
+import { GUI as guify } from 'guify'
+
+// Require
+let guify = require('guify');
 ```
 
-Browser:
-See [example.html](/example/index.html).
+Then you can make a quick GUI this way:
+```js
+var panel = new guify.GUI({
+    title: "Some Title", 
+    theme: 'dark',
+    align: 'right',
+    useMenuBar: true
+});
+```
+
+See [example.html](/example/index.html) for a more complete example.
 
 
 ### Building This Package
