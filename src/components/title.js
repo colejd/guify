@@ -21,7 +21,7 @@ export default class Title {
         });
 
         var label = background.appendChild(document.createElement('div'));
-        label.innerHTML = '&#9632; ' + opts.label + ' &#9632;';
+        label.innerHTML = `&#9632; ${opts.label} &#9632;`;
         css(label, {
             color: theme.text1,
             display: 'inline-block',
