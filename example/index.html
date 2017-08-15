@@ -154,6 +154,17 @@
             property: 'hexColor'
         })
 
+        var file = null;
+        gui.Register({
+            type: 'file',
+            label: 'Test File',
+            object: this,
+            property: 'file',
+            onChange: (data) => {
+                console.log(data);
+            }
+        })
+
         // Test buttons
         gui.Register({
             type: 'button',

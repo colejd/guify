@@ -38,7 +38,8 @@ export default class GUI {
             'select': require('./components/select'),
             'text': require('./components/text'),
             'color': require('./components/color'),
-            'folder': require('./components/folder')
+            'folder': require('./components/folder'),
+            'file': require('./components/file'),
         }
 
         this.loadedComponents = [];

@@ -70,3 +70,7 @@ Some component types have their own options:
 
 ### Folder
 - `open` (bool): Show or hide the folder on startup
+
+### File
+- `fileReadFunc` (String): The name of the method you want the FileReader inside this class to read files with. See the [FileReader docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) for more about what these methods do.
+    - Values: `"readAsDataURL"` (default), `"readAsArrayBuffer"`, `"readAsBinaryString"`, `"readAsText"`

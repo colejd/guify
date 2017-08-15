@@ -1,0 +1,17 @@
+@import "../theme.scss";
+
+.guify-file-container {
+    display: inline-block;
+    outline: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: $background2;
+
+    &:hover, &:focus {
+        background-color: $background2hover;
+    }
+}
+
+.guify-dragover {
+    background-color: $background2hover;
+}
