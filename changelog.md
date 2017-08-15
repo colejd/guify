@@ -1,3 +1,8 @@
+## 0.5.0
+
+- Add File component
+- Add Display component
+
 ## 0.4.0
 
 - Accessibility update: made components keyboard-accessible
