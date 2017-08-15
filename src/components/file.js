@@ -23,6 +23,8 @@ export default class File extends EventEmitter {
         css(container, {
             width: '100%',
             'box-sizing': 'border-box',
+            '-moz-box-sizing': 'border-box',
+            '-webkit-box-sizing': 'border-box',
             height: 'unset', // Grow with content
             'margin-bottom': '5px',
             padding: '8px',

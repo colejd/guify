@@ -50,15 +50,51 @@ The common properties are:
 - `property` (String): The name of the property in `object` that you want the component to be bound to. `object[property]` and the value of the component will be bound (updating one will change the other).
 - `folder` (String): The label of the folder to put the component into. If none is specified it'll just go in the panel at the root level.
 
-Some component types have their own options:
+Some component types have their own options. These will be specified for each component listed below.
+
+## Components
 
 ### Button
+`type: 'button'`
+
+Represents a button.
+
+Special options:
 - `action` (callback): Called when the button is clicked.
 
+### Checkbox
+`type: 'checkbox'`
+
+Represents true/false.
+
 ### Color
+`type: 'color'`
+
+Represents a color. Can show RGB or hex colors.
+
+Special options:
 -  `format` (String): Can be either `"rgb"` or `"hex"`.
 
+### Display
+`type: 'display'`
+
+Displays the bound value.
+
+### File
+`type: 'file'`
+
+Button / drop area for file selection.
+
+Special options:
+- `fileReadFunc` (String): The name of the method you want the FileReader inside this class to read files with. See the [FileReader docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) for more about what these methods do.
+    - Values: `"readAsDataURL"` (default), `"readAsArrayBuffer"`, `"readAsBinaryString"`, `"readAsText"`
+
 ### Range
+`type: 'range'`
+
+Shows a slider representing a numerical value.
+
+Special options:
 - `min` (int): The smallest possible value on the slider.
 - `max` (int): The largest possible value on the slider.
 - `step` (int): The amount that is incremented by each movement of the slider.
@@ -66,11 +102,18 @@ Some component types have their own options:
     - Values: `"linear"`, `"log"`
 
 ### Select
+`type: 'select'`
+
+Shows a dropdown with the specified options.
+
+Special options:
 - `options` (Array(String)): A list of strings representing the different selectable options.
 
 ### Folder
-- `open` (bool): Show or hide the folder on startup
+`type: 'folder'`
 
-### File
-- `fileReadFunc` (String): The name of the method you want the FileReader inside this class to read files with. See the [FileReader docs](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) for more about what these methods do.
-    - Values: `"readAsDataURL"` (default), `"readAsArrayBuffer"`, `"readAsBinaryString"`, `"readAsText"`
+An expanding/collapsing area that you can put other components into. To do this, use `folder: 'folderLabel'` as an option of another component, where `folderLabel` is the label of a folder.
+
+Special options:
+- `open` (bool): Show or hide the folder by default
+
