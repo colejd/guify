@@ -6,12 +6,12 @@ export default (root, text, theme) => {
         left: 0,
         width: '36%',
         display: 'inline-block',
-        height: '20px',
+        'min-height': '20px',
         paddingRight: '2%',
         verticalAlign: 'top'
     });
 
-    var label = background.appendChild(document.createElement('span'));
+    var label = background.appendChild(document.createElement('div'));
     label.innerHTML = text;
     css(label, {
         color: theme.text1,

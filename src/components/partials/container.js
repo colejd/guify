@@ -7,7 +7,8 @@ let Container = (root, label) => {
     container.classList.add('guify-component-container');
     css(container, {
         position: 'relative',
-        height: '25px'
+        'min-height': '20px',
+        'margin-bottom': '5px'
     });
     return container;
 }

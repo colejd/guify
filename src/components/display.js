@@ -8,11 +8,6 @@ export default class Display {
         this.opts = opts;
 
         let container = require('./partials/container')(root, opts.label)
-        css(container, {
-            height: 'unset',
-            'min-height': '25px',
-            'overflow': 'visible'
-        });
 
         require('./partials/label')(container, opts.label, theme)
 
@@ -21,7 +16,6 @@ export default class Display {
             display: 'inline-block',
             //'padding-left': '6px',
             //'padding-right': '6px',
-            'padding-bottom': '6px',
             height: 'unset',
             width: '62%',
             border: 'none',
