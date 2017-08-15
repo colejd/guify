@@ -61,7 +61,7 @@ export default class File extends EventEmitter {
             var reader = new FileReader();
             reader.onload = () => {
                 this.file = reader.result;
-                this.fileLabel.innerHTML = URL.createObjectURL(files[0]);
+                this.fileLabel.innerHTML = files[0].name;
                 this.emit('input', this.file);
             };
 
