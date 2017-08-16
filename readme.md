@@ -39,10 +39,8 @@ let guify = require('guify');
 Then you can make a quick GUI this way:
 ```js
 var panel = new guify.GUI({
-    title: "Some Title", 
-    theme: 'dark',
-    align: 'right',
-    useMenuBar: true
+    title: "Some Title",
+    align: 'right'
 });
 ```
 

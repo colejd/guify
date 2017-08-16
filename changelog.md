@@ -2,6 +2,7 @@
 
 - Menu Bar, Panel and Toast Area have been moved into their own classes and files
 - Now using ES6-style imports in all source files
+- Added `"none"` option to `opts.barMode` (removed `opts.useMenuBar`)
 
 
 ## 0.6.0

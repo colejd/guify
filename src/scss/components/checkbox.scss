@@ -11,6 +11,10 @@ input[type=checkbox].guify-checkbox {
     cursor: pointer;
 }
 
+input[type=checkbox] + label {
+    margin: 0;
+}
+
 input[type=checkbox].guify-checkbox + label:before {
     content: "";
     display: inline-block;
