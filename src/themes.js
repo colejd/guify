@@ -19,8 +19,8 @@ module.exports = {
             labelWidth: '42%',
         },
 
+        // Optional
         // font: {
-        //     // Fonts
         //     fontURL: '//fonts.googleapis.com/css?family=Roboto+Mono',
         //     fontFamily: `'Roboto Mono' monospace`,
         // },
@@ -47,6 +47,7 @@ module.exports = {
             labelWidth: '42%',
         },
 
+        // Optional
         // font: {
         //     fontURL: '//fonts.googleapis.com/css?family=Source+Sans+Pro',
         //     fontFamily: `'Source Sans Pro', sans-serif`,

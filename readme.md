@@ -40,7 +40,8 @@ Then you can make a quick GUI this way:
 ```js
 var panel = new guify.GUI({
     title: "Some Title",
-    align: 'right'
+    align: 'right',
+    theme: 'light'
 });
 ```
 
@@ -59,10 +60,6 @@ NPM commands:
 
 ## Changelog
 See [changelog.md](/changelog.md).
-
-
-## Known Issues
-- Only the `dark` theme works right now.
 
 
 ## License

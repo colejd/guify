@@ -62,11 +62,11 @@ export default class GUI {
         // Mono font
         AppendFont('//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
         // Theme font
-        if(this.opts.theme.fontURL) {
+        if(this.opts.theme.font) {
             // Set default font to theme font
-            AppendFont(this.opts.theme.fontURL);
+            AppendFont(this.opts.theme.font.fontURL);
             css(this.container, {
-                'font-family': this.opts.theme.fontFamily
+                'font-family': this.opts.theme.font.fontFamily
             });
         } else {
             css(this.container, {

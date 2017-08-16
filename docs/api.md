@@ -10,8 +10,8 @@ Creates the GUI using the `opts` object for configuration.
 
 `opts` may have the following properties:
 - `title` (String): The name used on the menu bar / panel.
-- `theme` (String, default=`"dark"`): The name of the theme to be used.
-    - Values: `"light"`, `"dark"`
+- `theme` (String or Object, default=`"dark"`): The name of the theme to be used, or an object matching one of the themes in `themes.js` if you want to create your own.
+    - Values: `"light"`, `"dark"`, custom theme object
 - `root` (Element, default=`document.body`): The HTML element that is used as the parent of the created menu and panel.
 - `width` (String, default=`"300"`): The width of the panel. You can use any CSS-compatible value here, so you can use `"30%"` or `"20em"`, for example.
 - `align` (String, default=`"right"`): Aligns the panel to the left or right side of the root.

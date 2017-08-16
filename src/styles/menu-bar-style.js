@@ -12,6 +12,7 @@ module.exports = csjs`
     position: relative;
     left: 0;
     top: 0;
+    cursor: default;
 }
 
 .guify-bar-title {
