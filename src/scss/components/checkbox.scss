@@ -23,19 +23,42 @@ input[type=checkbox].guify-checkbox + label:before {
     background-color: $box-color;
     border-radius: 0px;
     cursor: pointer;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+
 }
 
+// Hover style
+input[type=checkbox].guify-checkbox:hover + label:before {
+    width: 10px;
+    height: 10px;
+    background-color: $background2hover;
+    border: solid 4px $box-color;
+}
+
+// Focus when checked
+input[type=checkbox]:checked.guify-checkbox:focus + label:before {
+    width: 10px;
+    height: 10px;
+    background-color: $icon-color;
+    border: solid 4px $background2hover;
+}
+
+// Focus when unchecked
 input[type=checkbox].guify-checkbox:focus + label:before {
-    background: $background2hover;
+    // width: 10px;
+    // height: 10px;
+    // background-color: $box-color;
+    // border: solid 4px $background2hover;
+
+    background-color: $background2hover;
 }
 
+// Checked style
 input[type=checkbox]:checked.guify-checkbox + label:before {
     width: 10px;
     height: 10px;
     background-color: $icon-color;
     border: solid 4px $box-color;
-    cursor: pointer;
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
 }

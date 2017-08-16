@@ -11,19 +11,31 @@ $button-bg-active: $text2;
     box-sizing: border-box !important;
     color: $color;
     background-color: $button-bg;
-}
 
-.guify-button:hover {
-    color: $color-hover;
-    background-color: $color-bg-hover;
-}
+    position: absolue;
+    text-align: center;
+    height: 20px;
+    width: 62%;
+    border: none;
+    cursor: pointer;
+    right: 0;
+    font-family: inherit;
 
-.guify-button:active {
-    color: $color-active;
-    background-color: $button-bg-active;
-}
+    &:focus {
+        outline:none;
+    }
+    &::-moz-focus-inner {
+        border:0;
+    }
 
-.guify-button:focus {
-    color: $color-hover;
-    background-color: $color-bg-hover;
+    &:hover,
+    &:focus {
+        color: $color-hover;
+        background-color: $color-bg-hover;
+    }
+
+    &:active {
+        color: $color-active !important;
+        background-color: $button-bg-active !important;
+    }
 }

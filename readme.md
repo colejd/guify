@@ -63,6 +63,10 @@ NPM commands:
 See [changelog.md](/changelog.md).
 
 
+## Known Issues
+- Only the `dark` theme works right now.
+
+
 ## License
 MIT license. See [license.md](/license.md) for specifics.
 
@@ -70,3 +74,7 @@ MIT license. See [license.md](/license.md) for specifics.
 ## Credit
 This package is largely based on [control-panel](https://github.com/freeman-lab/control-panel).
 For setting this up, I used [webpack-library-starter](https://github.com/krasimir/webpack-library-starter).
+
+## Alternatives
+- [Dat.GUI](https://github.com/dataarts/dat.gui)
+- [Control-Panel](https://github.com/freeman-lab/control-panel)

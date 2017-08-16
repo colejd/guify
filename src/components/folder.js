@@ -38,7 +38,7 @@ export default class Folder {
         this.folderContainer.classList.add('guify-folder-contents');
 
         this.open = this.opts.open || false;
-        this.SetOpen(this.opts.open || false);
+        this.SetOpen(this.open);
 
 
     }
@@ -53,12 +53,12 @@ export default class Folder {
     SetOpen(show) {
         this.open = show;
         if(show) {
-            this.folderContainer.style.display = 'block';
+            this.folderContainer.classList.remove('guify-folder-closed');
             this.arrow.innerHTML = '&#9662;'; // Down triangle
 
         }
         else {
-            this.folderContainer.style.display = 'none';
+            this.folderContainer.classList.add('guify-folder-closed');
             this.arrow.innerHTML = '&#9656;'; // Right triangle
         }
 

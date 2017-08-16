@@ -18,8 +18,9 @@ export default class GUI {
         opts.root = opts.root || document.body;
         opts.align = (opts.align || 'right').toLowerCase(); // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
-        opts.useMenuBar = opts.useMenuBar || false;
+        opts.useMenuBar = opts.useMenuBar || true;
         opts.barMode = (opts.barMode || 'overlay').toLowerCase(); // Can be 'above', 'offset', or 'overlay'
+        opts.pollRateMS = opts.pollRateMS || 100;
 
         this.styling = {
             barHeight: 36
@@ -27,8 +28,8 @@ export default class GUI {
 
         this.uuid = uuid();
 
-        this._LoadStyles();
         this._ConstructElements();
+        this._LoadStyles();
 
         this.components = {
             'title': require('./components/title'),
@@ -54,12 +55,29 @@ export default class GUI {
      * Load any runtime styling information needed here.
      */
     _LoadStyles() {
-        // Load the font we'll be using and append it to the head
-        var elem = document.createElement('style');
-        elem.setAttribute('type', 'text/css');
-        elem.setAttribute('rel', 'stylesheet');
-        elem.setAttribute('href', '//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
-        document.getElementsByTagName('head')[0].appendChild(elem);
+        // Loads a font and appends it to the head
+        let AppendFont = (href) => {
+            var elem = document.createElement('style');
+            elem.setAttribute('type', 'text/css');
+            elem.setAttribute('rel', 'stylesheet');
+            elem.setAttribute('href', href);
+            document.getElementsByTagName('head')[0].appendChild(elem);
+        }
+        // Load the fonts we'll be using
+        // Mono font
+        AppendFont('//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
+        // Theme font
+        if(this.opts.theme.fontURL) {
+            // Set default font to theme font
+            AppendFont(this.opts.theme.fontURL);
+            css(this.container, {
+                'font-family': this.opts.theme.fontFamily
+            });
+        } else {
+            css(this.container, {
+                'font-family': `'Hack', monospace`
+            });
+        }
     }
 
     /**
@@ -69,7 +87,6 @@ export default class GUI {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
         this.container.id = 'guify'; // Throw on a unique ID for extra specificity
-        this.container.classList.add('reset');
         this.container.classList.add('guify-container');
         css(this.container, {
             top: this.opts.barMode == 'above' && this.hasRoot ? '-36px' : '0',
@@ -125,6 +142,8 @@ export default class GUI {
             opacity: this.opts.opacity || 1.0,
             left: this.opts.align == 'left' ? '0px' : 'unset',
             right: this.opts.align == 'left' ? 'unset' : '0px',
+            transition: 'height 0.3s ease, margin 0.3s ease',
+            overflow: 'hidden',
         });
 
         if (this.opts.title && !this.opts.useMenuBar)
@@ -147,11 +166,18 @@ export default class GUI {
 
     }
 
+    /**
+     * Polling loop that allows our components to update themselves.
+     * You can set the frequency of this using `this.opts.pollRateMS`.
+     */
     _UpdateComponents() {
         this.loadedComponents.forEach((component) => {
             if(component.binding) {
-                // Update the component from its bound value
-                component.SetValue(component.binding.object[component.binding.property]);
+                // Update the component from its bound value if the value has changed
+                if(component.binding.object[component.binding.property] != component.oldValue) {
+                    component.SetValue(component.binding.object[component.binding.property]);
+                    component.oldValue = component.binding.object[component.binding.property];
+                }
             }
         });
 
@@ -159,7 +185,7 @@ export default class GUI {
             window.requestAnimationFrame(() => {
                 this._UpdateComponents();
             });
-        }, 100);
+        }, this.opts.pollRateMS);
 
     }
 
@@ -168,20 +194,28 @@ export default class GUI {
      * @param {Bool} [show]
      */
     SetPanelVisible(show) {
-        if(show)
-            this.panel.style.display = 'block';
-        else
-            this.panel.style.display = 'none';
+        if(show){
+            // this.panel.style.height = Array.prototype.reduce.call(this.panel.childNodes, function(p, c) {return p + (c.offsetHeight || 0) + 5 + 1;}, 0) + 'px';
+            // this.panel.style.paddingTop = '14px';
+            // this.panel.style.paddingBottom = '8px';
+            this.panel.classList.remove('guify-panel-hidden');
+        }
+        else {
+            // this.panel.style.height = '0px';
+            // this.panel.style.paddingTop = '0px';
+            // this.panel.style.paddingBottom = '0px';
+            this.panel.classList.add('guify-panel-hidden');
+        }
     }
 
     /**
      * Toggles the visibility of the panel.
      */
     TogglePanelVisible() {
-        if(this.panel.style.display != 'none')
-            this.SetPanelVisible(false);
-        else
+        if (this.panel.classList.contains('guify-panel-hidden'))
             this.SetPanelVisible(true);
+        else
+            this.SetPanelVisible(false);
     }
 
     /**
@@ -274,6 +308,7 @@ export default class GUI {
         console.log('[Toast] ' + message);
 
         var toast = this.toastContainer.appendChild(document.createElement('div'));
+        toast.setAttribute('aria-live', 'polite');
         //toast.zIndex = this.container.zIndex - 1;
 
         css(toast, {

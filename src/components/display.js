@@ -14,8 +14,6 @@ export default class Display {
         this.text = container.appendChild(document.createElement('div'));
         css(this.text, {
             display: 'inline-block',
-            //'padding-left': '6px',
-            //'padding-right': '6px',
             height: 'unset',
             width: '62%',
             border: 'none',
@@ -26,8 +24,12 @@ export default class Display {
             '-moz-box-sizing': 'border-box',
             '-webkit-box-sizing': 'border-box',
             verticalAlign: 'sub',
-            'line-height': '20px'
+            'line-height': '20px',
+            'user-select': 'text'
         });
+
+        // Add ARIA attribute to text based on label text
+        if(opts.label) this.text.setAttribute('aria-label', opts.label);
 
 
     }

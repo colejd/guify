@@ -17,10 +17,6 @@ export default class Text extends EventEmitter {
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
-        this.input.onfocus = () => {
-            css(this.input, {outline: 'none'})
-        }
-
         css(this.input, {
             position: 'absolute',
             paddingLeft: '6px',
@@ -43,10 +39,22 @@ export default class Text extends EventEmitter {
         this.input.oninput = (data) => {
             this.emit('input', data.target.value)
         }
+
+        // Gain focus
+        this.input.addEventListener('focus', () => {
+            css(this.input, { outline: 'none' });
+            this.focused = true;
+        });
+
+        // Lose focus
+        this.input.addEventListener('blur', () => {
+            this.focused = false;
+        });
     }
 
     SetValue(value) {
-        this.input.value = value;
+        if(this.focused !== true)
+            this.input.value = value;
     }
 
     GetValue() {

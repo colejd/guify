@@ -21,8 +21,7 @@ export default class Checkbox extends EventEmitter {
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         var label = container.appendChild(document.createElement('label'))
-        label.htmlFor = 'checkbox-' + opts.label + uuid
-        label.className = 'guify-checkbox'
+        label.htmlFor = this.input.id;
 
         setTimeout(() => {
             this.emit('initialized', this.input.checked)
@@ -31,6 +30,7 @@ export default class Checkbox extends EventEmitter {
         this.input.onchange = (data) => {
             this.emit('input', data.target.checked)
         }
+
     }
 
     SetValue(value) {

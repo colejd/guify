@@ -23,6 +23,7 @@ export default (root, text, theme, width, left) => {
     css(background, bgcss);
 
     css(value, {
+        'font-family': `'Hack', monospace`,
         color: theme.text2,
         display: 'inline-block',
         userSelect: 'text',

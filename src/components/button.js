@@ -15,23 +15,13 @@ export default class Button extends EventEmitter {
         var input = container.appendChild(document.createElement('button'))
         input.className = 'guify-button'
 
-        input.onfocus = function () {
-            css(input, {outline: 'none'})
-        }
-
         input.textContent = opts.label
 
-        css(input, {
-            position: 'absolute',
-            textAlign: 'center',
-            height: '20px',
-            width: '62%',
-            border: 'none',
-            cursor: 'pointer',
-            right: 0,
-            fontFamily: 'inherit'
-        })
-
         input.addEventListener('click', opts.action)
+
+        // Defocus on mouse up (for non-accessibility users)
+        input.addEventListener('mouseup', () => {
+            input.blur();
+        });
     }
 }

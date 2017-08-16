@@ -56,6 +56,7 @@ export default class Select extends EventEmitter {
         this.input.onchange = (data) => {
             this.emit('input', data.target.value)
         }
+
     }
 
     SetValue(value) {

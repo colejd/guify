@@ -7,20 +7,21 @@ All options are optional unless marked as required.
 Creates the GUI using the `opts` object for configuration.
 
 `opts` may have the following properties:
-- `useMenuBar` (bool): If true, a menu bar with a collapsing panel is created. Otherwise you get just the panel.
+- `useMenuBar` (bool, default=`true`): If true, a menu bar with a collapsing panel is created. Otherwise you get just the panel.
 - `title` (String): The name used on the menu bar / panel.
-- `theme` (String): The name of the theme to be used.
-    - Values: `"light"`, `"dark"` (default)
-- `root` (Element): The HTML element that is used as the parent of the created menu and panel. If blank, `document.body` is used.
-- `width`: The width of the panel.
-- `align` (String): Aligns the panel to the left or right side of the root.
-    - Values:  `"left"`, `"right"` (default)
-- `barMode` (String): Changes the way the layout bar is inserted into the root.
+- `theme` (String, default=`"dark"`): The name of the theme to be used.
+    - Values: `"light"`, `"dark"`
+- `root` (Element, default=`document.body`): The HTML element that is used as the parent of the created menu and panel.
+- `width` (int, default=`300`): The width of the panel.
+- `align` (String, default=`"right"`): Aligns the panel to the left or right side of the root.
+    - Values:  `"left"`, `"right"`
+- `barMode` (String, default=`"overlay"`): Changes the way the layout bar is inserted into the root.
     - Values:
         - `"overlay"`: The menu bar is fixed to the top of the root, overlapping content beneath it.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
-- `opacity` (float between 0 and 1): Opacity value for the panel.
+- `opacity` (float, default=`1.0`): Opacity value for the panel.
+- `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
 
 ### `Toast(message, stayMS, transitionMS)`
 Displays a toast-style message on screen. `stayMS` and `transitionMS` are optional values that you can use to control the duration and removal animation time of the notification.
@@ -42,7 +43,7 @@ The properties in this object determine the type and behavior of the created com
 The common properties are:
 
 - `type` (String, required): The component type that will be created. Can be `"button"`, `"checkbox"`, `"color"`, `"range"`, `"select"`, `"text"`, and `"title"`
-- `label` (String): The text label that appears next to the component
+- `label` (String): The text label that appears next to the component.
 - `initial` (Object): The initial value of the component. If you don't specify this, it will be copied from the bound value if there is one, or otherwise initialized to the variable type's default value.
 - `onChange` (callback): Fired every time the value governed by the component changes, with a single argument holding the value.
 - `onInitialize` (callback): Fired when the component is initialized.
@@ -115,5 +116,5 @@ Special options:
 An expanding/collapsing area that you can put other components into. To do this, use `folder: 'folderLabel'` as an option of another component, where `folderLabel` is the label of a folder.
 
 Special options:
-- `open` (bool): Show or hide the folder by default
+- `open` (bool, default=`true`): Show or hide the folder by default
 

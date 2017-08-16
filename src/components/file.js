@@ -26,7 +26,6 @@ export default class File extends EventEmitter {
             '-moz-box-sizing': 'border-box',
             '-webkit-box-sizing': 'border-box',
             height: 'unset', // Grow with content
-            'margin-bottom': '5px',
             padding: '8px',
             color: theme.text1,
         });
@@ -34,19 +33,18 @@ export default class File extends EventEmitter {
         let label = container.appendChild(document.createElement('div'));
         label.innerHTML = opts.label;
         css(label, {
-            'padding-bottom': '5px'
+            'padding-bottom': '5px',
         });
 
         let input = container.appendChild(document.createElement('input'));
         input.setAttribute('type', 'file');
         input.setAttribute('multiple', false);
         input.style.display = 'none';
+        // Add ARIA attribute to input based on label text
+        if(opts.label) input.setAttribute('aria-label', opts.label);
 
         this.fileLabel = container.appendChild(document.createElement('div'));
         this.fileLabel.innerHTML = 'Choose a file...';
-        css(this.fileLabel, {
-            color: theme.text1
-        });
 
         let FileDropped = (event) => {
             var files;

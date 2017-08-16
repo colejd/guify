@@ -5,69 +5,89 @@ $thumb-color: $foreground1;
 $thumb-highlight: $background2hover;
 
 input[type=range].guify-range {
-  -webkit-appearance: none;
-  width: 100%;
-  margin: 0px 0;
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 0px 0;
+
+    &:focus {
+        outline: none;
+    }
+    &::-moz-focus-outer {
+        border: 0;
+    }
+
 }
-input[type=range].guify-range:focus {
-  outline: none;
-}
+
+// Webkit
 input[type=range].guify-range::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 20px;
-  cursor: ew-resize;
-  background: $track-color;
+    width: 100%;
+    height: 20px;
+    cursor: ew-resize;
+    background: $track-color;
 }
 input[type=range].guify-range::-webkit-slider-thumb {
-  height: 20px;
-  width: 10px;
-  background: $thumb-color;
-  cursor: ew-resize;
-  -webkit-appearance: none;
-  margin-top: 0px;
+    height: 20px;
+    width: 10px;
+    background: $thumb-color;
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    margin-top: 0px;
 }
 input[type=range].guify-range:focus::-webkit-slider-runnable-track {
-  background: $thumb-highlight;
-  outline: none;
+    background: $thumb-highlight;
+    outline: none;
 }
+
+// Gecko
 input[type=range].guify-range::-moz-range-track {
-  width: 100%;
-  height: 20px;
-  cursor: ew-resize;
-  background: $track-color;
+    width: 100%;
+    height: 20px;
+    cursor: ew-resize;
+    background: $track-color;
+}
+input[type=range].guify-range:focus::-moz-range-track {
+    background: $background2hover;
 }
 input[type=range].guify-range::-moz-range-thumb {
-  height: 20px;
-  width: 10px;
-  background: $thumb-color;
-  cursor: ew-resize;
+    height: 20px;
+    width: 10px;
+    background: $thumb-color;
+    cursor: ew-resize;
 }
+
+// IE
 input[type=range].guify-range::-ms-track {
-  width: 100%;
-  height: 20px;
-  cursor: ew-resize;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
+    width: 100%;
+    height: 20px;
+    cursor: ew-resize;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
 }
 input[type=range].guify-range::-ms-fill-lower {
-  background: $track-color;
+    background: $track-color;
 }
 input[type=range].guify-range::-ms-fill-upper {
-  background: $track-color;
-}
-input[type=range].guify-range::-ms-thumb {
-  width: 10px;
-  border-radius: 0px;
-  background: $thumb-color;
-  cursor: ew-resize;
-  height: 20px;
+    background: $track-color;
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
-  background: $thumb-highlight;
-  outline: none;
+    background: $background2hover;
 }
 input[type=range].guify-range:focus::-ms-fill-upper {
-  background: $thumb-highlight;
-  outline: none;
+    background: $background2hover;
+}
+input[type=range].guify-range::-ms-thumb {
+    width: 10px;
+    border-radius: 0px;
+    background: $thumb-color;
+    cursor: ew-resize;
+    height: 20px;
+}
+input[type=range].guify-range:focus::-ms-fill-lower {
+    background: $thumb-highlight;
+    outline: none;
+}
+input[type=range].guify-range:focus::-ms-fill-upper {
+    background: $thumb-highlight;
+    outline: none;
 }

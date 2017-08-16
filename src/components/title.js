@@ -6,14 +6,12 @@ export default class Title {
 
         var container = require('./partials/container')(root, opts.label)
         css(container, {
-            'margin-top': '2%',
-            'margin-bottom': '1%',
+            //'font-size': '13px'
         });
 
         var background = container.appendChild(document.createElement('div'));
         css(background, {
             'box-sizing': 'border-box',
-            left: 0,
             width: '100%',
             display: 'inline-block',
             height: '20px',
@@ -23,13 +21,17 @@ export default class Title {
         var label = background.appendChild(document.createElement('div'));
         label.innerHTML = `&#9632; ${opts.label} &#9632;`;
         css(label, {
-            color: theme.text1,
+            //color: theme.text1,
             display: 'inline-block',
             verticalAlign: 'sub',
             height: '20px',
-            //"padding-left": "4%",
-            //"padding-right": "4%",
+            'line-height': '20px',
+            //'box-shadow': `inset 0 0 0 1px ${theme.background2}`,
+            'padding-left': '5px',
+            'padding-right': '5px',
             //"font-weight": "bold",
+            'background-color': theme.text2,
+            'color': theme.background1
         });
     }
 }

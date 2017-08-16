@@ -94,13 +94,21 @@ export default class Range extends EventEmitter {
         })
 
         this.userIsModifying = false;
-        this.input.onmousedown = () => {
-            this.userIsModifying = true;
-        }
 
-        this.input.onmouseup = () => {
-            this.userIsModifying = false;
-        }
+        // Gain focus
+        this.input.addEventListener('focus', () => {
+            this.focused = true;
+        });
+
+        // Lose focus
+        this.input.addEventListener('blur', () => {
+            this.focused = false;
+        });
+
+        // Defocus on mouse up (for non-accessibility users)
+        this.input.addEventListener('mouseup', () => {
+            this.input.blur();
+        });
 
         this.input.oninput = (data) => {
             var scaledValue = this.ScaleValue(parseFloat(data.target.value))
@@ -125,7 +133,7 @@ export default class Range extends EventEmitter {
     }
 
     SetValue(value) {
-        if(!this.userIsModifying) {
+        if(this.focused !== true) {
             this.valueComponent.innerHTML = value.toString();
             this.input.value = this.InverseScaleValue(value);
         }

@@ -4,7 +4,6 @@ div.guify-folder {
     cursor: pointer;
 
     padding-left: 2px;
-    margin-bottom: 5px;
 
     div {
         display: inline-block;
@@ -26,4 +25,10 @@ div.guify-folder-contents {
     display: block;
     box-sizing: border-box;
     padding-left: 14px;
+    margin-bottom: 5px;
+
+    &.guify-folder-closed {
+        height: 0;
+        display: none;
+    }
 }

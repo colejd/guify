@@ -1,21 +1,14 @@
 
 @import './theme.scss';
+@import './mixins.scss';
 
 $bar-height: 36px;
 $bar-content-height: 20px;
-
-// .reset {
-//     all: initial;
-// }
-// .reset * {
-//     all: unset;
-// }
 
 #guify {
     position: absolute;
     left: 0;
     width: 100%;
-    font-family: 'Hack', monospace;
     font-size: 11px;
 
     .guify-bar {
@@ -54,20 +47,26 @@ $bar-content-height: 20px;
             -ms-user-select: none;
             user-select: none;
 
-            &:hover {
+            &:hover, &:focus {
                 background-color: $background2hover;
+            }
+
+            &:active {
+                color: $background2 !important;
+                background-color: $text2 !important;
             }
 
         }
     }
 
     .guify-panel {
+        // Fix white seam around panel
         border: 1px solid $background1;
 
         & {
             position: absolute;
             padding: 14px;
-            padding-bottom: 8px;
+            padding-bottom: 9px; // 5px padding on each element means last item will have 14px to bottom
 
             /* all: initial;  */
             // font-family: 'Hack', monospace;
@@ -79,6 +78,16 @@ $bar-content-height: 20px;
             cursor: default;
             text-align: left;
             box-sizing: border-box;
+
+            overflow: hidden;
+        }
+
+        &.guify-panel-hidden {
+            height: 0px;
+            display: none;
+            @include transition(all 300ms ease);
+            @include transition-property(height, padding-top, padding-bottom);
+            //transition: height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
         }
 
         * {

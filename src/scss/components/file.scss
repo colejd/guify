@@ -8,10 +8,17 @@
     background-color: $background2;
 
     &:hover, &:focus {
+        color: $text2;
         background-color: $background2hover;
+    }
+
+    &:active {
+        color: $background2 !important;
+        background-color: $text2 !important;
     }
 }
 
 .guify-dragover {
-    background-color: $background2hover;
+    background-color: $background2;
+    box-shadow: inset 0 0 0 3px $background2hover;
 }

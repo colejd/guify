@@ -2,7 +2,7 @@
   "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
@@ -29,7 +29,8 @@
     "dev:watch": "npm run-script dev -- --watch & webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
-    "prepublish": "npm run-script build && npm run-script dev"
+    "buildall": "npm run-script build && npm run-script dev",
+    "prepublish": "npm run-script buildall"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
