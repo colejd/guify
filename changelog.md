@@ -1,3 +1,7 @@
+## 0.7.1
+
+- Fixed `"above"` barMode
+
 ## 0.7.0
 
 - Menu Bar, Panel and Toast Area have been moved into their own classes and files

@@ -83,7 +83,7 @@ export default class GUI {
         this.container = document.createElement('div');
         this.container.classList.add(styles['guify-container']);
         css(this.container, {
-            top: (this.opts.barMode == 'above' && this.hasRoot) ? this.opts.theme.sizing.menuBarHeight : '0',
+            top: (this.opts.barMode == 'above' && this.hasRoot) ? -this.opts.theme.sizing.menuBarHeight : '0',
         });
         this.opts.root.appendChild(this.container);
 
