@@ -21,8 +21,8 @@ module.exports = {
 
         // Optional
         // font: {
-        //     fontURL: '//fonts.googleapis.com/css?family=Roboto+Mono',
-        //     fontFamily: `'Roboto Mono' monospace`,
+        //     fontURL: '//fonts.googleapis.com/css?family=Raleway',
+        //     fontFamily: `'Raleway', sans-serif`,
         // },
 
     },
