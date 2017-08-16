@@ -1,4 +1,8 @@
-## 0.7.1
+#### 0.7.2
+
+- Actually fixed `"above"` barMode
+
+#### 0.7.1 
 
 - Fixed `"above"` barMode
 
