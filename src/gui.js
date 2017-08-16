@@ -5,25 +5,28 @@ import isstring from 'is-string';
 import themes from './themes';
 import styles from './scss/container.scss';
 
+import { MenuBar } from './menu-bar';
+import { Panel } from './panel';
+import { ToastArea } from './toast-area';
+
 export default class GUI {
     constructor(opts) {
         this.opts = opts;
 
         this.hasRoot = opts.root !== undefined;
 
-        opts = opts || {};
-        opts.width = opts.width || 300;
-        opts.theme = isstring(opts.theme) ? themes[opts.theme] : themes.dark;
-        opts.root = opts.root || document.body;
-        opts.align = (opts.align || 'right').toLowerCase(); // Can be 'left' or 'right'
-        opts.opacity = opts.opacity || 1.0;
-        opts.useMenuBar = opts.useMenuBar || true;
-        opts.barMode = (opts.barMode || 'overlay').toLowerCase(); // Can be 'above', 'offset', or 'overlay'
-        opts.pollRateMS = opts.pollRateMS || 100;
-
-        this.styling = {
-            barHeight: 36
+        let InitValue = (value, defaultValue) => {
+            if(value === undefined) value = defaultValue;
         }
+
+        InitValue(opts, {});
+        InitValue(opts.width, 300);
+        opts.theme = isstring(opts.theme) ? themes[opts.theme] : themes.dark;
+        InitValue(opts.root, document.body);
+        InitValue(opts.align, 'right'); // Can be 'left' or 'right'
+        InitValue(opts.opacity, 1.0);
+        InitValue(opts.barMode, 'offset'); // Can be 'none', 'above', 'offset', or 'overlay'
+        InitValue(opts.pollRateMS, 100);
 
         this.uuid = uuid();
 
@@ -80,7 +83,7 @@ export default class GUI {
     }
 
     /**
-     * Create container, bar, panel, and toastContainer
+     * Create container, MenuBar, Panel, and ToastArea
      */
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
@@ -88,80 +91,32 @@ export default class GUI {
         this.container.id = 'guify'; // Throw on a unique ID for extra specificity
         this.container.classList.add('guify-container');
         css(this.container, {
-            top: this.opts.barMode == 'above' && this.hasRoot ? '-36px' : '0',
+            top: (this.opts.barMode == 'above' && this.hasRoot) ? '-36px' : '0',
         });
         this.opts.root.appendChild(this.container);
 
-        // Create menu bar
-        this.bar = document.createElement('div');
-        this.bar.className = 'guify-bar';
-        this.container.appendChild(this.bar);
-
-        css(this.bar, {
-            background: this.opts.theme.background1
-        })
-
-        if (this.opts.title) {
-            // Create a text label inside of the bar
-            let text = this.bar.appendChild(document.createElement('div'));
-            text.className = 'guify-bar-title';
-            text.innerHTML = this.opts.title;
-            css(text, {
-                'color': this.opts.theme.text1
-            })
-        }
-
-        // Make the menu collapse button
-        let menuButton = this.bar.appendChild(document.createElement('button'));
-        menuButton.className = 'guify-bar-button';
-        menuButton.innerHTML = 'Controls';
-        css(menuButton, {
-            left: this.opts.align == 'left' ? '8px' : 'unset',
-            right: this.opts.align == 'left' ? 'unset' : '8px',
-        })
-        menuButton.onclick = () => {
-            this.TogglePanelVisible();
-        }
-
-        if (this.opts.barMode == 'offset') {
-            // Make a div that will be the size of the bar and make it first in the container
-            this.opts.root.style.height = this.opts.root.offsetHeight + this.bar.offsetHeight + 'px';
-            let offsetDiv = document.createElement('div');
-            offsetDiv.style.width = '100%';
-            offsetDiv.style.height = this.bar.offsetHeight;
-            this.opts.root.insertBefore(offsetDiv, this.opts.root.childNodes[0]);
+        // Create a menu bar if specified in `opts`
+        if(this.opts.barMode !== 'none') {
+            this.bar = new MenuBar(this.container, this.opts);
+            this.bar.addListener('ontogglepanel', () => {
+                this.panel.ToggleVisible();
+            });
         }
 
         // Create panel
-        this.panel = this.container.appendChild(document.createElement('div'));
-        this.panel.className = 'guify-panel';
-        css(this.panel, {
-            background: this.opts.theme.background1,
-            width: this.opts.width,
-            opacity: this.opts.opacity || 1.0,
-            left: this.opts.align == 'left' ? '0px' : 'unset',
-            right: this.opts.align == 'left' ? 'unset' : '0px',
-            transition: 'height 0.3s ease, margin 0.3s ease',
-            overflow: 'hidden',
-        });
-
-        if (this.opts.title && !this.opts.useMenuBar)
-            require('./components/partials/header')(this.panel, this.opts.title, this.opts.theme)
+        this.panel = new Panel(this.container, this.opts);
 
 
-        if(this.opts.useMenuBar) {
-            this.SetPanelVisible(false);
+        // Hide the panel if there is a menu bar
+        if(this.opts.barMode !== 'none') {
+            this.panel.SetVisible(false);
         } else {
-            this.bar.style.display = 'none';
-            this.SetPanelVisible(true);
+            // Otherwise show it by default
+            this.panel.SetVisible(true);
         }
 
-        // Make toast area
-        this.toastContainer = this.container.appendChild(document.createElement('div'));
-        css(this.toastContainer, {
-            position: 'absolute',
-            'width': '100%',
-        })
+        // Create toast area
+        this.toaster = new ToastArea(this.container, this.opts);
 
     }
 
@@ -188,34 +143,6 @@ export default class GUI {
 
     }
 
-    /**
-     * Makes the panel visible based on the truthiness of `show`.
-     * @param {Bool} [show]
-     */
-    SetPanelVisible(show) {
-        if(show){
-            // this.panel.style.height = Array.prototype.reduce.call(this.panel.childNodes, function(p, c) {return p + (c.offsetHeight || 0) + 5 + 1;}, 0) + 'px';
-            // this.panel.style.paddingTop = '14px';
-            // this.panel.style.paddingBottom = '8px';
-            this.panel.classList.remove('guify-panel-hidden');
-        }
-        else {
-            // this.panel.style.height = '0px';
-            // this.panel.style.paddingTop = '0px';
-            // this.panel.style.paddingBottom = '0px';
-            this.panel.classList.add('guify-panel-hidden');
-        }
-    }
-
-    /**
-     * Toggles the visibility of the panel.
-     */
-    TogglePanelVisible() {
-        if (this.panel.classList.contains('guify-panel-hidden'))
-            this.SetPanelVisible(true);
-        else
-            this.SetPanelVisible(false);
-    }
 
     /**
      * Creates a new component in the panel based on the provided options.
@@ -257,7 +184,7 @@ export default class GUI {
             throw new Error(`No component type named '${opts.type}' exists.`)
         }
 
-        let root = this.panel;
+        let root = this.panel.element;
 
         // If a folder was specified, try to find a folder component with that name
         // and get its folderContainer.
@@ -300,85 +227,14 @@ export default class GUI {
     }
 
     /**
-     * Makes a message that appears under the menu bar. Transitions out
-     * over `transitionMS` milliseconds after `stayMS` milliseconds have passed.
+     * Displays a toast notification under the MenuBar at the top of the root.
+     *
+     * @param {String} [message] The string you want displayed in the notification.
+     * @param {Integer} [stayMS] The number of milliseconds to display the notification for
+     * @param {Integer} [transitionMS ] The number of milliseconds it takes for the notification to transition into disappearing
      */
     Toast(message, stayMS = 5000, transitionMS = 100) {
-        console.log('[Toast] ' + message);
-
-        var toast = this.toastContainer.appendChild(document.createElement('div'));
-        toast.setAttribute('aria-live', 'polite');
-        //toast.zIndex = this.container.zIndex - 1;
-
-        css(toast, {
-            'box-sizing': 'border-box',
-            'background-color': this.opts.theme.background2,
-            'color': this.opts.theme.text1,
-            'position': 'relative',
-            'width': '100%',
-            //'height': '20px',
-            'padding': '8px',
-            'padding-left': '20px',
-            'padding-right': '20px',
-            'text-align': 'center',
-            'font-family': `Hack', monospace`,
-            'font-size': '11px',
-            'z-index': this.container.zIndex - 100,
-
-            // Animation stuff
-            // '-webkit-transition': 'opacity ' + transitionMS + 'ms linear',
-            // 'transition': 'opacity ' + transitionMS + 'ms linear',
-        });
-
-        toast.innerHTML = message;
-
-        // Make close button in toast
-        var closeButton = toast.appendChild(document.createElement('button'));
-        closeButton.innerHTML = '&#10006;'
-        css(closeButton, {
-            background: 'rgba(0, 0, 0, 0)',
-            'color': this.opts.theme.text1,
-            position: 'absolute',
-            textAlign: 'center',
-            'margin-top': 'auto',
-            'margin-bottom': 'auto',
-            border: 'none',
-            cursor: 'pointer',
-            fontFamily: 'inherit',
-            top: '0',
-            bottom: '0',
-            right: '8px',
-        })
-
-        let timeout;
-
-        let TransitionOut = () => {
-            css(toast, {
-                //'transform-style': 'flat',
-                //'transform-style': 'preserve-3d',
-
-                // Slide up
-                // '-webkit-transition': '-webkit-transform ' + transitionMS + 'ms linear',
-                // 'transition': 'transform ' + transitionMS + 'ms linear',
-                // '-webkit-transform': 'translate3d(0, -100%, 0)',
-                // 'transform:': 'translate3d(0, -100%, 0)',
-
-                // Fade out
-                '-webkit-transition': '-webkit-opacity ' + transitionMS + 'ms linear',
-                'transition': 'opacity ' + transitionMS + 'ms linear',
-                'opacity': '0',
-            });
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                if(toast)
-                    toast.parentNode.removeChild(toast);
-            }, transitionMS);
-        }
-
-        timeout = setTimeout(TransitionOut, stayMS);
-
-        closeButton.onclick = TransitionOut;
-
+        this.toaster.CreateToast(message, stayMS, transitionMS);
     }
 
 

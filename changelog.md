@@ -1,5 +1,6 @@
 ## 0.7.0
 
+- Menu Bar, Panel and Toast Area have been moved into their own classes and files
 - Now using ES6-style imports in all source files
 
 

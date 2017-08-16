@@ -3,11 +3,12 @@ All options are optional unless marked as required.
 
 ## GUI
 
+Creates and maintains the entire GUI. If you want to show or hide the menu bar or panel, use `SetVisible(show)` or `ToggleVisible()` on `menubar` or `panel`.
+
 ### `constructor(opts)`
 Creates the GUI using the `opts` object for configuration.
 
 `opts` may have the following properties:
-- `useMenuBar` (bool, default=`true`): If true, a menu bar with a collapsing panel is created. Otherwise you get just the panel.
 - `title` (String): The name used on the menu bar / panel.
 - `theme` (String, default=`"dark"`): The name of the theme to be used.
     - Values: `"light"`, `"dark"`
@@ -17,20 +18,16 @@ Creates the GUI using the `opts` object for configuration.
     - Values:  `"left"`, `"right"`
 - `barMode` (String, default=`"overlay"`): Changes the way the layout bar is inserted into the root.
     - Values:
+        - `"none"`: No menu bar is created, and the panel will always show.
         - `"overlay"`: The menu bar is fixed to the top of the root, overlapping content beneath it.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
 - `opacity` (float, default=`1.0`): Opacity value for the panel.
 - `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
 
+
 ### `Toast(message, stayMS, transitionMS)`
 Displays a toast-style message on screen. `stayMS` and `transitionMS` are optional values that you can use to control the duration and removal animation time of the notification.
-
-### `SetPanelVisible(show)`
-Makes the panel visible based on the truthiness of `show`.
-
-### `TogglePanelVisible()`
-Toggles the panel on and off.
 
 ### `Register(opts, applyToAll)`
 Creates a new component in the panel based on `opts`. You can provide one `opts` object or an array if you want to create many components at once.

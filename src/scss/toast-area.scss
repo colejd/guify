@@ -1,0 +1,15 @@
+
+@import './theme.scss';
+@import './mixins.scss';
+
+.guify-toast-area {
+
+    .guify-toast-notification:nth-child(odd) {
+        background-color: $background2;
+    }
+
+    .guify-toast-notification:nth-child(even) {
+        background-color: $background1;
+    }
+
+}

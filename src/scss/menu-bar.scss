@@ -1,0 +1,53 @@
+@import './theme.scss';
+@import './mixins.scss';
+
+$bar-height: 36px;
+$bar-content-height: 20px;
+
+.guify-bar {
+    height: $bar-height;
+    width: 100%;
+    opacity: 1.0;
+    position: relative;
+    left: 0;
+    top: 0;
+
+    .guify-bar-title {
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: ($bar-height - $bar-content-height) / 2;
+        line-height: $bar-content-height;
+        color: $text1;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .guify-bar-button {
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        height: $bar-content-height;
+        position: absolute;
+        top: ($bar-height - $bar-content-height) / 2;
+        color: $text1;
+        background-color: $background2;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover, &:focus {
+            background-color: $background2hover;
+        }
+
+        &:active {
+            color: $background2 !important;
+            background-color: $text2 !important;
+        }
+
+    }
+}
