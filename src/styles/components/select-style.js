@@ -7,7 +7,7 @@ module.exports = csjs`
 .guify-select-dropdown {
     display: inline-block;
     position: absolute;
-    width: 62%;
+    width: calc(100% - ${common.theme.sizing.labelWidth});
     padding-left: 1.5%;
     height: 20px;
     border: none;
@@ -56,6 +56,5 @@ module.exports = csjs`
     border-bottom: 5px solid ${common.theme.colors.text2};
     border-top: 0px transparent;
 }
-
 
 `;

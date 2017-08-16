@@ -10,7 +10,7 @@ export default class Select extends EventEmitter {
 
         var i, container, downTriangle, upTriangle, key, option, el, keys
 
-        container = require('./partials/container')(root, opts.label)
+        container = require('./partials/container')(root, opts.label, theme)
         require('./partials/label')(container, opts.label, theme)
 
         this.input = document.createElement('select')

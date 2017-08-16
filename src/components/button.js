@@ -9,7 +9,7 @@ export default class Button extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label)
+        var container = require('./partials/container')(root, opts.label, theme)
         require('./partials/label')(container, '', theme)
 
         var input = container.appendChild(document.createElement('button'))

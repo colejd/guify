@@ -12,7 +12,7 @@ module.exports = csjs`
     position: absolue;
     text-align: center;
     height: 20px;
-    width: 62%;
+    width: calc(100% - ${common.theme.sizing.labelWidth});
     border: none;
     cursor: pointer;
     right: 0;

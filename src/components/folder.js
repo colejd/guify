@@ -6,7 +6,7 @@ export default class Folder {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label);
+        var container = require('./partials/container')(root, opts.label, theme);
         container.classList.add(styles['guify-folder']);
         container.setAttribute('role', 'button');
         container.setAttribute('tabIndex', '0'); // Make tabbable

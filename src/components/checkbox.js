@@ -9,7 +9,7 @@ export default class Checkbox extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label)
+        var container = require('./partials/container')(root, opts.label, theme)
         require('./partials/label')(container, opts.label, theme)
 
         this.input = container.appendChild(document.createElement('input'))

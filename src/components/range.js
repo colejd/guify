@@ -10,7 +10,7 @@ export default class Range extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label)
+        var container = require('./partials/container')(root, opts.label, theme)
         require('./partials/label')(container, opts.label, theme)
 
         if (!!opts.step && !!opts.steps) {
@@ -84,7 +84,7 @@ export default class Range extends EventEmitter {
         this.input.value = opts.initial
 
         css(this.input, {
-            width: '47.5%'
+            width: `calc(100% - ${theme.sizing.labelWidth} - 11% - 0.75em)`
         })
 
         this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '11%')

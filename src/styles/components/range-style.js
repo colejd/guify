@@ -8,7 +8,6 @@ let thumbHighlight = common.theme.colors.background2hover;
 
 module.exports = csjs`
 
-
 input[type=range].guify-range {
     -webkit-appearance: none;
     width: 100%;
@@ -97,6 +96,5 @@ input[type=range].guify-range:focus::-ms-fill-upper {
     background: ${thumbHighlight};
     outline: none;
 }
-
 
 `;

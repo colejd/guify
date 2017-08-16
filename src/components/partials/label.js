@@ -4,9 +4,9 @@ export default (root, text, theme) => {
     var background = root.appendChild(document.createElement('div'));
     css(background, {
         left: 0,
-        width: '36%',
+        width: `calc(${theme.sizing.labelWidth} - 2%)`,
         display: 'inline-block',
-        'min-height': '20px',
+        'min-height': theme.sizing.componentHeight,
         paddingRight: '2%',
         verticalAlign: 'top'
     });
@@ -17,7 +17,7 @@ export default (root, text, theme) => {
         color: theme.colors.text1,
         display: 'inline-block',
         verticalAlign: 'sub',
-        'line-height': '20px'
+        'line-height': theme.sizing.componentHeight
     });
     return label;
 }

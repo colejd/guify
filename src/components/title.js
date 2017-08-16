@@ -4,7 +4,7 @@ export default class Title {
     constructor (root, opts, theme) {
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label)
+        var container = require('./partials/container')(root, opts.label, theme)
         css(container, {
             //'font-size': '13px'
         });

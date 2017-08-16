@@ -7,7 +7,7 @@ export default class Text extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label)
+        var container = require('./partials/container')(root, opts.label, theme)
         require('./partials/label')(container, opts.label, theme)
 
         this.input = container.appendChild(document.createElement('input'))
@@ -21,7 +21,7 @@ export default class Text extends EventEmitter {
             position: 'absolute',
             paddingLeft: '6px',
             height: '20px',
-            width: '62%',
+            width: `calc(100% - ${theme.sizing.labelWidth})`,
             border: 'none',
             background: theme.colors.background2,
             color: theme.colors.text2,

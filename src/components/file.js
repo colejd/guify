@@ -16,7 +16,7 @@ export default class File extends EventEmitter {
         this.file = null;
         this.fileName = null;
 
-        let container = require('./partials/container')(root, opts.label);
+        let container = require('./partials/container')(root, opts.label, theme);
         container.classList.add(styles['guify-file-container']);
         container.setAttribute('role', 'button');
         container.setAttribute('tabIndex', '0'); // Make tabbable

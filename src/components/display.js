@@ -7,7 +7,7 @@ export default class Display {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
 
-        let container = require('./partials/container')(root, opts.label)
+        let container = require('./partials/container')(root, opts.label, theme)
 
         require('./partials/label')(container, opts.label, theme)
 
@@ -15,7 +15,7 @@ export default class Display {
         css(this.text, {
             display: 'inline-block',
             height: 'unset',
-            width: '62%',
+            width: `calc(100% - ${theme.sizing.labelWidth})`,
             border: 'none',
             //background: theme.background2,
             color: theme.colors.text2,
