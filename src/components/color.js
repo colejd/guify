@@ -1,7 +1,7 @@
-var EventEmitter = require('wolfy87-eventemitter')
-var ColorPicker = require('simple-color-picker')
-var css = require('dom-css')
-var tinycolor = require('tinycolor2')
+import EventEmitter from 'wolfy87-eventemitter';
+import ColorPicker from 'simple-color-picker';
+import css from 'dom-css';
+import tinycolor from 'tinycolor2';
 
 import styles from '../scss/components/color.scss';
 

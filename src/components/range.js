@@ -1,6 +1,6 @@
-var EventEmitter = require('wolfy87-eventemitter');
-var css = require('dom-css');
-var isnumeric = require('is-numeric');
+import EventEmitter from 'wolfy87-eventemitter';
+import css from 'dom-css';
+import isnumeric from 'is-numeric';
 
 import styles from '../scss/components/range.scss';
 

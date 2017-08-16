@@ -1,3 +1,8 @@
+## 0.7.0
+
+- Now using ES6-style imports in all source files
+
+
 ## 0.6.0
 
 - Toast notifications now have `aria-live="polite"` [accessibility]
@@ -18,10 +23,12 @@
 - Display component text is now selectable.
 - Adjusted margin spacing for folders and titles
 
+
 ## 0.5.0
 
 - Add File component
 - Add Display component
+
 
 ## 0.4.0
 

@@ -1,4 +1,4 @@
-var css = require('dom-css')
+import css from 'dom-css';
 
 export default function (root, text, theme) {
     var title = root.appendChild(document.createElement('div'))

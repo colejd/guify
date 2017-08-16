@@ -60,7 +60,7 @@
             barMode: 'offset', // overlay, above, offset
             opacity: 0.95,
             root: container,
-            useMenuBar: true,
+            useMenuBar: false,
         });
 
         // Populate the GUI
@@ -165,24 +165,65 @@
             }
         })
 
+        var displayValue = "Labore excepteur eu, intelligentsia crucifix ennui distillery truffaut irony man bun next level trust fund gochujang. Cornhole portland adipisicing in, you probably haven't heard of them palo santo swag tbh godard nulla.";
+        gui.Register({
+            type: 'display',
+            label: 'Test Display',
+            object: this,
+            property: 'displayValue'
+        })
+
+        // Folder example
+        gui.Register({
+            type: 'folder',
+            label: 'Test Folder',
+            open: false
+        });
+
+        // Add to the folder example
+        gui.Register([
+            { type: 'title', label: 'Folder Title' },
+            { type: 'range', label: 'Folder Range', min: 0, max: 20, step: 1 },
+            { type: 'button', label: 'Folder Button' },
+            { type: 'checkbox', label: 'Folder Checkbox' },
+            { type: 'select', label: 'Folder Select', options: ["Option A", "Option B"] },
+            { type: 'text', label: 'Folder Text', initial: 'Some text' },
+            { type: 'color', label: 'Folder Color' },
+        ], {
+            folder: 'Test Folder'
+        });
+
         gui.Register({
             type: 'text',
             label: 'long long long long long long long long label',
+            folder: 'Test Folder',
         })
 
-        // Test buttons
+        // Add a nested folder
+        gui.Register({ type: 'folder', label: 'Nested Folder', folder: 'Test Folder', open: false });
+        gui.Register({ type: 'text', label: 'Folder Text', folder: 'Nested Folder', initial: 'Nested text' });
+
+        // Debug folder
+        gui.Register({
+            type: 'folder',
+            label: 'Debug',
+            open: false
+        })
+
         gui.Register({
             type: 'button',
             label: 'Toast Test',
+            folder: 'Debug',
             action: () => {
                 // Send a toast
                 gui.Toast('Test Toast');
-            }
+            },
         })
 
         gui.Register({
             type: 'button',
             label: 'Randomize Bound Values',
+            folder: 'Debug',
             action: () => {
                 // Randomize all the values bound to components in this example.
                 // Good test for whether component binding is actually working.
@@ -198,37 +239,6 @@
                 testSelection = "Option " + (Math.random() < 0.5 ? "1" : "2");
             }
         })
-
-        var displayValue = 'test test test test test test test test test test test test test test test test';
-        gui.Register({
-            type: 'display',
-            label: 'Test Display',
-            object: this,
-            property: 'displayValue'
-        })
-
-        // Make a folder
-        gui.Register({
-            type: 'folder',
-            label: 'Test Folder'
-        });
-
-        // Add to the folder
-        gui.Register([
-            { type: 'title', label: 'Folder Title' },
-            { type: 'range', label: 'Folder Range', min: 0, max: 20, step: 1 },
-            { type: 'button', label: 'Folder Button' },
-            { type: 'checkbox', label: 'Folder Checkbox' },
-            { type: 'select', label: 'Folder Select', options: ["Option A", "Option B"] },
-            { type: 'text', label: 'Folder Text', initial: 'Some text' },
-            { type: 'color', label: 'Folder Color' },
-        ], {
-            folder: 'Test Folder'
-        });
-
-        // Add a nested folder
-        gui.Register({ type: 'folder', label: 'Nested Folder', folder: 'Test Folder', open: false });
-        gui.Register({ type: 'text', label: 'Folder Text', folder: 'Nested Folder', initial: 'Nested text' });
 
 
 

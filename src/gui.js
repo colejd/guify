@@ -1,10 +1,9 @@
-let uuid = require('uuid/v4');
-let css = require('dom-css');
-let isstring = require('is-string');
+import uuid from 'uuid/v4';
+import css from 'dom-css';
+import isstring from 'is-string';
 
-var themes = require('./themes');
+import themes from './themes';
 import styles from './scss/container.scss';
-
 
 export default class GUI {
     constructor(opts) {

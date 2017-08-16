@@ -1,4 +1,4 @@
-let css = require('dom-css');
+import css from 'dom-css';
 
 /**
  * Display component. Shows the state of a variable.

@@ -1,4 +1,4 @@
-var EventEmitter = require('wolfy87-eventemitter');
+import EventEmitter from 'wolfy87-eventemitter';
 
 import styles from '../scss/components/select.scss';
 

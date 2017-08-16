@@ -1,4 +1,4 @@
-var css = require('dom-css')
+import css from 'dom-css';
 
 export default (root, text, theme) => {
     var background = root.appendChild(document.createElement('div'));

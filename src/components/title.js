@@ -1,4 +1,4 @@
-var css = require('dom-css');
+import css from 'dom-css';
 
 export default class Title {
     constructor (root, opts, theme) {

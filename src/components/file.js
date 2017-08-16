@@ -1,5 +1,5 @@
-var EventEmitter = require('wolfy87-eventemitter');
-let css = require('dom-css');
+import EventEmitter from 'wolfy87-eventemitter';
+import css from 'dom-css';
 
 import styles from 'scss/components/file.scss';
 
