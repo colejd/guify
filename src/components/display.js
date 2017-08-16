@@ -18,7 +18,7 @@ export default class Display {
             width: '62%',
             border: 'none',
             //background: theme.background2,
-            color: theme.text2,
+            color: theme.colors.text2,
             fontFamily: 'inherit',
             'box-sizing': 'border-box',
             '-moz-box-sizing': 'border-box',

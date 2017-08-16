@@ -28,17 +28,6 @@ const config = {
   },
   module: {
     rules: [
-      { // Process SCSS includes
-        test: /\.scss$/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }],
-        include: __dirname + '/src'
-      },
       { // Process js files
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',

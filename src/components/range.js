@@ -2,7 +2,7 @@ import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 import isnumeric from 'is-numeric';
 
-import styles from '../scss/components/range.scss';
+const styles = require('styles/components/range-style.js');
 
 export default class Range extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -19,7 +19,7 @@ export default class Range extends EventEmitter {
 
         this.input = container.appendChild(document.createElement('input'))
         this.input.type = 'range'
-        this.input.className = 'guify-range'
+        this.input.className = styles['guify-range'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 

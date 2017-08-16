@@ -1,7 +1,7 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
-import styles from "../scss/components/button.scss";
+const styles = require('styles/components/button-style.js');
 
 export default class Button extends EventEmitter {
     constructor(root, opts, theme, uuid) {
@@ -13,7 +13,7 @@ export default class Button extends EventEmitter {
         require('./partials/label')(container, '', theme)
 
         var input = container.appendChild(document.createElement('button'))
-        input.className = 'guify-button'
+        input.className = styles['guify-button'];
 
         input.textContent = opts.label
 

@@ -1,9 +1,12 @@
-import uuid from 'uuid/v4';
 import css from 'dom-css';
 import isstring from 'is-string';
 
 import themes from './themes';
-import styles from './scss/container.scss';
+import { theme } from './theme';
+
+const styles = require('./styles/container-style.js');
+
+import { ComponentManager } from './component-manager';
 
 import { MenuBar } from './menu-bar';
 import { Panel } from './panel';
@@ -28,23 +31,13 @@ export default class GUI {
         InitValue(opts.barMode, 'offset'); // Can be 'none', 'above', 'offset', or 'overlay'
         InitValue(opts.pollRateMS, 100);
 
-        this.uuid = uuid();
+        // Set theme global from opts
+        theme.Set(opts.theme);
 
         this._ConstructElements();
         this._LoadStyles();
 
-        this.components = {
-            'title': require('./components/title'),
-            'range': require('./components/range'),
-            'button': require('./components/button'),
-            'checkbox': require('./components/checkbox'),
-            'select': require('./components/select'),
-            'text': require('./components/text'),
-            'color': require('./components/color'),
-            'folder': require('./components/folder'),
-            'file': require('./components/file'),
-            'display': require('./components/display')
-        }
+        this.componentManager = new ComponentManager();
 
         this.loadedComponents = [];
 
@@ -88,8 +81,7 @@ export default class GUI {
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
-        this.container.id = 'guify'; // Throw on a unique ID for extra specificity
-        this.container.classList.add('guify-container');
+        this.container.classList.add(styles['guify-container']);
         css(this.container, {
             top: (this.opts.barMode == 'above' && this.hasRoot) ? '-36px' : '0',
         });
@@ -180,10 +172,6 @@ export default class GUI {
             //opts.label = opts.label || property;
         }
 
-        if(this.components[opts.type] === undefined) {
-            throw new Error(`No component type named '${opts.type}' exists.`)
-        }
-
         let root = this.panel.element;
 
         // If a folder was specified, try to find a folder component with that name
@@ -197,7 +185,7 @@ export default class GUI {
             else throw new Error(`No folder exists with the name ${opts.folder}`);
         }
 
-        let component = new this.components[opts.type](root, opts, this.opts.theme, this.uuid);
+        let component = this.componentManager.Create(opts.type, root, opts);
 
         // Add binding properties if specified
         if(opts.object && opts.property) {

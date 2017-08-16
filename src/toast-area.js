@@ -1,7 +1,5 @@
 import css from 'dom-css';
 
-import styles from './scss/toast-area.scss';
-
 /**
  * Represents a container div that creates and holds toast notifications.
  */
@@ -9,9 +7,12 @@ export class ToastArea {
     constructor(root, opts) {
         this.opts = opts;
 
+        // Add menu bar styles to the head
+        this.styles = require('./styles/menu-bar-style.js');
+
         // Make toast area
         this.element = root.appendChild(document.createElement('div'));
-        this.element.classList.add('guify-toast-area');
+        this.element.classList.add(this.styles['guify-toast-area']);
         css(this.element, {
             position: 'absolute',
             'width': '100%',
@@ -26,13 +27,13 @@ export class ToastArea {
         console.log('[Toast] ' + message);
 
         let toast = this.element.appendChild(document.createElement('div'));
-        toast.classList.add('guify-toast-notification');
+        toast.classList.add(this.styles['guify-toast-notification']);
         toast.setAttribute('aria-live', 'polite');
 
         css(toast, {
             'box-sizing': 'border-box',
             //'background-color': this.opts.theme.background2,
-            'color': this.opts.theme.text1,
+            'color': this.opts.theme.colors.text1,
             'position': 'relative',
             'width': '100%',
             //'height': '20px',
@@ -55,7 +56,7 @@ export class ToastArea {
         closeButton.innerHTML = '&#10006;'
         css(closeButton, {
             background: 'rgba(0, 0, 0, 0)',
-            'color': this.opts.theme.text1,
+            'color': this.opts.theme.colors.text1,
             position: 'absolute',
             textAlign: 'center',
             'margin-top': 'auto',

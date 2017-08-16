@@ -8,7 +8,7 @@ export default (root, text, theme, width, left) => {
 
     let bgcss = {
         position: 'absolute',
-        backgroundColor: theme.background2,
+        backgroundColor: theme.colors.background2,
         paddingLeft: '1.5%',
         height: '20px',
         width: width,
@@ -24,7 +24,7 @@ export default (root, text, theme, width, left) => {
 
     css(value, {
         'font-family': `'Hack', monospace`,
-        color: theme.text2,
+        color: theme.colors.text2,
         display: 'inline-block',
         userSelect: 'text',
         cursor: 'text',

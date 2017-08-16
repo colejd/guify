@@ -30,8 +30,8 @@ export default class Title {
             'padding-left': '5px',
             'padding-right': '5px',
             //"font-weight": "bold",
-            'background-color': theme.text2,
-            'color': theme.background1
+            'background-color': theme.colors.text2,
+            'color': theme.colors.background1
         });
     }
 }

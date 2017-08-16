@@ -4,6 +4,9 @@
 - Now using ES6-style imports in all source files
 - Added `"none"` option to `opts.barMode` (removed `opts.useMenuBar`)
 - Improve styling resistance against Bootstrap
+- Massive rewrite of styling:
+    - Using CSJS instead of Sass so we can load CSS with dynamic variables
+    - **Themes now work**
 
 ## 0.6.0
 

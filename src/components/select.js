@@ -1,6 +1,6 @@
 import EventEmitter from 'wolfy87-eventemitter';
 
-import styles from '../scss/components/select.scss';
+const styles = require('styles/components/select-style.js');
 
 export default class Select extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -14,15 +14,15 @@ export default class Select extends EventEmitter {
         require('./partials/label')(container, opts.label, theme)
 
         this.input = document.createElement('select')
-        this.input.className = 'guify-select-dropdown'
+        this.input.className = styles['guify-select-dropdown'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         downTriangle = document.createElement('span')
-        downTriangle.className = 'guify-select-triangle guify-select-triangle--down'
+        downTriangle.classList.add(styles['guify-select-triangle'], styles['guify-select-triangle--down']);
 
         upTriangle = document.createElement('span')
-        upTriangle.className = 'guify-select-triangle guify-select-triangle--up'
+        upTriangle.classList.add(styles['guify-select-triangle'], styles['guify-select-triangle--up']);
 
         container.appendChild(downTriangle)
         container.appendChild(upTriangle)

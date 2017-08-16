@@ -1,7 +1,7 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
-import styles from '../scss/components/checkbox.scss';
+const styles = require('styles/components/checkbox-style.js');
 
 export default class Checkbox extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -16,7 +16,7 @@ export default class Checkbox extends EventEmitter {
         this.input.id = 'checkbox-' + opts.label + uuid
         this.input.type = 'checkbox'
         this.input.checked = opts.initial
-        this.input.className = 'guify-checkbox'
+        this.input.className = styles['guify-checkbox'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 

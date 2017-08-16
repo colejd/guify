@@ -1,7 +1,8 @@
-@import '../theme.scss';
+const csjs = require('csjs-inject');
 
-$bg-color: $background2;
-$text-color: $text2;
+import common from '../common-style.js';
+
+module.exports = csjs`
 
 .guify-select-dropdown {
     display: inline-block;
@@ -16,8 +17,8 @@ $text-color: $text2;
     -o-appearance:none;
     appearance: none;
     font-family: inherit;
-    background-color: $bg-color;
-    color: $text-color;
+    background-color: ${common.theme.colors.background2};
+    color: ${common.theme.colors.text2};
     box-sizing: border-box !important;
     -moz-box-sizing: border-box !important;
     -webkit-box-sizing: border-box !important;
@@ -31,7 +32,7 @@ $text-color: $text2;
 }
 .guify-select-dropdown:focus,
 .guify-select-dropdown:hover {
-    background-color: $background2hover;
+    background-color: ${common.theme.colors.background2hover};
 }
 .guify-select-dropdown::-ms-expand {
     display:none;
@@ -47,11 +48,14 @@ $text-color: $text2;
 }
 .guify-select-triangle--down {
     top: 11px;
-    border-top: 5px solid $text-color;
+    border-top: 5px solid ${common.theme.colors.text2};
     border-bottom: 0px transparent;
 }
 .guify-select-triangle--up {
     top: 4px;
-    border-bottom: 5px solid $text-color;
+    border-bottom: 5px solid ${common.theme.colors.text2};
     border-top: 0px transparent;
 }
+
+
+`;

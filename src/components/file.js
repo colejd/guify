@@ -1,7 +1,7 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
-import styles from 'scss/components/file.scss';
+const styles = require('styles/components/file-style.js');
 
 /**
  * File component. Drag and drop a file or click to choose a file.
@@ -17,7 +17,7 @@ export default class File extends EventEmitter {
         this.fileName = null;
 
         let container = require('./partials/container')(root, opts.label);
-        container.classList.add('guify-file-container');
+        container.classList.add(styles['guify-file-container']);
         container.setAttribute('role', 'button');
         container.setAttribute('tabIndex', '0'); // Make tabbable
         css(container, {
@@ -27,7 +27,7 @@ export default class File extends EventEmitter {
             '-webkit-box-sizing': 'border-box',
             height: 'unset', // Grow with content
             padding: '8px',
-            color: theme.text1,
+            color: theme.colors.text1,
         });
 
         let label = container.appendChild(document.createElement('div'));
@@ -71,19 +71,19 @@ export default class File extends EventEmitter {
         container.addEventListener('dragover', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            container.classList.add('guify-dragover');
+            container.classList.add(styles['guify-dragover']);
         });
 
         container.addEventListener('dragleave', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            container.classList.remove('guify-dragover');
+            container.classList.remove(styles['guify-dragover']);
         });
 
         container.addEventListener('drop', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            container.classList.remove('guify-dragover');
+            container.classList.remove(styles['guify-dragover']);
             FileDropped(event);
         });
 

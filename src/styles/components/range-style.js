@@ -1,62 +1,67 @@
-@import '../theme.scss';
+const csjs = require('csjs-inject');
 
-$track-color: $background2;
-$thumb-color: $foreground1;
-$thumb-highlight: $background2hover;
+import common from '../common-style.js';
+
+let trackColor = common.theme.colors.background2;
+let thumbColor = common.theme.colors.foreground1;
+let thumbHighlight = common.theme.colors.background2hover;
+
+module.exports = csjs`
+
 
 input[type=range].guify-range {
     -webkit-appearance: none;
     width: 100%;
     margin: 0px 0;
     display: inline-block;
-
-    &:focus {
-        outline: none;
-    }
-    &::-moz-focus-outer {
-        border: 0;
-    }
-
 }
 
-// Webkit
+/* Remove outlines since we'll be adding our own */
+input[type=range].guify-range:focus {
+    outline: none;
+}
+input[type=range].guify-range::-moz-focus-outer {
+    border: 0;
+}
+
+/* Webkit */
 input[type=range].guify-range::-webkit-slider-runnable-track {
     width: 100%;
     height: 20px;
     cursor: ew-resize;
-    background: $track-color;
+    background: ${trackColor};
 }
 input[type=range].guify-range::-webkit-slider-thumb {
     height: 20px;
     width: 10px;
-    background: $thumb-color;
+    background: ${thumbColor};
     cursor: ew-resize;
     -webkit-appearance: none;
     margin-top: 0px;
 }
 input[type=range].guify-range:focus::-webkit-slider-runnable-track {
-    background: $thumb-highlight;
+    background: ${thumbHighlight};
     outline: none;
 }
 
-// Gecko
+/* Gecko */
 input[type=range].guify-range::-moz-range-track {
     width: 100%;
     height: 20px;
     cursor: ew-resize;
-    background: $track-color;
+    background: ${trackColor};
 }
 input[type=range].guify-range:focus::-moz-range-track {
-    background: $background2hover;
+    background: ${common.theme.colors.background2hover};
 }
 input[type=range].guify-range::-moz-range-thumb {
     height: 20px;
     width: 10px;
-    background: $thumb-color;
+    background: ${thumbColor};
     cursor: ew-resize;
 }
 
-// IE
+/* IE */
 input[type=range].guify-range::-ms-track {
     width: 100%;
     height: 20px;
@@ -66,29 +71,32 @@ input[type=range].guify-range::-ms-track {
     color: transparent;
 }
 input[type=range].guify-range::-ms-fill-lower {
-    background: $track-color;
+    background: ${trackColor};
 }
 input[type=range].guify-range::-ms-fill-upper {
-    background: $track-color;
+    background: ${trackColor};
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
-    background: $background2hover;
+    background: ${common.theme.colors.background2hover};
 }
 input[type=range].guify-range:focus::-ms-fill-upper {
-    background: $background2hover;
+    background: ${common.theme.colors.background2hover};
 }
 input[type=range].guify-range::-ms-thumb {
     width: 10px;
     border-radius: 0px;
-    background: $thumb-color;
+    background: ${thumbColor};
     cursor: ew-resize;
     height: 20px;
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
-    background: $thumb-highlight;
+    background: ${thumbHighlight};
     outline: none;
 }
 input[type=range].guify-range:focus::-ms-fill-upper {
-    background: $thumb-highlight;
+    background: ${thumbHighlight};
     outline: none;
 }
+
+
+`;

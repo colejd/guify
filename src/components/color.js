@@ -2,8 +2,7 @@ import EventEmitter from 'wolfy87-eventemitter';
 import ColorPicker from 'simple-color-picker';
 import css from 'dom-css';
 import tinycolor from 'tinycolor2';
-
-import styles from '../scss/components/color.scss';
+import insertCss from 'insert-css';
 
 export default class Color extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -43,7 +42,7 @@ export default class Color extends EventEmitter {
         this.picker = new ColorPicker({
             el: icon,
             color: initial,
-            background: theme.background1,
+            background: theme.colors.background1,
             width: 125,
             height: 100
         })
@@ -61,6 +60,8 @@ export default class Color extends EventEmitter {
             height: '20px',
             backgroundColor: this.picker.getHexString()
         })
+
+        this.InjectStyles();
 
         icon.onmouseout = (e) => {
             this.picker.$el.style.display = 'none'
@@ -99,5 +100,63 @@ export default class Color extends EventEmitter {
 
     GetValue() {
         return this.Format(this.picker.getColor());
+    }
+
+    InjectStyles() {
+        insertCss(`
+
+        .Scp {
+            width: 125px;
+            height: 100px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+            position: relative;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .Scp-saturation {
+            position: relative;
+            width: calc(100% - 25px);
+            height: 100%;
+            background: linear-gradient(to right, #fff 0%, #f00 100%);
+            float: left;
+            margin-right: 5px;
+        }
+        .Scp-brightness {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #000 0%, rgba(255,255,255,0) 100%);
+        }
+        .Scp-sbSelector {
+            border: 1px solid;
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 10px;
+            top: -7px;
+            left: -7px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+        .Scp-hue {
+            width: 20px;
+            height: 100%;
+            position: relative;
+            float: left;
+            background: linear-gradient(to bottom, #f00 0%, #f0f 17%, #00f 34%, #0ff 50%, #0f0 67%, #ff0 84%, #f00 100%);
+        }
+        .Scp-hSelector {
+            position: absolute;
+            background: #fff;
+            border-bottom: 1px solid #000;
+            right: -3px;
+            width: 10px;
+            height: 2px;
+        }
+
+        `);
     }
 }
