@@ -12,7 +12,7 @@ Creates the GUI using the `opts` object for configuration.
 - `theme` (String, default=`"dark"`): The name of the theme to be used.
     - Values: `"light"`, `"dark"`
 - `root` (Element, default=`document.body`): The HTML element that is used as the parent of the created menu and panel.
-- `width` (int, default=`300`): The width of the panel.
+- `width` (String, default=`"300"`): The width of the panel. You can use any CSS-compatible value here, so you can use `"30%"` or `"20em"`, for example.
 - `align` (String, default=`"right"`): Aligns the panel to the left or right side of the root.
     - Values:  `"left"`, `"right"`
 - `barMode` (String, default=`"overlay"`): Changes the way the layout bar is inserted into the root.
