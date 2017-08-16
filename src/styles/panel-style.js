@@ -7,7 +7,8 @@ module.exports = csjs`
 .guify-panel {
     position: absolute;
     padding: 14px;
-    padding-bottom: 9px; /* 5px padding on each element means last item will have 14px to bottom */
+    /* Last component will have a margin, so reduce padding to account for this */
+    padding-bottom: calc(14px - ${common.theme.sizing.componentSpacing});
 
     /* all: initial;  */
     -webkit-user-select: none;
@@ -22,9 +23,7 @@ module.exports = csjs`
 .guify-panel.guify-panel-hidden {
     height: 0px;
     display: none;
-    @include transition(all 300ms ease);
-    @include transition-property(height, padding-top, padding-bottom);
-    //transition: height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
+    /* transition: height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease; */
 }
 
 .guify-panel * {

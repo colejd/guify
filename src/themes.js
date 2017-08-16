@@ -16,7 +16,7 @@ module.exports = {
             menuBarContentHeight: '20px',
             componentHeight: '20px',
             componentSpacing: '5px',
-            labelWidth: '18%',
+            labelWidth: '42%',
         },
 
         // font: {
@@ -44,7 +44,7 @@ module.exports = {
             menuBarContentHeight: '20px',
             componentHeight: '20px',
             componentSpacing: '5px',
-            labelWidth: '38%',
+            labelWidth: '42%',
         },
 
         // font: {
