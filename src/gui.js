@@ -18,17 +18,12 @@ export default class GUI {
 
         this.hasRoot = opts.root !== undefined;
 
-        let InitValue = (value, defaultValue) => {
-            if(value === undefined) value = defaultValue;
-        }
-
-        InitValue(opts, {});
-        InitValue(opts.width, 300);
-        InitValue(opts.root, document.body);
-        InitValue(opts.align, 'right'); // Can be 'left' or 'right'
-        InitValue(opts.opacity, 1.0);
-        InitValue(opts.barMode, 'offset'); // Can be 'none', 'above', 'offset', or 'overlay'
-        InitValue(opts.pollRateMS, 100);
+        opts.width = opts.width || 300;
+        opts.root = opts.root || document.body;
+        opts.align = opts.align || 'left'; // Can be 'left' or 'right'
+        opts.opacity = opts.opacity || 1.0;
+        opts.barMode = opts.barMode || 'offset'; // Can be 'none', 'above', 'offset', or 'overlay'
+        opts.pollRateMS = opts.pollRateMS || 100;
 
         // Set theme global from opts
         let chosenTheme = opts.theme;

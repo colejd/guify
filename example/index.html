@@ -21,7 +21,14 @@
             width: 512px;
             height: 512px;
             position: relative;
-            background-color: white;
+            background-color: rgb(230, 230, 230);
+        }
+
+        #content-text {
+            font-family: monospace;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 512px;
         }
 
     </style>
@@ -34,7 +41,11 @@
 <body>
 
     <div id="fake-container">
-        <div id="fake-container-content"></div>
+        <div id="fake-container-content">
+            <div id="content-text">
+                [content]
+            </div>
+        </div>
     </div>
 
     <script>
@@ -54,10 +65,10 @@
         // Create the GUI
         var gui = new guify.GUI({
             title: 'Test App',
-            theme: 'yorha', // dark, light, or theme object
+            theme: 'dark', // dark, light, or theme object
             align: 'right', // left, right
             width: 350,
-            barMode: 'above', // none, overlay, above, offset
+            barMode: 'offset', // none, overlay, above, offset
             opacity: 0.95,
             root: container,
         });

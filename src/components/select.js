@@ -68,11 +68,12 @@ export default class Select extends EventEmitter {
             downTriangle.classList.remove(styles['guify-select-triangle--down-highlight']);
             upTriangle.classList.remove(styles['guify-select-triangle--up-highlight']);
         }
+        let focused = false;
 
         this.input.addEventListener('mouseover', StyleFocus);
-        this.input.addEventListener('focus', () => StyleFocus);
-        this.input.addEventListener('blur', () => StyleUnfocus);
-        this.input.addEventListener('mouseleave', () => { StyleUnfocus(); this.input.blur(); });
+        this.input.addEventListener('focus', () => { focused = true; StyleFocus(); });
+        this.input.addEventListener('blur', () => { focused = false; StyleUnfocus(); });
+        this.input.addEventListener('mouseleave', () => { if (!focused) StyleUnfocus(); });
 
     }
 

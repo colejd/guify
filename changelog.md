@@ -3,7 +3,7 @@
 - Refactored theming code
 - Added new parameters for themes
 - Added new theme preset (`"yorha"`, based on https://metakirby5.github.io/yorha/)
-- File, Select, and Folder components now release focus if using a mouse to interact
+- File and Folder components now release focus if using a mouse to interact
 
 #### 0.7.2
 
