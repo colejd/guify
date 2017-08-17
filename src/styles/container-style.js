@@ -1,6 +1,6 @@
 const csjs = require('csjs-inject');
 
-import common from './common-style.js';
+import { theme } from '../theme.js';
 
 module.exports = csjs`
 

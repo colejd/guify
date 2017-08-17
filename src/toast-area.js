@@ -1,4 +1,5 @@
 import css from 'dom-css';
+import { theme } from './theme';
 
 /**
  * Represents a container div that creates and holds toast notifications.
@@ -32,8 +33,8 @@ export class ToastArea {
 
         css(toast, {
             'box-sizing': 'border-box',
-            //'background-color': this.opts.theme.background2,
-            'color': this.opts.theme.colors.text1,
+            //'background-color': theme.background2,
+            'color': theme.colors.text1,
             'position': 'relative',
             'width': '100%',
             //'height': '20px',
@@ -56,7 +57,7 @@ export class ToastArea {
         closeButton.innerHTML = '&#10006;'
         css(closeButton, {
             background: 'rgba(0, 0, 0, 0)',
-            'color': this.opts.theme.colors.text1,
+            'color': theme.colors.text1,
             position: 'absolute',
             textAlign: 'center',
             'margin-top': 'auto',

@@ -10,14 +10,14 @@ export default class Folder {
         container.classList.add(styles['guify-folder']);
         container.setAttribute('role', 'button');
         container.setAttribute('tabIndex', '0'); // Make tabbable
-        css(container, {
-            color: theme.colors.text1,
-        })
+        // css(container, {
+        //     color: theme.colors.text1,
+        // })
 
         this.arrow = container.appendChild(document.createElement('div'));
         this.arrow.innerHTML = '&#9662;';
         css(this.arrow, {
-            'width': '5%',
+            'width': '1.5em',
         });
 
         this.label = container.appendChild(document.createElement('div'));
@@ -26,6 +26,11 @@ export default class Folder {
         container.onclick = () => {
             this.Toggle();
         }
+
+        // Defocus on mouse up (for non-accessibility users)
+        container.addEventListener('mouseup', () => {
+            container.blur();
+        });
 
         container.addEventListener('keydown', (e) => {
             // Listen for Space or Enter

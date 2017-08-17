@@ -7,7 +7,7 @@ export default function (root, text, theme) {
     css(title, {
         width: '100%',
         textAlign: 'center',
-        color: theme.colors.text2,
+        color: theme.colors.textSecondary,
         height: '20px',
         marginBottom: '4px'
     })

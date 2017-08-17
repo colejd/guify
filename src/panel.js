@@ -1,4 +1,5 @@
 import css from 'dom-css';
+import { theme } from './theme';
 
 export class Panel {
     constructor(root, opts) {
@@ -10,7 +11,7 @@ export class Panel {
         this.element = root.appendChild(document.createElement('div'));
         this.element.className = this.styles['guify-panel'];
         css(this.element, {
-            background: opts.theme.colors.background1,
+            background: theme.colors.panelBackground,
             width: opts.width,
             opacity: opts.opacity || 1.0,
             left: opts.align == 'left' ? '0px' : 'unset',
@@ -19,7 +20,7 @@ export class Panel {
         });
 
         if (opts.title && opts.barMode === 'none')
-            require('./components/partials/header')(this.element, opts.title, opts.theme)
+            require('./components/partials/header')(this.element, opts.title, theme)
 
     }
 

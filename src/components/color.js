@@ -42,7 +42,7 @@ export default class Color extends EventEmitter {
         this.picker = new ColorPicker({
             el: icon,
             color: initial,
-            background: theme.colors.background1,
+            background: theme.colors.componentBackground,
             width: 125,
             height: 100
         })

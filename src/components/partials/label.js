@@ -14,7 +14,7 @@ export default (root, text, theme) => {
     var label = background.appendChild(document.createElement('div'));
     label.innerHTML = text;
     css(label, {
-        color: theme.colors.text1,
+        color: theme.colors.textPrimary,
         display: 'inline-block',
         verticalAlign: 'sub',
         'line-height': theme.sizing.componentHeight

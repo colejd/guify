@@ -1,12 +1,12 @@
 const csjs = require('csjs-inject');
 
-import common from './common-style.js';
+import { theme } from '../theme.js';
 
 module.exports = csjs`
 
 .guify-bar {
-    background-color: ${common.theme.colors.background1};
-    height: ${common.theme.sizing.menuBarHeight};
+    background-color: ${theme.colors.menuBarBackground};
+    height: ${theme.sizing.menuBarHeight};
     width: 100%;
     opacity: 1.0;
     position: relative;
@@ -19,9 +19,9 @@ module.exports = csjs`
     text-align: center;
     width: 100%;
     position: absolute;
-    top: calc((${common.theme.sizing.menuBarHeight} - ${common.theme.sizing.menuBarContentHeight}) / 2);
-    line-height: ${common.theme.sizing.menuBarContentHeight};
-    color: ${common.theme.colors.text1};
+    top: calc((${theme.sizing.menuBarHeight} - ${theme.sizing.menuBarContentHeight}) / 2);
+    line-height: ${theme.sizing.menuBarContentHeight};
+    color: ${theme.colors.menuBarText};
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -33,11 +33,11 @@ module.exports = csjs`
     border: none;
     cursor: pointer;
     font-family: inherit;
-    height: ${common.theme.sizing.menuBarContentHeight};
+    height: ${theme.sizing.menuBarContentHeight};
     position: absolute;
-    top: calc((${common.theme.sizing.menuBarHeight} - ${common.theme.sizing.menuBarContentHeight}) / 2);
-    color: ${common.theme.colors.text1};
-    background-color: ${common.theme.colors.background2};
+    top: calc((${theme.sizing.menuBarHeight} - ${theme.sizing.menuBarContentHeight}) / 2);
+    color: ${theme.colors.textPrimary};
+    background-color: ${theme.colors.componentBackground};
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -47,12 +47,13 @@ module.exports = csjs`
 
 .guify-bar-button:hover,
 .guify-bar-button:focus {
-    background-color: ${common.theme.colors.background2hover};
+    color: ${theme.colors.textHover};
+    background-color: ${theme.colors.componentForeground};
 }
 
 .guify-bar-button:active {
-    color: ${common.theme.colors.background2} !important;
-    background-color: ${common.theme.colors.text2} !important;
+    color: ${theme.colors.textActive} !important;
+    background-color: ${theme.colors.componentActive} !important;
 }
 
 

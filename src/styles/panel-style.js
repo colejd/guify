@@ -1,6 +1,6 @@
 const csjs = require('csjs-inject');
 
-import common from './common-style.js';
+import { theme } from '../theme.js';
 
 module.exports = csjs`
 
@@ -8,7 +8,7 @@ module.exports = csjs`
     position: absolute;
     padding: 14px;
     /* Last component will have a margin, so reduce padding to account for this */
-    padding-bottom: calc(14px - ${common.theme.sizing.componentSpacing});
+    padding-bottom: calc(14px - ${theme.sizing.componentSpacing});
 
     /* all: initial;  */
     -webkit-user-select: none;

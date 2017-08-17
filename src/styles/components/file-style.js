@@ -1,6 +1,6 @@
 const csjs = require('csjs-inject');
 
-import common from '../common-style.js';
+import { theme } from '../../theme.js';
 
 module.exports = csjs`
 
@@ -9,23 +9,24 @@ module.exports = csjs`
     outline: none;
     padding-top: 8px;
     padding-bottom: 8px;
-    background-color: ${common.theme.colors.background2};
+    color: ${theme.colors.textPrimary};
+    background-color: ${theme.colors.componentBackground};
 }
 
 .guify-file-container:hover,
 .guify-file-container:focus {
-    color: ${common.theme.colors.text2};
-    background-color: ${common.theme.colors.background2hover};
+    color: ${theme.colors.textHover};
+    background-color: ${theme.colors.componentForeground};
 }
 
 .guify-file-container:active {
-    color: ${common.theme.colors.background2} !important;
-    background-color: ${common.theme.colors.text2} !important;
+    color: ${theme.colors.textActive} !important;
+    background-color: ${theme.colors.componentActive} !important;
 }
 
 .guify-dragover {
-    background-color: ${common.theme.colors.background2};
-    box-shadow: inset 0 0 0 3px ${common.theme.colors.background2hover};
+    background-color: ${theme.colors.componentBackground};
+    box-shadow: inset 0 0 0 3px ${theme.colors.componentForeground};
 }
 
 

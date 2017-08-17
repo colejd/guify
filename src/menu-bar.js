@@ -1,5 +1,6 @@
 import css from 'dom-css';
 import EventEmitter from 'wolfy87-eventemitter';
+import { theme } from './theme';
 
 export class MenuBar extends EventEmitter {
     constructor(root, opts) {
@@ -19,7 +20,7 @@ export class MenuBar extends EventEmitter {
             text.className = styles['guify-bar-title'];
             text.innerHTML = opts.title;
             css(text, {
-                'color': opts.theme.colors.text1
+                'color': theme.colors.text1
             })
         }
 
@@ -32,7 +33,6 @@ export class MenuBar extends EventEmitter {
             right: opts.align == 'left' ? 'unset' : '8px',
         })
         menuButton.onclick = () => {
-            //this.TogglePanelVisible();
             this.emit('ontogglepanel');
         }
 

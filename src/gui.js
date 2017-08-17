@@ -24,7 +24,6 @@ export default class GUI {
 
         InitValue(opts, {});
         InitValue(opts.width, 300);
-        opts.theme = isstring(opts.theme) ? themes[opts.theme] : themes.dark;
         InitValue(opts.root, document.body);
         InitValue(opts.align, 'right'); // Can be 'left' or 'right'
         InitValue(opts.opacity, 1.0);
@@ -32,7 +31,16 @@ export default class GUI {
         InitValue(opts.pollRateMS, 100);
 
         // Set theme global from opts
-        theme.Set(opts.theme);
+        let chosenTheme = opts.theme;
+        if(opts.theme === undefined) chosenTheme = themes.dark;
+        if(isstring(opts.theme)) {
+            if(themes[opts.theme] === undefined) {
+                console.error(`There is no theme preset with the name '${opts.theme}'! Defaulting to dark theme.`);
+                chosenTheme = themes.dark;
+            }
+            else chosenTheme = themes[opts.theme];
+        }
+        theme.Set(chosenTheme);
 
         this._ConstructElements();
         this._LoadStyles();
@@ -62,16 +70,14 @@ export default class GUI {
         // Mono font
         AppendFont('//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
         // Theme font
-        if(this.opts.theme.font) {
+        if(theme.font) {
             // Set default font to theme font
-            AppendFont(this.opts.theme.font.fontURL);
-            css(this.container, {
-                'font-family': this.opts.theme.font.fontFamily
-            });
+            if(theme.font.fontURL) AppendFont(theme.font.fontURL);
+            if(theme.font.fontFamily) css(this.container, 'font-family', theme.font.fontFamily);
+            if(theme.font.fontSize) css(this.container, 'font-size', theme.font.fontSize);
+            if(theme.font.fontWeight) css(this.container, 'font-weight', theme.font.fontWeight);
         } else {
-            css(this.container, {
-                'font-family': `'Hack', monospace`
-            });
+            css(this.container, 'font-family', `'Hack', monospace`);
         }
     }
 
@@ -83,7 +89,7 @@ export default class GUI {
         this.container = document.createElement('div');
         this.container.classList.add(styles['guify-container']);
         css(this.container, {
-            top: (this.opts.barMode == 'above' && this.hasRoot) ? `-${this.opts.theme.sizing.menuBarHeight}` : '0',
+            top: (this.opts.barMode == 'above' && this.hasRoot) ? `-${theme.sizing.menuBarHeight}` : '0',
         });
         this.opts.root.appendChild(this.container);
 

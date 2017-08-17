@@ -26,15 +26,12 @@ export default class File extends EventEmitter {
             '-moz-box-sizing': 'border-box',
             '-webkit-box-sizing': 'border-box',
             height: 'unset', // Grow with content
-            padding: '8px',
-            color: theme.colors.text1,
+            padding: '8px'
         });
 
         let label = container.appendChild(document.createElement('div'));
         label.innerHTML = opts.label;
-        css(label, {
-            'padding-bottom': '5px',
-        });
+        css(label, 'padding-bottom', '5px');
 
         let input = container.appendChild(document.createElement('input'));
         input.setAttribute('type', 'file');
@@ -45,6 +42,7 @@ export default class File extends EventEmitter {
 
         this.fileLabel = container.appendChild(document.createElement('div'));
         this.fileLabel.innerHTML = 'Choose a file...';
+        //css(this.fileLabel, 'color', theme.colors.textSecondary);
 
         let FileDropped = (event) => {
             var files;
@@ -96,6 +94,11 @@ export default class File extends EventEmitter {
             if(e.which === 13 || e.which === 32) {
                 input.click();
             }
+        });
+
+        // Defocus on mouse up (for non-accessibility users)
+        container.addEventListener('mouseup', () => {
+            container.blur();
         });
 
     }

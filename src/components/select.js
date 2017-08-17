@@ -57,6 +57,23 @@ export default class Select extends EventEmitter {
             this.emit('input', data.target.value)
         }
 
+        // Style the arrows based on mouse / focus behavior (and unfocus on mouse leave).
+        // I'd like to do this through CSS :focus/:hover selectors but I just couldn't figure it out.
+        let StyleFocus = () => {
+            downTriangle.classList.add(styles['guify-select-triangle--down-highlight']);
+            upTriangle.classList.add(styles['guify-select-triangle--up-highlight']);
+        }
+
+        let StyleUnfocus = () => {
+            downTriangle.classList.remove(styles['guify-select-triangle--down-highlight']);
+            upTriangle.classList.remove(styles['guify-select-triangle--up-highlight']);
+        }
+
+        this.input.addEventListener('mouseover', StyleFocus);
+        this.input.addEventListener('focus', () => StyleFocus);
+        this.input.addEventListener('blur', () => StyleUnfocus);
+        this.input.addEventListener('mouseleave', () => { StyleUnfocus(); this.input.blur(); });
+
     }
 
     SetValue(value) {

@@ -1,10 +1,10 @@
 const csjs = require('csjs-inject');
 
-import common from '../common-style.js';
+import { theme } from '../../theme.js';
 
-let trackColor = common.theme.colors.background2;
-let thumbColor = common.theme.colors.foreground1;
-let thumbHighlight = common.theme.colors.background2hover;
+let trackColor = theme.colors.componentBackground;
+let thumbColor = theme.colors.componentForeground;
+let thumbHighlight = theme.colors.componentActive;
 
 module.exports = csjs`
 
@@ -51,7 +51,7 @@ input[type=range].guify-range::-moz-range-track {
     background: ${trackColor};
 }
 input[type=range].guify-range:focus::-moz-range-track {
-    background: ${common.theme.colors.background2hover};
+    background: ${theme.colors.background2hover};
 }
 input[type=range].guify-range::-moz-range-thumb {
     height: 20px;
@@ -76,10 +76,10 @@ input[type=range].guify-range::-ms-fill-upper {
     background: ${trackColor};
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
-    background: ${common.theme.colors.background2hover};
+    background: ${theme.colors.background2hover};
 }
 input[type=range].guify-range:focus::-ms-fill-upper {
-    background: ${common.theme.colors.background2hover};
+    background: ${theme.colors.background2hover};
 }
 input[type=range].guify-range::-ms-thumb {
     width: 10px;

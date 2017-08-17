@@ -1,12 +1,13 @@
 const csjs = require('csjs-inject');
 
-import common from '../common-style.js';
+import { theme } from '../../theme.js';
 
 module.exports = csjs`
 
 .guify-folder {
     cursor: pointer;
-    padding-left: 2px;
+    padding-left: 0.5em;
+    color: ${theme.colors.textPrimary};
 }
 
 .guify-folder div {
@@ -17,7 +18,8 @@ module.exports = csjs`
 
 .guify-folder:hover,
 .guify-folder:focus {
-    background-color: ${common.theme.colors.background2hover};
+    color: ${theme.colors.textHover};
+    background-color: ${theme.colors.componentForeground};
     outline: none;
 }
 
@@ -27,6 +29,7 @@ module.exports = csjs`
     box-sizing: border-box;
     padding-left: 14px;
     margin-bottom: 5px;
+    border-left: 2px solid ${theme.colors.componentBackground};
 }
 
 .guify-folder-contents.guify-folder-closed {

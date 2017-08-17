@@ -6,13 +6,42 @@ class Theme {
     }
 
     Set(theme) {
-        this.name = theme.name;
-        this.colors = theme.colors;
-        this.sizing = theme.sizing;
-        this.font = theme.font;
+
+        // Merge the base theme with the theme parameters and make
+        // the result properties of this object
+        Object.assign(this, baseTheme, theme);
+
     }
 
 }
+
+const baseTheme = {
+    name: "BaseTheme",
+
+    colors: {
+        menuBarBackground: 'black',
+        menuBarText: 'black',
+        panelBackground: 'black',
+
+        componentBackground: 'black',
+        componentBackgroundHover: 'black',
+        componentForeground: 'black',
+        componentActive: 'black',
+
+        textPrimary: 'black',
+        textSecondary: 'black',
+        textHover: 'black',
+        textActive: 'black',
+    },
+
+    sizing: {
+        menuBarHeight: '36px',
+        menuBarContentHeight: '20px',
+        componentHeight: '20px',
+        componentSpacing: '5px',
+        labelWidth: '42%',
+    },
+};
 
 // Export "singleton" instance
 export let theme = new Theme();

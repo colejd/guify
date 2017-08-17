@@ -1,18 +1,18 @@
 const csjs = require('csjs-inject');
 
-import common from '../common-style.js';
+import { theme } from '../../theme.js';
 
 module.exports = csjs`
 
 .guify-button {
     box-sizing: border-box !important;
-    color: ${common.theme.colors.text2};
-    background-color: ${common.theme.colors.background2};
+    color: ${theme.colors.textSecondary};
+    background-color: ${theme.colors.componentBackground};
 
-    position: absolue;
+    position: absolute;
     text-align: center;
     height: 20px;
-    width: calc(100% - ${common.theme.sizing.labelWidth});
+    width: calc(100% - ${theme.sizing.labelWidth});
     border: none;
     cursor: pointer;
     right: 0;
@@ -29,13 +29,13 @@ module.exports = csjs`
 
 .guify-button:hover,
 .guify-button:focus {
-    color: ${common.theme.colors.text2};
-    background-color: ${common.theme.colors.background2hover};
+    color: ${theme.colors.textHover};
+    background-color: ${theme.colors.componentForeground};
 }
 
 .guify-button:active {
-    color: ${common.theme.colors.background2} !important;
-    background-color: ${common.theme.colors.text2} !important;
+    color: ${theme.colors.textActive} !important;
+    background-color: ${theme.colors.componentActive} !important;
 }
 
 `;
