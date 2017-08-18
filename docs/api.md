@@ -24,6 +24,7 @@ Creates the GUI using the `opts` object for configuration.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
 - `opacity` (float, default=`1.0`): Opacity value for the panel.
 - `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
+- `open` (bool, default=`false`): If true, the panel will be forced open at startup.
 
 
 ### `Toast(message, stayMS, transitionMS)`

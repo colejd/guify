@@ -1,3 +1,8 @@
+#### 0.8.1
+
+- Fix Toast text coloring
+- Added `open` opt. Set to true to have the panel forced open on startup.
+
 ## 0.8.0
 
 - Updated Menu Bar look

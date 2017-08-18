@@ -24,6 +24,7 @@ export default class GUI {
         opts.opacity = opts.opacity || 1.0;
         opts.barMode = opts.barMode || 'offset'; // Can be 'none', 'above', 'offset', or 'overlay'
         opts.pollRateMS = opts.pollRateMS || 100;
+        opts.open = opts.open || false;
 
         // Set theme global from opts
         let chosenTheme = opts.theme;
@@ -99,13 +100,12 @@ export default class GUI {
         // Create panel
         this.panel = new Panel(this.container, this.opts);
 
-
-        // Hide the panel if there is a menu bar
-        if(this.opts.barMode !== 'none') {
-            this.panel.SetVisible(false);
-        } else {
-            // Otherwise show it by default
+        // Show the panel by default if there's no menu bar or it's requested
+        if(this.opts.barMode === 'none' || this.opts.open === true) {
             this.panel.SetVisible(true);
+        } else {
+            // Otherwise hide it by default
+            this.panel.SetVisible(false);
         }
 
         // Create toast area

@@ -7,28 +7,27 @@
         }
 
         #fake-container {
-            width: 512px;
-            height: 512px;
+            max-width: 512px;
+            max-height: 512px;
+            width: 80vw;
+            height: 80vw;
             display: block;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 3em;
+            margin-top: 5em;
+            margin-bottom: 1.5em;
             position: relative;
-            background-color: white;
         }
 
         #fake-container-content {
-            width: 512px;
-            height: 512px;
+            width: 100%;
+            height: 100%;
             position: relative;
             background-color: rgb(255, 255, 230);
-        }
 
-        #content-text {
-            font-family: monospace;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 512px;
+            display: flex;
+            justify-content: center; /* align horizontal */
+            align-items: center; /* align vertical */
         }
 
     </style>
@@ -49,7 +48,7 @@
 
     <div id="fake-container">
         <div id="fake-container-content">
-            <div id="content-text">
+            <div style="font-family: monospace;">
                 [content]
             </div>
         </div>
@@ -69,6 +68,7 @@
             barMode: 'offset', // none, overlay, above, offset
             opacity: 0.95,
             root: container,
+            open: true
         });
 
         // Populate the GUI
