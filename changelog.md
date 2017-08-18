@@ -1,5 +1,8 @@
 ## 0.8.0
 
+- Updated Menu Bar look
+- Removed `menuBarContentHeight` property of themes
+- Added new button for opening/closing a Panel when `barMode` is `"none"`
 - Refactored theming code
 - Added new parameters for themes
 - Added new theme preset (`"yorha"`, based on https://metakirby5.github.io/yorha/)

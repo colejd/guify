@@ -14,8 +14,8 @@ export class Panel {
         css(this.container, {
             width: opts.width,
             opacity: opts.opacity || 1.0,
-            left: opts.align == 'left' ? '0px' : 'unset',
-            right: opts.align == 'left' ? 'unset' : '0px',
+            left: opts.align == 'left' ? '0' : 'unset',
+            right: opts.align == 'left' ? 'unset' : '0',
         });
 
         if(opts.barMode === 'none') {

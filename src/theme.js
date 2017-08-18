@@ -35,8 +35,7 @@ const baseTheme = {
     },
 
     sizing: {
-        menuBarHeight: '36px',
-        menuBarContentHeight: '20px',
+        menuBarHeight: '25px',
         componentHeight: '20px',
         componentSpacing: '5px',
         labelWidth: '42%',

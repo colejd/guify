@@ -6,7 +6,6 @@ module.exports = csjs`
 
 .guify-panel-container {
     position: absolute;
-    transition: height 0.3s ease, margin 0.3s ease;
     background: ${theme.colors.panelBackground};
 }
 
@@ -28,7 +27,6 @@ module.exports = csjs`
 .guify-panel.guify-panel-hidden {
     height: 0px;
     display: none;
-    /* transition: height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease; */
 }
 
 .guify-panel * {

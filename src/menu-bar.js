@@ -29,8 +29,8 @@ export class MenuBar extends EventEmitter {
         menuButton.className = styles['guify-bar-button'];
         menuButton.innerHTML = 'Controls';
         css(menuButton, {
-            left: opts.align == 'left' ? '8px' : 'unset',
-            right: opts.align == 'left' ? 'unset' : '8px',
+            left: opts.align == 'left' ? '0' : 'unset',
+            right: opts.align == 'left' ? 'unset' : '0',
         })
         menuButton.onclick = () => {
             this.emit('ontogglepanel');

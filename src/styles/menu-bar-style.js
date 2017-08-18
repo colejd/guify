@@ -10,8 +10,6 @@ module.exports = csjs`
     width: 100%;
     opacity: 1.0;
     position: relative;
-    left: 0;
-    top: 0;
     cursor: default;
 }
 
@@ -19,8 +17,8 @@ module.exports = csjs`
     text-align: center;
     width: 100%;
     position: absolute;
-    top: calc((${theme.sizing.menuBarHeight} - ${theme.sizing.menuBarContentHeight}) / 2);
-    line-height: ${theme.sizing.menuBarContentHeight};
+    top: 0;
+    line-height: ${theme.sizing.menuBarHeight};
     color: ${theme.colors.menuBarText};
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -33,9 +31,9 @@ module.exports = csjs`
     border: none;
     cursor: pointer;
     font-family: inherit;
-    height: ${theme.sizing.menuBarContentHeight};
+    height: 100%;
     position: absolute;
-    top: calc((${theme.sizing.menuBarHeight} - ${theme.sizing.menuBarContentHeight}) / 2);
+    top: 0;
     color: ${theme.colors.textPrimary};
     background-color: ${theme.colors.componentBackground};
     -webkit-user-select: none;
@@ -43,6 +41,14 @@ module.exports = csjs`
     -ms-user-select: none;
     user-select: none;
 
+}
+
+/* Hide default accessibility outlines since we're providing our own visual feedback */
+.guify-bar-button:focus {
+    outline:none;
+}
+.guify-bar-button::-moz-focus-inner {
+    border:0;
 }
 
 .guify-bar-button:hover,
