@@ -40,6 +40,7 @@ module.exports = csjs`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin: 0;
 
 }
 

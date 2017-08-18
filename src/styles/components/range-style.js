@@ -51,13 +51,15 @@ input[type=range].guify-range::-moz-range-track {
     background: ${trackColor};
 }
 input[type=range].guify-range:focus::-moz-range-track {
-    background: ${theme.colors.background2hover};
+    background: ${thumbHighlight};
 }
 input[type=range].guify-range::-moz-range-thumb {
     height: 20px;
     width: 10px;
     background: ${thumbColor};
     cursor: ew-resize;
+    border: none;
+    border-radius: 0;
 }
 
 /* IE */
@@ -76,10 +78,10 @@ input[type=range].guify-range::-ms-fill-upper {
     background: ${trackColor};
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
-    background: ${theme.colors.background2hover};
+    background: ${thumbHighlight};
 }
 input[type=range].guify-range:focus::-ms-fill-upper {
-    background: ${theme.colors.background2hover};
+    background: ${thumbHighlight};
 }
 input[type=range].guify-range::-ms-thumb {
     width: 10px;

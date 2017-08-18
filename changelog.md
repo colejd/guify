@@ -7,6 +7,9 @@
 - Added new parameters for themes
 - Added new theme preset (`"yorha"`, based on https://metakirby5.github.io/yorha/)
 - File and Folder components now release focus if using a mouse to interact
+- Fix Range component not highlighting when focused in Firefox
+- Removed seam between the Panel and the container's edge on Chrome
+
 
 #### 0.7.2
 
