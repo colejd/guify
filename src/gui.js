@@ -186,7 +186,7 @@ export default class GUI {
             else throw new Error(`No folder exists with the name ${opts.folder}`);
         }
 
-        let component = this.componentManager.Create(opts.type, root, opts);
+        let component = this.componentManager.Create(root, opts);
 
         // Add binding properties if specified
         if(opts.object && opts.property) {

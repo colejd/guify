@@ -1,6 +1,9 @@
 import uuid from 'uuid/v4';
 import { theme } from './theme';
 
+/**
+ * Manages the loading and instantiation of Components.
+ */
 export class ComponentManager {
     constructor() {
         this.uuid = uuid();
@@ -20,12 +23,19 @@ export class ComponentManager {
 
     }
 
-    Create(type, root, opts) {
-        if(this.components[type] === undefined) {
-            throw new Error(`No component type named '${type}' exists.`);
+    /**
+     * Creates the component specified by `opts` and appends it to the
+     * document as a child of `root`.
+     *
+     * @param {HTMLElement} [root] Parent of the created component
+     * @param {Object} [opts] Options used to create the component
+     */
+    Create(root, opts) {
+        if(this.components[opts.type] === undefined) {
+            throw new Error(`No component type named '${opts.type}' exists.`);
         }
 
-        return new this.components[type](root, opts, theme, this.uuid);
+        return new this.components[opts.type](root, opts, theme, this.uuid);
     }
 
 
