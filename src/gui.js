@@ -173,7 +173,7 @@ export default class GUI {
             //opts.label = opts.label || property;
         }
 
-        let root = this.panel.element;
+        let root = this.panel.panel;
 
         // If a folder was specified, try to find a folder component with that name
         // and get its folderContainer.

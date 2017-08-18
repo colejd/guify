@@ -59,6 +59,7 @@ export default class Select extends EventEmitter {
 
         // Style the arrows based on mouse / focus behavior (and unfocus on mouse leave).
         // I'd like to do this through CSS :focus/:hover selectors but I just couldn't figure it out.
+        // It could be done easily if CSS had a "general previous sibling" selector.
         let StyleFocus = () => {
             downTriangle.classList.add(styles['guify-select-triangle--down-highlight']);
             upTriangle.classList.add(styles['guify-select-triangle--up-highlight']);

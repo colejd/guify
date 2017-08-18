@@ -8,7 +8,7 @@ export class ToastArea {
     constructor(root, opts) {
         this.opts = opts;
 
-        // Add menu bar styles to the head
+        // Add toast area styles to the head
         this.styles = require('./styles/toast-area-style.js');
 
         // Make toast area
