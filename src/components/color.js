@@ -19,6 +19,7 @@ export default class Color extends EventEmitter {
         icon.className = 'guify-color-' + uuid
 
         var value = require('./partials/value')(container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12.5% - 0.75em)`)
+        value.setAttribute('disabled', 'true');
 
         icon.onmouseover = () => {
             this.picker.$el.style.display = ''
@@ -72,7 +73,7 @@ export default class Color extends EventEmitter {
         })
 
         this.picker.onChange((hex) => {
-            value.innerHTML = this.Format(hex)
+            value.value = this.Format(hex)
             css(icon, {backgroundColor: hex})
             this.emit('input', this.Format(hex))
         })

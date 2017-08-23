@@ -1,5 +1,6 @@
 ## 0.9.0
 
+- Allow user input in Range component value boxes
 - Fix button text vertical alignment
 - Force Value component font size to be the same across all themes
 

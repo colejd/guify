@@ -84,10 +84,10 @@ export default class Range extends EventEmitter {
         this.input.value = opts.initial
 
         css(this.input, {
-            width: `calc(100% - ${theme.sizing.labelWidth} - 11% - 0.75em)`
+            width: `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.25em)`
         })
 
-        this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '11%')
+        this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '12%')
 
         setTimeout(() => {
             this.emit('initialized', parseFloat(this.input.value))
@@ -112,8 +112,27 @@ export default class Range extends EventEmitter {
 
         this.input.oninput = (data) => {
             var scaledValue = this.ScaleValue(parseFloat(data.target.value))
-            this.valueComponent.innerHTML = scaledValue
+            this.valueComponent.value = this.FormatNumber(scaledValue);
+            this.lastValue = scaledValue;
             this.emit('input', scaledValue)
+        }
+
+        this.valueComponent.onchange = () => {
+            let rawValue = this.valueComponent.value;
+            if(Number(parseFloat(rawValue)) == rawValue){
+                // Input number is valid
+                var value = parseFloat(rawValue);
+                // Clamp to input range
+                value = Math.min(Math.max(value, opts.min), opts.max);
+                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+
+                this.valueComponent.value = value;
+                this.emit('input', value);
+            } else {
+                // Input number is invalid
+                // Go back to before input change
+                this.valueComponent.value = this.lastValue;
+            }
         }
 
     }
@@ -134,12 +153,18 @@ export default class Range extends EventEmitter {
 
     SetValue(value) {
         if(this.focused !== true) {
-            this.valueComponent.innerHTML = value.toString();
+            this.valueComponent.value = this.FormatNumber(value);
             this.input.value = this.InverseScaleValue(value);
+            this.lastValue = this.input.value;
         }
     }
 
     GetValue() {
         return this.input.value;
+    }
+
+    FormatNumber(value) {
+        // https://stackoverflow.com/a/29249277
+        return value.toFixed(3).replace(/\.?0*$/,'');
     }
 }
