@@ -1,3 +1,7 @@
+## 0.9.0
+
+- Fix button text vertical alignment
+
 #### 0.8.1
 
 - Fix Toast text coloring
