@@ -7,6 +7,10 @@
     <a href="https://badge.fury.io/js/guify"><img src="https://badge.fury.io/js/guify.svg" alt="npm version" height="18"></a>
 </p>
 
+<p align="center">
+    <a href="http://joncole.me/pages/guify">Demo</a>
+</p>
+
 Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like [three.js](https://threejs.org/) or [p5.js](https://p5js.org/) projects. 
 
 Guify gives you toast notifications, as well as an optional header bar to give your project a "web app" look. Each component of the GUI can be bound to a variable so you don't have to manually poll its state.
@@ -57,6 +61,7 @@ NPM commands:
 - `dev`: Creates `/lib/guify.js`.
 - `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
 
+If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter]() plugin to help when editing any of the `.csjs.js` files in `/styles`.
 
 ## Changelog
 See [changelog.md](/changelog.md).
