@@ -1,3 +1,9 @@
+#### 0.9.1
+
+- Adjusted spacing of Range and Color's subcomponents
+- Improved example layout
+- Make Color's Value subcomponent `readonly` instead of `disabled`
+
 ## 0.9.0
 
 - Added `"panelMode"` initialization option

@@ -96,16 +96,10 @@
             }
         });
 
-        gui.Register({
-            type: 'title',
-            label: 'Test Title'
-        });
-
-
         var logNumber = 20;
         gui.Register({
             type: 'range',
-            label: 'Log Range Test',
+            label: 'Log Range',
             object: this,
             property: 'logNumber',
             min: 0.1, max: 100, scale: 'log',
@@ -115,8 +109,13 @@
         })
 
         gui.Register({
+            type: 'title',
+            label: 'Title'
+        });
+
+        gui.Register({
             type: 'button',
-            label: 'Test Button',
+            label: 'Button',
             action: () => {
                 console.log('Clicked');
             }
@@ -125,7 +124,7 @@
         var checkboxTest = false;
         gui.Register({
             type: 'checkbox',
-            label: 'Test Checkbox',
+            label: 'Checkbox',
             object: this,
             property: 'checkboxTest',
             onChange: (data) => {
@@ -136,7 +135,7 @@
         var testSelection = 'Option 1';
         gui.Register({
             type: 'select',
-            label: 'Test Select',
+            label: 'Select',
             object: this,
             property: 'testSelection',
             options: ['Option 1', 'Option 2'],
@@ -148,7 +147,7 @@
         var testText = 'Some text here';
         gui.Register({
             type: 'text',
-            label: '',
+            label: 'Text',
             object: this,
             property: 'testText',
             onChange: (data) => {
@@ -159,7 +158,7 @@
         var rgbColor = 'rgb(255, 0, 0)';
         gui.Register({
             type: 'color',
-            label: 'Test RGB',
+            label: 'RGB Color',
             format: 'rgb',
             object: this,
             property: 'rgbColor'
@@ -168,7 +167,7 @@
         var hexColor = '#00FF00';
         gui.Register({
             type: 'color',
-            label: 'Test Hex',
+            label: 'Hex Color',
             format: 'hex',
             object: this,
             property: 'hexColor'
@@ -177,7 +176,7 @@
         var file = null;
         gui.Register({
             type: 'file',
-            label: 'Test File',
+            label: 'File',
             object: this,
             property: 'file',
             onChange: (data) => {
@@ -188,7 +187,7 @@
         var displayValue = "Displays the toString representation of a variable.";
         gui.Register({
             type: 'display',
-            label: 'Test Display',
+            label: 'Display',
             object: this,
             property: 'displayValue'
         })
@@ -196,31 +195,31 @@
         // Folder example
         gui.Register({
             type: 'folder',
-            label: 'Test Folder',
+            label: 'Folder',
             open: false
         });
 
         // Add to the folder example
         gui.Register([
-            { type: 'title', label: 'Folder Title' },
-            { type: 'range', label: 'Folder Range', min: 0, max: 20, step: 1 },
-            { type: 'button', label: 'Folder Button' },
-            { type: 'checkbox', label: 'Folder Checkbox' },
-            { type: 'select', label: 'Folder Select', options: ["Option A", "Option B"] },
-            { type: 'text', label: 'Folder Text', initial: 'Some text' },
-            { type: 'color', label: 'Folder Color' },
+            { type: 'range', label: 'Range', min: 0, max: 20, step: 1 },
+            { type: 'title', label: 'Title' },
+            { type: 'button', label: 'Button' },
+            { type: 'checkbox', label: 'Checkbox' },
+            { type: 'select', label: 'Select', options: ["Option A", "Option B"] },
+            { type: 'text', label: 'Text', initial: 'Some text' },
+            { type: 'color', label: 'Color' },
         ], {
-            folder: 'Test Folder'
+            folder: 'Folder'
         });
 
         gui.Register({
             type: 'text',
             label: 'long long long long long long long long label',
-            folder: 'Test Folder',
+            folder: 'Folder',
         })
 
         // Add a nested folder
-        gui.Register({ type: 'folder', label: 'Nested Folder', folder: 'Test Folder', open: false });
+        gui.Register({ type: 'folder', label: 'Nested Folder', folder: 'Folder', open: false });
         gui.Register({ type: 'text', label: 'Folder Text', folder: 'Nested Folder', initial: 'Nested text' });
 
         // Debug folder
@@ -242,12 +241,13 @@
 
         gui.Register({
             type: 'button',
-            label: 'Randomize Bound Values',
+            label: 'Randomize Components',
             folder: 'Debug',
             action: () => {
                 // Randomize all the values bound to components in this example.
                 // Good test for whether component binding is actually working.
                 someNumber = Math.random() * 10;
+                steppedNumber = ~~((Math.random() + 0.1) * 8) * 8;
                 logNumber = Math.random() * 99 + 0.1;
                 checkboxTest = !checkboxTest;
 

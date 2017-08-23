@@ -21,7 +21,7 @@ export default class Range extends EventEmitter {
         this.input.type = 'range'
         this.input.className = styles['guify-range'];
         // Add ARIA attribute to input based on label text
-        if(opts.label) this.input.setAttribute('aria-label', opts.label);
+        if(opts.label) this.input.setAttribute('aria-label', opts.label + ' input');
 
         // Get initial value:
         if (opts.scale === 'log') {
@@ -84,10 +84,12 @@ export default class Range extends EventEmitter {
         this.input.value = opts.initial
 
         css(this.input, {
-            width: `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.25em)`
+            width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         })
 
-        this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '12%')
+        this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '16%');
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.valueComponent.setAttribute('aria-label', opts.label + ' value');
 
         setTimeout(() => {
             this.emit('initialized', parseFloat(this.input.value))

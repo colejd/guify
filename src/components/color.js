@@ -18,8 +18,8 @@ export default class Color extends EventEmitter {
         var icon = container.appendChild(document.createElement('span'))
         icon.className = 'guify-color-' + uuid
 
-        var value = require('./partials/value')(container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12.5% - 0.75em)`)
-        value.setAttribute('disabled', 'true');
+        var value = require('./partials/value')(container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`)
+        value.setAttribute('readonly', 'true');
 
         icon.onmouseover = () => {
             this.picker.$el.style.display = ''
