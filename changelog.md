@@ -1,6 +1,7 @@
 ## 0.9.0
 
 - Fix button text vertical alignment
+- Force Value component font size to be the same across all themes
 
 #### 0.8.1
 

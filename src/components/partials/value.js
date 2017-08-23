@@ -24,6 +24,7 @@ export default (root, text, theme, width, left) => {
 
     css(value, {
         'font-family': `'Hack', monospace`,
+        'font-size': '11px',
         color: theme.colors.textSecondary,
         display: 'inline-block',
         userSelect: 'text',
