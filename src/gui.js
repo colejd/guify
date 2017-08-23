@@ -23,6 +23,7 @@ export default class GUI {
         opts.align = opts.align || 'left'; // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
         opts.barMode = opts.barMode || 'offset'; // Can be 'none', 'above', 'offset', or 'overlay'
+        opts.panelMode = opts.panelMode || 'inner';
         opts.pollRateMS = opts.pollRateMS || 100;
         opts.open = opts.open || false;
 
@@ -84,9 +85,13 @@ export default class GUI {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
         this.container.classList.add(styles['guify-container']);
-        css(this.container, {
-            top: (this.opts.barMode == 'above' && this.hasRoot) ? `-${theme.sizing.menuBarHeight}` : '0',
-        });
+        let containerCSS = {
+            top: '0'
+        };
+        if(this.hasRoot && this.opts.barMode == 'above'){
+            containerCSS.top = `-${theme.sizing.menuBarHeight}`;
+        }
+        css(this.container, containerCSS);
         this.opts.root.appendChild(this.container);
 
         // Create a menu bar if specified in `opts`

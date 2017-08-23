@@ -22,6 +22,10 @@ Creates the GUI using the `opts` object for configuration.
         - `"overlay"`: The menu bar is fixed to the top of the root, overlapping content beneath it.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
         - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
+- `panelMode` (String, default=`"inner"`): Changes the way the panel show relative to the container.
+    - Values:
+        - `"inner"`: The panel shows inside of the container.
+        - `"outer"`: The panel shows outside the container, positioned along whichever side you specified with `align`.
 - `opacity` (float, default=`1.0`): Opacity value for the panel.
 - `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
 - `open` (bool, default=`false`): If true, the panel will be forced open at startup.

@@ -18,6 +18,13 @@ export class Panel {
             right: opts.align == 'left' ? 'unset' : '0',
         });
 
+        if(opts.panelMode == 'outer') {
+            css(this.container, {
+                left: opts.align == 'left' ? 'unset' : '100%',
+                right: opts.align == 'left' ? '100%' : 'unset',
+            })
+        }
+
         if(opts.barMode === 'none') {
             this._MakeToggleButton();
         }
