@@ -11,7 +11,9 @@ module.exports = csjs`
 input[type=range].guify-range {
     -webkit-appearance: none;
     width: 100%;
+    height: 20px;
     margin: 0px 0;
+    padding: 0;
     display: inline-block;
 }
 

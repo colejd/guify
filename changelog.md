@@ -1,3 +1,7 @@
+#### 0.9.2
+
+- Fix Range slider vertical offset in Firefox
+
 #### 0.9.1
 
 - Adjusted spacing of Range and Color's subcomponents
