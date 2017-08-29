@@ -1,3 +1,7 @@
+#### 0.10.1
+
+- Fix issue where checkboxes cannot be focused with tab
+
 ## 0.10.0
 
 - **Breaking change:** Export syntax has been simplified. Instead of `new guify.GUI(...)`,

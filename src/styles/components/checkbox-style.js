@@ -7,7 +7,6 @@ let borderSize = '4px'
 module.exports = csjs`
 
 input[type=checkbox].guify-checkbox {
-    display: none;
     opacity: 0;
     appearance: none;
     -moz-appearance: none;
