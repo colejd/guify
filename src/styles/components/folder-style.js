@@ -13,7 +13,7 @@ module.exports = csjs`
 .guify-folder div {
     display: inline-block;
     vertical-align: sub;
-    line-height: 25px;
+    line-height: calc(${theme.sizing.componentHeight} + 5px);
 }
 
 .guify-folder:hover,

@@ -19,9 +19,6 @@ export class MenuBar extends EventEmitter {
             let text = this.element.appendChild(document.createElement('div'));
             text.className = styles['guify-bar-title'];
             text.innerHTML = opts.title;
-            css(text, {
-                'color': theme.colors.text1
-            })
         }
 
         // Make the menu collapse button
@@ -36,15 +33,6 @@ export class MenuBar extends EventEmitter {
             this.emit('ontogglepanel');
         }
 
-
-        if(opts.barMode == 'offset') {
-            // Make an empty div that will be the size of the bar and make it first in the root
-            opts.root.style.height = opts.root.offsetHeight + this.element.offsetHeight + 'px';
-            let offsetDiv = document.createElement('div');
-            offsetDiv.style.width = '100%';
-            offsetDiv.style.height = this.element.offsetHeight;
-            opts.root.insertBefore(offsetDiv, opts.root.childNodes[0]);
-        }
     }
 
     SetVisible(show) {

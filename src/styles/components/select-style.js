@@ -9,7 +9,7 @@ module.exports = csjs`
     position: absolute;
     width: calc(100% - ${theme.sizing.labelWidth});
     padding-left: 1.5%;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     border: none;
     border-radius: 0;
     -webkit-appearance: none;
@@ -46,22 +46,23 @@ module.exports = csjs`
     content: ' ';
     border-right: 3px solid transparent;
     border-left: 3px solid transparent;
-    line-height: 20px;
+    line-height: ${theme.sizing.componentHeight};
     position: absolute;
     right: 2.5%;
     z-index: 1;
     pointer-events: none;
 }
-.guify-select-triangle--down {
-    top: 11px;
-    border-top: 5px solid ${theme.colors.textSecondary};
-    border-bottom: 0px transparent;
-}
 
 .guify-select-triangle--up {
-    top: 4px;
+    bottom: 55%;
     border-bottom: 5px solid ${theme.colors.textSecondary};
     border-top: 0px transparent;
+}
+
+.guify-select-triangle--down {
+    top: 55%;
+    border-top: 5px solid ${theme.colors.textSecondary};
+    border-bottom: 0px transparent;
 }
 
 .guify-select-triangle--up-highlight {

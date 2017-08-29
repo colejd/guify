@@ -14,7 +14,7 @@ export default class Title {
             'box-sizing': 'border-box',
             width: '100%',
             display: 'inline-block',
-            height: '20px',
+            height: theme.sizing.componentHeight,
             verticalAlign: 'top',
         });
 
@@ -24,8 +24,8 @@ export default class Title {
             //color: theme.text1,
             display: 'inline-block',
             verticalAlign: 'sub',
-            height: '20px',
-            'line-height': '20px',
+            height: theme.sizing.componentHeight,
+            'line-height': theme.sizing.componentHeight,
             //'box-shadow': `inset 0 0 0 1px ${theme.background2}`,
             'padding-left': '5px',
             'padding-right': '5px',

@@ -6,8 +6,7 @@ export default (root, text, theme) => {
         left: 0,
         width: `calc(${theme.sizing.labelWidth} - 2%)`,
         display: 'inline-block',
-        'min-height': theme.sizing.componentHeight,
-        paddingRight: '2%',
+        'margin-right': '2%',
         verticalAlign: 'top'
     });
 
@@ -17,6 +16,7 @@ export default (root, text, theme) => {
         color: theme.colors.textPrimary,
         display: 'inline-block',
         verticalAlign: 'sub',
+        'min-height': theme.sizing.componentHeight,
         'line-height': theme.sizing.componentHeight
     });
     return label;

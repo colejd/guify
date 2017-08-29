@@ -1,3 +1,15 @@
+## 0.10.0
+
+- **Breaking change:** Export syntax has been simplified. Instead of `new guify.GUI(...)`,
+the call is now `new guify(...)`.
+- Styling:
+    - Components now grow to fit the `componentHeight` property of the current theme
+    - Set z-index on entire plugin so it overlaps everything else
+    - Styles moved from component files to style files where appropriate
+    - Fix Range vertical spacing
+    - Improve Checkbox style coverage (should fix issues with iOS)
+- Simplify document model for container
+
 #### 0.9.2
 
 - Fix Range slider vertical offset in Firefox

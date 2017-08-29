@@ -85,14 +85,20 @@ export default class GUI {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
         this.container.classList.add(styles['guify-container']);
-        let containerCSS = {
-            top: '0'
-        };
+
+        let containerCSS = {};
+
+        // Position the container relative to the root based on `opts`
+        if(this.opts.barMode == 'overlay' || this.opts.barMode == 'above' || this.opts.barMode == 'none'){
+            containerCSS.position = 'absolute';
+        }
         if(this.hasRoot && this.opts.barMode == 'above'){
             containerCSS.top = `-${theme.sizing.menuBarHeight}`;
         }
         css(this.container, containerCSS);
-        this.opts.root.appendChild(this.container);
+
+        // Insert the container into the root as the first element
+        this.opts.root.insertBefore(this.container, this.opts.root.childNodes[0]);
 
         // Create a menu bar if specified in `opts`
         if(this.opts.barMode !== 'none') {
@@ -227,7 +233,7 @@ export default class GUI {
      * @param {Integer} [stayMS] The number of milliseconds to display the notification for
      * @param {Integer} [transitionMS ] The number of milliseconds it takes for the notification to transition into disappearing
      */
-    Toast(message, stayMS = 5000, transitionMS = 100) {
+    Toast(message, stayMS = 5000, transitionMS = 0) {
         this.toaster.CreateToast(message, stayMS, transitionMS);
     }
 

@@ -49,7 +49,8 @@ module.exports = csjs`
 .guify-panel-toggle-button {
     position: absolute;
     top: 0;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     width: 15px;
     height: 15px;
     line-height: 15px;

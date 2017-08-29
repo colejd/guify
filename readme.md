@@ -27,14 +27,14 @@ For browser projects, you can use the transpiled version in [`/lib`](/lib).
 If you're working with ES6 (for example, in a Node project), you can 
 use the files at [`/src`](/src) directly.
 
-The API can be found at [api.md](/docs/api.md). 
+The API can be found at [/docs/api.md](/docs/api.md). 
 
 
 ### Quick Start
 First import using either `require` or ES6 imports:
 ```js
 // ES6
-import { GUI as guify } from 'guify'
+import guify from 'guify'
 
 // Require
 let guify = require('guify');
@@ -42,11 +42,24 @@ let guify = require('guify');
 
 Then you can make a quick GUI this way:
 ```js
-var panel = new guify.GUI({
+var gui = new guify({
     title: "Some Title",
     align: 'right',
     theme: 'light'
 });
+
+gui.Register([
+    { 
+        type: 'range', label: 'Range', 
+        min: 0, max: 20, step: 1 
+    },
+    { 
+        type: 'button', label: 'Button' 
+    },
+    { 
+        type: 'checkbox', label: 'Checkbox' 
+    }
+]);
 ```
 
 See [example.html](/example/index.html) for a more complete example.
@@ -62,6 +75,7 @@ NPM commands:
 - `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
 
 If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter]() plugin to help when editing any of the `.csjs.js` files in `/styles`.
+
 
 ## Changelog
 See [changelog.md](/changelog.md).

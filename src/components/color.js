@@ -8,6 +8,7 @@ export default class Color extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
         this.opts = opts;
+        this.theme = theme;
 
         opts.format = opts.format || 'rgb'
         opts.initial = opts.initial || '#123456'
@@ -49,7 +50,7 @@ export default class Color extends EventEmitter {
         })
 
         css(this.picker.$el, {
-            marginTop: '20px',
+            marginTop: theme.sizing.componentHeight,
             display: 'none',
             position: 'absolute'
         })
@@ -58,7 +59,7 @@ export default class Color extends EventEmitter {
             position: 'relative',
             display: 'inline-block',
             width: '12.5%',
-            height: '20px',
+            height: theme.sizing.componentHeight,
             backgroundColor: this.picker.getHexString()
         })
 

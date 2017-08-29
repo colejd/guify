@@ -2,7 +2,7 @@
   "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",

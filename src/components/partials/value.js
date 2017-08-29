@@ -11,7 +11,7 @@ export default (root, text, theme, width, left) => {
         position: 'absolute',
         backgroundColor: theme.colors.componentBackground,
         paddingLeft: '1%',
-        height: '20px',
+        height: theme.sizing.componentHeight,
         width: width,
         display: 'inline-block',
         overflow: 'hidden',
@@ -22,7 +22,7 @@ export default (root, text, theme, width, left) => {
         color: theme.colors.textSecondary,
         userSelect: 'text',
         cursor: 'text',
-        lineHeight: '20px',
+        lineHeight: theme.sizing.componentHeight,
         wordBreak: 'break-all',
 
         'box-sizing': 'border-box',

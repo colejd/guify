@@ -11,8 +11,8 @@ module.exports = csjs`
 
     position: absolute;
     text-align: center;
-    height: 20px;
-    line-height: 20px;
+    height: ${theme.sizing.componentHeight};
+    line-height: ${theme.sizing.componentHeight};
     padding-top: 0px;
     padding-bottom: 0px;
     width: calc(100% - ${theme.sizing.labelWidth});

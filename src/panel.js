@@ -84,8 +84,6 @@ export class Panel {
         css(this.menuButton, {
             left: this.opts.align == 'left' ? '0px' : 'unset',
             right: this.opts.align == 'left' ? 'unset' : '0px',
-            'margin': 0,
-            'padding': 0
         });
 
         this.menuButton.onclick = () => {

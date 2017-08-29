@@ -20,7 +20,7 @@ export default class Text extends EventEmitter {
         css(this.input, {
             position: 'absolute',
             paddingLeft: '6px',
-            height: '20px',
+            height: theme.sizing.componentHeight,
             width: `calc(100% - ${theme.sizing.labelWidth})`,
             border: 'none',
             background: theme.colors.componentBackground,

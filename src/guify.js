@@ -1,2 +1,3 @@
-import GUI from './gui.js';
-export { GUI };
+// Export GUI class as 'guify'.
+import { default as guify } from './gui.js';
+export default guify;

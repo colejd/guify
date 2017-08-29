@@ -11,7 +11,7 @@ module.exports = csjs`
 input[type=range].guify-range {
     -webkit-appearance: none;
     width: 100%;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     margin: 0px 0;
     padding: 0;
     display: inline-block;
@@ -28,12 +28,12 @@ input[type=range].guify-range::-moz-focus-outer {
 /* Webkit */
 input[type=range].guify-range::-webkit-slider-runnable-track {
     width: 100%;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     cursor: ew-resize;
     background: ${trackColor};
 }
 input[type=range].guify-range::-webkit-slider-thumb {
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     width: 10px;
     background: ${thumbColor};
     cursor: ew-resize;
@@ -48,7 +48,7 @@ input[type=range].guify-range:focus::-webkit-slider-runnable-track {
 /* Gecko */
 input[type=range].guify-range::-moz-range-track {
     width: 100%;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     cursor: ew-resize;
     background: ${trackColor};
 }
@@ -56,7 +56,7 @@ input[type=range].guify-range:focus::-moz-range-track {
     background: ${thumbHighlight};
 }
 input[type=range].guify-range::-moz-range-thumb {
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     width: 10px;
     background: ${thumbColor};
     cursor: ew-resize;
@@ -67,7 +67,7 @@ input[type=range].guify-range::-moz-range-thumb {
 /* IE */
 input[type=range].guify-range::-ms-track {
     width: 100%;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
     cursor: ew-resize;
     background: transparent;
     border-color: transparent;
@@ -90,7 +90,7 @@ input[type=range].guify-range::-ms-thumb {
     border-radius: 0px;
     background: ${thumbColor};
     cursor: ew-resize;
-    height: 20px;
+    height: ${theme.sizing.componentHeight};
 }
 input[type=range].guify-range:focus::-ms-fill-lower {
     background: ${thumbHighlight};

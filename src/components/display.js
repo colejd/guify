@@ -24,7 +24,7 @@ export default class Display {
             '-moz-box-sizing': 'border-box',
             '-webkit-box-sizing': 'border-box',
             verticalAlign: 'sub',
-            'line-height': '20px',
+            'line-height': theme.sizing.componentHeight,
             'user-select': 'text'
         });
 

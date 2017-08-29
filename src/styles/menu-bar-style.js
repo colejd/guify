@@ -14,6 +14,7 @@ module.exports = csjs`
 }
 
 .guify-bar-title {
+    color: ${theme.colors.text1};
     text-align: center;
     width: 100%;
     position: absolute;
