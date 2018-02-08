@@ -13,13 +13,13 @@ export default class Color extends EventEmitter {
         opts.format = opts.format || 'rgb'
         opts.initial = opts.initial || '#123456'
 
-        var container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(container, opts.label, theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
-        var icon = container.appendChild(document.createElement('span'))
+        var icon = this.container.appendChild(document.createElement('span'))
         icon.className = 'guify-color-' + uuid
 
-        var value = require('./partials/value')(container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`)
+        var value = require('./partials/value')(this.container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`)
         value.setAttribute('readonly', 'true');
 
         icon.onmouseover = () => {

@@ -35,7 +35,15 @@ export class ComponentManager {
             throw new Error(`No component type named '${opts.type}' exists.`);
         }
 
-        return new this.components[opts.type](root, opts, theme, this.uuid);
+        let newComponent = new this.components[opts.type](root, opts, theme, this.uuid);
+
+        Object.assign(newComponent, {
+            Remove: function() {
+                this.container.parentNode.removeChild(this.container);
+            }
+        });
+        
+        return newComponent;
     }
 
 

@@ -7,11 +7,11 @@ export default class Display {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
 
-        let container = require('./partials/container')(root, opts.label, theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
 
-        require('./partials/label')(container, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
-        this.text = container.appendChild(document.createElement('div'));
+        this.text = this.container.appendChild(document.createElement('div'));
         css(this.text, {
             display: 'inline-block',
             height: 'unset',

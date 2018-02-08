@@ -8,10 +8,10 @@ export default class Select extends EventEmitter {
 
         this.opts = opts;
 
-        var i, container, downTriangle, upTriangle, key, option, el, keys
+        var i, downTriangle, upTriangle, key, option, el, keys
 
-        container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(container, opts.label, theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         this.input = document.createElement('select')
         this.input.className = styles['guify-select-dropdown'];
@@ -24,8 +24,8 @@ export default class Select extends EventEmitter {
         upTriangle = document.createElement('span')
         upTriangle.classList.add(styles['guify-select-triangle'], styles['guify-select-triangle--up']);
 
-        container.appendChild(downTriangle)
-        container.appendChild(upTriangle)
+        this.container.appendChild(downTriangle)
+        this.container.appendChild(upTriangle)
 
         if (Array.isArray(opts.options)) {
             for (i = 0; i < opts.options.length; i++) {
@@ -51,7 +51,7 @@ export default class Select extends EventEmitter {
             }
         }
 
-        container.appendChild(this.input)
+        this.container.appendChild(this.input)
 
         this.input.onchange = (data) => {
             this.emit('input', data.target.value)

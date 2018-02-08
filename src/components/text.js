@@ -7,10 +7,10 @@ export default class Text extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(container, opts.label, theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
-        this.input = container.appendChild(document.createElement('input'))
+        this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'text'
         this.input.className = 'guify-text'
         if (opts.initial) this.input.value = opts.initial

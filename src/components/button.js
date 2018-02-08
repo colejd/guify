@@ -24,8 +24,4 @@ export default class Button extends EventEmitter {
             input.blur();
         });
     }
-
-    Remove() {
-        this.container.parentNode.removeChild(this.container);
-    }
 }

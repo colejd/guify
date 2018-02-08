@@ -4,12 +4,12 @@ export default class Title {
     constructor (root, opts, theme) {
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label, theme)
-        css(container, {
+        this.container = require('./partials/container')(root, opts.label, theme)
+        css(this.container, {
             //'font-size': '13px'
         });
 
-        var background = container.appendChild(document.createElement('div'));
+        var background = this.container.appendChild(document.createElement('div'));
         css(background, {
             'box-sizing': 'border-box',
             width: '100%',

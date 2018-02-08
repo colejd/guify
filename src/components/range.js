@@ -10,14 +10,14 @@ export default class Range extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(container, opts.label, theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         if (!!opts.step && !!opts.steps) {
             throw new Error('Cannot specify both step and steps. Got step = ' + opts.step + ', steps = ', opts.steps)
         }
 
-        this.input = container.appendChild(document.createElement('input'))
+        this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'range'
         this.input.className = styles['guify-range'];
         // Add ARIA attribute to input based on label text
@@ -87,7 +87,7 @@ export default class Range extends EventEmitter {
             width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         })
 
-        this.valueComponent = require('./partials/value')(container, this.ScaleValue(opts.initial), theme, '16%');
+        this.valueComponent = require('./partials/value')(this.container, this.ScaleValue(opts.initial), theme, '16%');
         // Add ARIA attribute to input based on label text
         if(opts.label) this.valueComponent.setAttribute('aria-label', opts.label + ' value');
 

@@ -36,6 +36,10 @@ Displays a toast-style message on screen. `stayMS` and `transitionMS` are option
 
 ### `Register(opts, applyToAll)`
 Creates a new component in the panel based on `opts`. You can provide one `opts` object or an array if you want to create many components at once.
+Returns the component.
+
+### `Remove(component)`
+Removes the specified component.
 
 All properties of `applyToAll` will be applied to each opts object.
 
