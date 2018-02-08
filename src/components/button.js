@@ -9,10 +9,10 @@ export default class Button extends EventEmitter {
 
         this.opts = opts;
 
-        var container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(container, '', theme)
+        this.container = require('./partials/container')(root, opts.label, theme)
+        require('./partials/label')(this.container, '', theme)
 
-        var input = container.appendChild(document.createElement('button'))
+        var input = this.container.appendChild(document.createElement('button'))
         input.className = styles['guify-button'];
 
         input.textContent = opts.label
@@ -23,5 +23,9 @@ export default class Button extends EventEmitter {
         input.addEventListener('mouseup', () => {
             input.blur();
         });
+    }
+
+    Remove() {
+        this.container.parentNode.removeChild(this.container);
     }
 }

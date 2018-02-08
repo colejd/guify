@@ -162,8 +162,15 @@ export default class GUI {
         }
         else {
             let merged = Object.assign(obj, applyToAll);
-            this._Register(merged);
+            return this._Register(merged);
         }
+    }
+
+    Remove(obj) {
+        obj.Remove();
+        this.loadedComponents = this.loadedComponents.filter((item) => {
+            return item !== obj
+        })
     }
 
     /**
@@ -222,6 +229,8 @@ export default class GUI {
         }
 
         this.loadedComponents.push(component);
+
+        return component;
 
 
     }

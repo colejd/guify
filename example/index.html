@@ -261,6 +261,17 @@
             }
         })
 
+        // This button gets automatically removed by our API
+        var removedButton = gui.Register({
+            type: 'button',
+            label: 'Button',
+            action: () => {
+                console.log('Clicked');
+            }
+        })
+        removedButton.container.disabled = true;
+        gui.Remove(removedButton);
+
 
 
     </script>
