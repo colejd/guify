@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-    <a href="http://joncole.me/pages/guify">Demo</a>
+    <a href="http://jons.website/projects/guify">Demo</a>
 </p>
 
 Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like [three.js](https://threejs.org/) or [p5.js](https://p5js.org/) projects. 
