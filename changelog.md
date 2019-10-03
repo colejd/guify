@@ -1,3 +1,8 @@
+## 0.11.0
+
+- Addded a fullscreen button
+- Updated NPM dependencies to fix vulnerabilities
+
 #### 0.10.1
 
 - Fix issue where checkboxes cannot be focused with tab
