@@ -106,6 +106,9 @@ export default class GUI {
             this.bar.addListener('ontogglepanel', () => {
                 this.panel.ToggleVisible();
             });
+            this.bar.addListener('onfullscreenrequested', () => {
+                this.ToggleFullscreen();
+            });
         }
 
         // Create panel
@@ -247,5 +250,12 @@ export default class GUI {
     }
 
 
+    ToggleFullscreen() {
+        if (document.fullscreenElement) { 
+            document.exitFullscreen() 
+        } else { 
+            this.opts.root.requestFullscreen();
+        } 
+    }
 
 }

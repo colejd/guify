@@ -44,7 +44,7 @@
     "eslint-loader": "1.7.1",
     "mocha": "3.3.0",
     "webpack": "3.1.0",
-    "webpack-dev-server": "^2.7.1",
+    "webpack-dev-server": "^2.11.5",
     "yargs": "7.1.0"
   },
   "dependencies": {

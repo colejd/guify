@@ -33,6 +33,20 @@ export class MenuBar extends EventEmitter {
             this.emit('ontogglepanel');
         }
 
+        if (document.fullscreenEnabled) {
+            let fullscreenButton = this.element.appendChild(document.createElement('button'));
+            fullscreenButton.className = styles['guify-bar-button'];
+            fullscreenButton.innerHTML = '「　」';
+            fullscreenButton.setAttribute('aria-label', 'Toggle Fullscreen');
+            css(fullscreenButton, {
+                left: opts.align == 'left' ? 'unset' : '0',
+                right: opts.align == 'left' ? '0' : 'unset',
+            })
+            fullscreenButton.onclick = () => {
+                this.emit('onfullscreenrequested');
+            }
+        }
+
     }
 
     SetVisible(show) {
