@@ -2,7 +2,7 @@
   "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
@@ -54,6 +54,7 @@
     "is-numeric": "0.0.5",
     "is-string": "^1.0.4",
     "param-case": "^2.1.1",
+    "screenfull": "^5.0.0",
     "simple-color-picker": "^0.1.2",
     "tinycolor2": "^1.4.1",
     "uuid": "^3.1.0",

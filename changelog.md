@@ -1,3 +1,7 @@
+#### 0.11.1
+
+- Improved fullscreen API; Safari is now supported
+
 ## 0.11.0
 
 - Addded a fullscreen button

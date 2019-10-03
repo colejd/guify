@@ -11,6 +11,7 @@ import { ComponentManager } from './component-manager';
 import { MenuBar } from './menu-bar';
 import { Panel } from './panel';
 import { ToastArea } from './toast-area';
+import screenfull from 'screenfull';
 
 export default class GUI {
     constructor(opts) {
@@ -251,10 +252,12 @@ export default class GUI {
 
 
     ToggleFullscreen() {
-        if (document.fullscreenElement) { 
-            document.exitFullscreen() 
+        let isFullscreen = screenfull.isFullscreen;
+        if (isFullscreen) { 
+            screenfull.exit()
         } else { 
-            this.opts.root.requestFullscreen();
+            console.log("Request fullscreen")
+            screenfull.request(this.opts.root)
         } 
     }
 

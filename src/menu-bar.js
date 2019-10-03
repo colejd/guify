@@ -1,6 +1,7 @@
 import css from 'dom-css';
 import EventEmitter from 'wolfy87-eventemitter';
 import { theme } from './theme';
+import screenfull from 'screenfull';
 
 export class MenuBar extends EventEmitter {
     constructor(root, opts) {
@@ -33,13 +34,14 @@ export class MenuBar extends EventEmitter {
             this.emit('ontogglepanel');
         }
 
-        if (document.fullscreenEnabled) {
+        // Make the fullscreen button
+        if (screenfull.isEnabled) {
             let fullscreenButton = this.element.appendChild(document.createElement('button'));
             fullscreenButton.className = styles['guify-bar-button'];
             fullscreenButton.innerHTML = '「　」';
             fullscreenButton.setAttribute('aria-label', 'Toggle Fullscreen');
             css(fullscreenButton, {
-                left: opts.align == 'left' ? 'unset' : '0',
+                left: opts.align == 'left' ? 'unset' : '0', // Place on opposite side from menuButton
                 right: opts.align == 'left' ? '0' : 'unset',
             })
             fullscreenButton.onclick = () => {
