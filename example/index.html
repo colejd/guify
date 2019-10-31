@@ -26,10 +26,11 @@
             background-color: rgb(255, 255, 230);
 
             display: flex;
-            justify-content: center; /* align horizontal */
-            align-items: center; /* align vertical */
+            justify-content: center;
+            /* align horizontal */
+            align-items: center;
+            /* align vertical */
         }
-
     </style>
 
     <!-- Ruin everything with Bootstrap to simulate invasive page styling -->
@@ -83,6 +84,17 @@
             object: this, property: "someNumber",
             onChange: (data) => {
                 console.log(someNumber);
+            }
+        });
+
+        var intervalNumber = [10, 25];
+        gui.Register({
+            type: 'interval',
+            label: 'Stepped Interval',
+            min: 5, max: 75, step: 5,
+            object: this, property: "intervalNumber",
+            onChange: (data) => {
+                console.log(intervalNumber);
             }
         });
 
@@ -210,8 +222,8 @@
             { type: 'text', label: 'Text', initial: 'Some text' },
             { type: 'color', label: 'Color' },
         ], {
-            folder: 'Folder'
-        });
+                folder: 'Folder'
+            });
 
         gui.Register({
             type: 'text',
@@ -255,7 +267,7 @@
                 testText = (Math.random() + 1).toString(36).substring(7); // Random string
                 rgbColor = 'rgb(' + Math.random() * 255 + ', 0, 0)';
                 hexColor = "#";
-                for(var i = 0; i < 6; i++) hexColor += Math.floor(Math.random() * 9).toString()
+                for (var i = 0; i < 6; i++) hexColor += Math.floor(Math.random() * 9).toString()
 
                 testSelection = "Option " + (Math.random() < 0.5 ? "1" : "2");
             }
@@ -276,4 +288,3 @@
 
     </script>
 </body>
-
