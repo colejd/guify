@@ -80,21 +80,10 @@
         gui.Register({
             type: 'range',
             label: 'Range',
-            min: 0, max: 10, step: 1,
+            min: 0, max: 10,
             object: this, property: "someNumber",
             onChange: (data) => {
                 console.log(someNumber);
-            }
-        });
-
-        var intervalNumber = [10, 25];
-        gui.Register({
-            type: 'interval',
-            label: 'Stepped Interval',
-            min: 5, max: 75, step: 5,
-            object: this, property: "intervalNumber",
-            onChange: (data) => {
-                console.log(intervalNumber);
             }
         });
 
@@ -120,6 +109,28 @@
                 console.log(logNumber);
             }
         })
+
+        var intervalNumber = [15, 30];
+        gui.Register({
+            type: 'interval',
+            label: 'Interval',
+            min: 5, max: 75,
+            object: this, property: "intervalNumber",
+            onChange: (data) => {
+                console.log(intervalNumber);
+            }
+        });
+
+        var steppedIntervalNumber = [10, 25];
+        gui.Register({
+            type: 'interval',
+            label: 'Stepped Interval',
+            min: 5, max: 75, step: 5,
+            object: this, property: "steppedIntervalNumber",
+            onChange: (data) => {
+                console.log(steppedIntervalNumber);
+            }
+        });
 
         gui.Register({
             type: 'title',

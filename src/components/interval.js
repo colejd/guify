@@ -83,7 +83,7 @@ export default class Interval extends EventEmitter {
             // If linear, this is much simpler:
             opts.max = (isnumeric(opts.max)) ? opts.max : 100;
             opts.min = (isnumeric(opts.min)) ? opts.min : 0;
-            opts.step = (isnumeric(opts.step)) ? opts.step : (opts.max - opts.min) / 100;
+            opts.step = (isnumeric(opts.step)) ? opts.step : 0.01;
         
             opts.initial = [
                 isnumeric(opts.initial[0]) ? opts.initial[0] : (opts.min + opts.max) * 0.25,
@@ -112,6 +112,9 @@ export default class Interval extends EventEmitter {
         this.lValue = require('./partials/value')(this.container, this.ScaleValue(opts.initial[0]), theme, '11%', true);
         this.rValue = require('./partials/value')(this.container, this.ScaleValue(opts.initial[1]), theme, '11%',);
 
+        // Add ARIA attribute to input based on label text
+        if(opts.label) this.lValue.setAttribute('aria-label', opts.label + ' lower value');
+        if(opts.label) this.lValue.setAttribute('aria-label', opts.label + ' upper value');
 
         // An index to track what's being dragged:
         this.activeIndex = -1;
@@ -199,6 +202,54 @@ export default class Interval extends EventEmitter {
             this.rValue.value = scaledRValue;
             this.emit('input', [scaledLValue, scaledRValue]);
         };
+
+        // Handle lower bound input box changes
+        this.lValue.onchange = () => {
+            let rawValue = this.lValue.value;
+            let otherValue = parseFloat(this.rValue.value);
+            if(Number(parseFloat(rawValue)) == rawValue){
+                // Input number is valid
+                var value = parseFloat(rawValue);
+                // Clamp to input range
+                value = Math.min(Math.max(value, opts.min), opts.max);
+                // Map to nearest step
+                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+                // Prevent value from going beyond interval upper value
+                value = Math.min(value, otherValue);
+
+                this.lValue.value = value;
+                this.emit('input', [value, otherValue]);
+                this.RefreshHandle([value, otherValue]);
+            } else {
+                // Input number is invalid
+                // Go back to before input change
+                this.lValue.value = this.lastValue[0];
+            }
+        }
+
+        // Handle upper bound input box changes
+        this.rValue.onchange = () => {
+            let rawValue = this.rValue.value;
+            let otherValue = parseFloat(this.lValue.value);
+            if(Number(parseFloat(rawValue)) == rawValue){
+                // Input number is valid
+                var value = parseFloat(rawValue);
+                // Clamp to input range
+                value = Math.min(Math.max(value, opts.min), opts.max);
+                // Map to nearest step
+                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+                // Prevent value from going below interval lower value
+                value = Math.max(value, otherValue);
+
+                this.rValue.value = value;
+                this.emit('input', [otherValue, value]);
+                this.RefreshHandle([otherValue, value]);
+            } else {
+                // Input number is invalid
+                // Go back to before input change
+                this.rValue.value = this.lastValue[1];
+            }
+        }
     }
 
     ScaleValue(value) 
@@ -270,5 +321,14 @@ export default class Interval extends EventEmitter {
 
     GetValue() {
         return [ this.lValue.value, this.rValue.value ];
+    }
+
+    RefreshHandle(interval) {
+        let leftPercent = ((parseFloat(interval[0]) - this.opts.min) / (this.opts.max - this.opts.min) * 100);
+        let rightPercent = (100 - (parseFloat(interval[1]) - this.opts.min) / (this.opts.max - this.opts.min) * 100);
+        css(this.handle, {
+            left: leftPercent + '%',
+            right: rightPercent + '%'
+        });
     }
 }

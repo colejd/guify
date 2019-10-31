@@ -63,7 +63,7 @@ export default class Range extends EventEmitter {
             // If linear, this is much simpler:
             opts.max = (isnumeric(opts.max)) ? opts.max : 100
             opts.min = (isnumeric(opts.min)) ? opts.min : 0
-            opts.step = (isnumeric(opts.step)) ? opts.step : (opts.max - opts.min) / 100
+            opts.step = (isnumeric(opts.step)) ? opts.step : 0.01
 
             opts.initial = isnumeric(opts.initial) ? opts.initial : (opts.min + opts.max) * 0.5
         }

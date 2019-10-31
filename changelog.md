@@ -1,3 +1,8 @@
+## 0.12.0
+
+- Added Interval control type (Thank you @ccrisrober!)
+- Step for Range and Interval controls is now 0.01 if not specified. Fixes weirdness with values changing in unexpected ways when typing in a new value.
+
 #### 0.11.1
 
 - Improved fullscreen API; Safari is now supported

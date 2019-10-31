@@ -104,7 +104,17 @@ Shows a slider representing a numerical value.
 Special options:
 - `min` (int): The smallest possible value on the slider.
 - `max` (int): The largest possible value on the slider.
-- `step` (int): The amount that is incremented by each movement of the slider.
+- `step` (int, default=`0.01`): The amount that is incremented by each movement of the slider.
+- `scale` (String): Specifies the scaling behavior of the slider.
+    - Values: `"linear"`, `"log"`
+
+### Interval
+`type: 'interval'`
+
+Shows an adjustable two-handle slider representing an interval.
+- `min` (int): The smallest possible value on the slider.
+- `max` (int): The largest possible value on the slider.
+- `step` (int, default=`0.01`): The amount that is incremented by each movement of the slider.
 - `scale` (String): Specifies the scaling behavior of the slider.
     - Values: `"linear"`, `"log"`
 
