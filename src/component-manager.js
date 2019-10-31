@@ -18,7 +18,8 @@ export class ComponentManager {
             'color': require('./components/color'),
             'folder': require('./components/folder'),
             'file': require('./components/file'),
-            'display': require('./components/display')
+            'display': require('./components/display'),
+            'interval': require('./components/interval')
         }
 
     }
