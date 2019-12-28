@@ -17,6 +17,8 @@ Guify gives you toast notifications, as well as an optional header bar to give y
 
 Guify is designed to be accessibility-friendly, but I don't have a good way to test it. If something doesn't work for you, please file an issue and I'll do my best to help!
 
+[Check out the React version!](https://github.com/dbismut/react-guify)
+
 
 ## Installation
 `npm install --save guify`, or copy `guify.js` from [`/lib`](/lib).
@@ -74,7 +76,7 @@ NPM commands:
 - `dev`: Creates `/lib/guify.js`.
 - `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
 
-If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter]() plugin to help when editing any of the `.csjs.js` files in `/styles`.
+If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName=colejd.vscode-language-csjs) plugin to help when editing any of the `.csjs.js` files in `/styles`.
 
 
 ## Changelog
