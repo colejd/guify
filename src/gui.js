@@ -201,7 +201,7 @@ export default class GUI {
         // and get its folderContainer.
         if(opts.folder) {
             let folderComp = this.loadedComponents.find((cmp) => {
-                return cmp.opts.type === 'folder' && cmp.opts.label === opts.folder;
+                return cmp === opts.folder || (cmp.opts.type === 'folder' && cmp.opts.label === opts.folder);
             });
 
             if(folderComp) root = folderComp.folderContainer;
@@ -253,12 +253,12 @@ export default class GUI {
 
     ToggleFullscreen() {
         let isFullscreen = screenfull.isFullscreen;
-        if (isFullscreen) { 
+        if (isFullscreen) {
             screenfull.exit()
-        } else { 
+        } else {
             console.log("Request fullscreen")
             screenfull.request(this.opts.root)
-        } 
+        }
     }
 
 }
