@@ -13,7 +13,7 @@ export default class Checkbox extends EventEmitter {
         require('./partials/label')(this.container, opts.label, theme)
 
         this.input = this.container.appendChild(document.createElement('input'))
-        this.input.id = 'checkbox-' + opts.label + uuid
+        this.input.id = 'checkbox-' + opts.property + uuid
         this.input.type = 'checkbox'
         this.input.checked = opts.initial
         this.input.className = styles['guify-checkbox'];
