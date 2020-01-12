@@ -27,8 +27,13 @@ export default class Checkbox extends EventEmitter {
             this.emit('initialized', this.input.checked)
         })
 
-        this.input.onchange = (data) => {
-            this.emit('input', data.target.checked)
+        // this.input.onchange = (data) => {
+        //     this.emit('input', data.target.checked)
+        // }
+
+        this.container.onclick = (data) => {
+            this.input.checked = !this.input.checked;
+            this.emit('input', this.input.checked)
         }
 
     }
