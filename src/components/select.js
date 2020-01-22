@@ -55,7 +55,7 @@ export default class Select extends EventEmitter {
         this.container.appendChild(this.input)
 
         this.input.onchange = (data) => {
-            this.emit('input', data.target.value)
+            this.emit('input', this.opts.options[data.target.value])
         }
 
         // Style the arrows based on mouse / focus behavior (and unfocus on mouse leave).
