@@ -11,7 +11,7 @@ export default class Range extends EventEmitter {
         this.opts = opts;
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.label = require('./partials/label')(this.container, opts.label, theme)
 
         if (!!opts.step && !!opts.steps) {
             throw new Error('Cannot specify both step and steps. Got step = ' + opts.step + ', steps = ', opts.steps)

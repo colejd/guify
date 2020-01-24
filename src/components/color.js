@@ -14,7 +14,7 @@ export default class Color extends EventEmitter {
         opts.initial = opts.initial || '#123456'
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.label = require('./partials/label')(this.container, opts.label, theme)
 
         var icon = this.container.appendChild(document.createElement('span'))
         icon.className = 'guify-color-' + uuid

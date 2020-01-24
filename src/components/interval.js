@@ -16,7 +16,7 @@ export default class Interval extends EventEmitter {
         this.opts = opts;
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.label = require('./partials/label')(this.container, opts.label, theme)
 
         if (!!opts.step && !!opts.steps) {
             throw new Error('Cannot specify both step and steps. Got step = ' + opts.step + ', steps = ', opts.steps)
@@ -52,15 +52,15 @@ export default class Interval extends EventEmitter {
                 this.logmin = opts.min;
                 this.logmax = opts.max;
                 this.logsign = opts.min > 0 ? 1 : -1;
-        
+
                 // Got the sign so force these positive:
                 this.logmin = Math.abs(this.logmin);
                 this.logmax = Math.abs(this.logmax);
-        
+
                 // These are now simply 0-100 to which we map the log range:
                 opts.min = 0;
                 opts.max = 100;
-        
+
                 // Step is invalid for a log range:
                 if (isnumeric(opts.step))
                 {
@@ -84,7 +84,7 @@ export default class Interval extends EventEmitter {
             opts.max = (isnumeric(opts.max)) ? opts.max : 100;
             opts.min = (isnumeric(opts.min)) ? opts.min : 0;
             opts.step = (isnumeric(opts.step)) ? opts.step : 0.01;
-        
+
             opts.initial = [
                 isnumeric(opts.initial[0]) ? opts.initial[0] : (opts.min + opts.max) * 0.25,
                 isnumeric(opts.initial[1]) ? opts.initial[1] : (opts.min + opts.max) * 0.75
@@ -100,7 +100,7 @@ export default class Interval extends EventEmitter {
         // Quantize the initial value to the requested step:
         opts.initial[0] = opts.min + opts.step * Math.round((opts.initial[0] - opts.min) / opts.step)
         opts.initial[1] = opts.min + opts.step * Math.round((opts.initial[1] - opts.min) / opts.step)
-    
+
         this.value = opts.initial;
 
         css(this.handle, {
@@ -142,23 +142,23 @@ export default class Interval extends EventEmitter {
             // Get mouse position in page coords relative to the container:
             return ev.pageX - this.input.getBoundingClientRect().left;
         }
-        
+
         let mouseMoveListener = ( ev ) =>
         {
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
-        
+
             this.setActiveValue(fraction);
         }
 
         let mouseUpListener = ( ev ) =>
         {
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
-        
+
             this.setActiveValue(fraction);
-        
+
             document.removeEventListener('mousemove', mouseMoveListener);
             document.removeEventListener('mouseup', mouseUpListener);
-        
+
             this.activeIndex = -1;
         }
 
@@ -166,24 +166,24 @@ export default class Interval extends EventEmitter {
         {
             // Get mouse position fraction:
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
-        
+
             // Get the current fraction of position --> [0, 1]:
             let lofrac = (this.value[0] - opts.min) / (opts.max - opts.min);
             let hifrac = (this.value[1] - opts.min) / (opts.max - opts.min);
-        
+
             // This is just for making decisions, so perturb it ever
             // so slightly just in case the bounds are numerically equal:
             lofrac -= Math.abs(opts.max - opts.min) * 1e-15;
             hifrac += Math.abs(opts.max - opts.min) * 1e-15;
-        
+
             // Figure out which is closer:
             let lodiff = Math.abs(lofrac - fraction);
             let hidiff = Math.abs(hifrac - fraction);
-        
+
             this.activeIndex = lodiff < hidiff ? 0 : 1;
 
             console.log(this.activeIndex);
-        
+
             // Attach this to *document* so that we can still drag if the mouse
             // passes outside the container:
             document.addEventListener('mousemove', mouseMoveListener);
@@ -252,7 +252,7 @@ export default class Interval extends EventEmitter {
         }
     }
 
-    ScaleValue(value) 
+    ScaleValue(value)
     {
         if (this.opts.scale === 'log')
             return this.logsign * Math.exp(Math.log(this.logmin) + (Math.log(this.logmax) - Math.log(this.logmin)) * value / 100);
@@ -274,11 +274,11 @@ export default class Interval extends EventEmitter {
         }
 
         let opts = this.opts;
-    
+
         // Get the position in the range [0, 1]:
         let lofrac = (this.value[0] - opts.min) / (opts.max - opts.min)
         let hifrac = (this.value[1] - opts.min) / (opts.max - opts.min)
-    
+
         // Clip against the other bound:
         if (this.activeIndex === 0)
         {
@@ -288,10 +288,10 @@ export default class Interval extends EventEmitter {
         {
             fraction = Math.max(lofrac, fraction);
         }
-    
+
         // Compute and quantize the new value:
         let newValue = opts.min + Math.round((opts.max - opts.min) * fraction / opts.step) * opts.step
-    
+
         // Update value, in linearized coords:
         this.value[this.activeIndex] = newValue;
 
@@ -309,7 +309,7 @@ export default class Interval extends EventEmitter {
         {
             this.lValue.value = this.FormatNumber(value[0]);
             this.rValue.value = this.FormatNumber(value[1]);
-            
+
             this.lastValue = [ this.lValue.value, this.rValue.value ];
         }
     }

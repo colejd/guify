@@ -10,12 +10,13 @@ export default class Button extends EventEmitter {
         this.opts = opts;
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, '', theme)
+        // require('./partials/label')(this.container, '', theme)
 
         var input = this.container.appendChild(document.createElement('button'))
         input.className = styles['guify-button'];
 
         input.textContent = opts.label
+        this.label = input
 
         input.addEventListener('click', opts.action)
 

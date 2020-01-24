@@ -9,7 +9,7 @@ export default class Display {
 
         this.container = require('./partials/container')(root, opts.label, theme)
 
-        require('./partials/label')(this.container, opts.label, theme)
+        this.label = require('./partials/label')(this.container, opts.label, theme)
 
         this.text = this.container.appendChild(document.createElement('div'));
         css(this.text, {

@@ -11,7 +11,7 @@ export default class Select extends EventEmitter {
         var i, downTriangle, upTriangle, key, option, el, keys
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.label = require('./partials/label')(this.container, opts.label, theme)
 
         this.input = document.createElement('select')
         this.input.className = styles['guify-select-dropdown'];
