@@ -25,6 +25,7 @@ module.exports = csjs`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: pointer;
 }
 
 .guify-bar-button {
@@ -42,6 +43,26 @@ module.exports = csjs`
     -ms-user-select: none;
     user-select: none;
     margin: 0;
+
+}
+
+.guify-bar-search {
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    height: 19px;
+    position: absolute;
+    top: 0;
+    color: ${theme.colors.textPrimary};
+    background-color: ${theme.colors.componentBackground};
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: auto;
+    margin: 2px;
 
 }
 

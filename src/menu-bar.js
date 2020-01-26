@@ -20,17 +20,36 @@ export class MenuBar extends EventEmitter {
             let text = this.element.appendChild(document.createElement('div'));
             text.className = styles['guify-bar-title'];
             text.innerHTML = opts.title;
+            this.label = text;
         }
 
-        // Make the menu collapse button
-        let menuButton = this.element.appendChild(document.createElement('button'));
-        menuButton.className = styles['guify-bar-button'];
-        menuButton.innerHTML = 'Controls';
-        css(menuButton, {
-            left: opts.align == 'left' ? '0' : 'unset',
-            right: opts.align == 'left' ? 'unset' : '0',
-        })
-        menuButton.onclick = () => {
+        // Make the menu search input
+        if (opts.search) {
+            let menuButton = this.element.appendChild(document.createElement('input'));
+            menuButton.value = 'search'
+            menuButton.className = styles['guify-bar-search'];
+            // menuButton.innerHTML = 'Controls';
+            css(menuButton, {
+                left: opts.align == 'left' ? '0' : 'unset',
+                right: opts.align == 'left' ? 'unset' : '0',
+            })
+            this.input = menuButton;
+            this.input.onfocus = (e) => {
+                if (this.input.value === 'search') {
+                    this.input.value = '';
+                }
+            }
+            this.input.onblur = (e) => {
+                if (this.input.value === '') {
+                    this.input.value = 'search';
+                }
+            }
+            this.input.oninput = (e) => {
+                opts.search(this.input.value);
+            }
+        }
+
+        this.label.onclick = () => {
             this.emit('ontogglepanel');
         }
 

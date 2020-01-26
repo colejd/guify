@@ -37,7 +37,7 @@ export default class Text extends EventEmitter {
         })
 
         this.input.oninput = (data) => {
-            this.emit('input', data.target.value)
+            // this.emit('input', data.target.value)
         }
 
         // Gain focus
@@ -47,8 +47,9 @@ export default class Text extends EventEmitter {
         });
 
         // Lose focus
-        this.input.addEventListener('blur', () => {
+        this.input.addEventListener('blur', (data) => {
             this.focused = false;
+            this.emit('input', data.target.value)
         });
     }
 
