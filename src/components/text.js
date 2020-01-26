@@ -40,6 +40,10 @@ export default class Text extends EventEmitter {
             // this.emit('input', data.target.value)
         }
 
+        this.input.onchange = (data) => {
+            this.emit('input', data.target.value)
+        }
+
         // Gain focus
         this.input.addEventListener('focus', () => {
             css(this.input, { outline: 'none' });

@@ -44,8 +44,20 @@ export class MenuBar extends EventEmitter {
                     this.input.value = 'search';
                 }
             }
+            let timeout;
+            let delay = opts.search.delay || 0;
             this.input.oninput = (e) => {
-                opts.search(this.input.value);
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+
+                timeout = setTimeout(() => {
+                    opts.search.filter(this.input.value);
+                    timeout = false;
+                }, delay);
+            }
+            this.input.onchange = (e) => {
+                console.log(e);
             }
         }
 
