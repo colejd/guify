@@ -57,7 +57,12 @@ export class MenuBar extends EventEmitter {
                 }, delay);
             }
             this.input.onchange = (e) => {
-                console.log(e);
+                if (timeout) {
+                    clearTimeout(timeout);
+                    timeout = false;
+                    opts.search.filter(this.input.value);
+                }
+                opts.search.action(e);
             }
         }
 

@@ -17,6 +17,7 @@ export default class Button extends EventEmitter {
 
         input.textContent = opts.label
         this.label = input
+        this.button = input
 
         input.addEventListener('click', opts.action)
 
