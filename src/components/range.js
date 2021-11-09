@@ -39,7 +39,7 @@ export default class Range extends EventEmitter {
                 console.warn(`"steps" option for log scale sliders has been removed.`)
             }
 
-            // Min/max are forced to 0 and 100, and log value will be derived from slider position within.
+            // Min/max are forced to a known range, and log value will be derived from slider position within.
             this.minPos = 0
             this.maxPos = 1000000
 
