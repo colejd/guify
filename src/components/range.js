@@ -80,7 +80,7 @@ export default class Range extends EventEmitter {
             width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         })
 
-        this.valueComponent = require('./partials/value')(this.container, this.Position(opts.initial), theme, '16%');
+        this.valueComponent = require('./partials/value')(this.container, this._Position(opts.initial), theme, '16%');
         // Add ARIA attribute to input based on label text
         if(opts.label) this.valueComponent.setAttribute('aria-label', opts.label + ' value');
 
@@ -107,8 +107,8 @@ export default class Range extends EventEmitter {
 
         this.input.oninput = (data) => {
             let position = parseFloat(data.target.value);
-            var scaledValue = this.Value(position);
-            this.valueComponent.value = this.FormatNumber(scaledValue);
+            var scaledValue = this._Value(position);
+            this.valueComponent.value = this._FormatNumber(scaledValue);
             this.emit('input', scaledValue)
         }
 
@@ -120,7 +120,7 @@ export default class Range extends EventEmitter {
 
                 // Clamp to input range
                 console.log(`Value before: ${value}`)
-                value = this.ValidatedInputValue(value)
+                value = this._ValidatedInputValue(value)
                 console.log(`Value after: ${value}`)
 
                 this.valueComponent.value = value;
@@ -137,7 +137,7 @@ export default class Range extends EventEmitter {
     /**
      * Calculate value from slider position
      */
-    Value(position) {
+    _Value(position) {
         if (this.opts.scale === 'log') {
             // Map from slider position range to log value range
 
@@ -154,7 +154,7 @@ export default class Range extends EventEmitter {
     /**
      * Calculate slider position from value
      */
-    Position(value) {
+    _Position(value) {
         if (this.opts.scale === 'log') {
             // Map from log value range to the slider's position range
             return this.minPos + (Math.log(value) - this.min) / this.scale
@@ -164,7 +164,7 @@ export default class Range extends EventEmitter {
         }
     }
 
-    ValidatedInputValue(value) {
+    _ValidatedInputValue(value) {
         var newValue
         if (this.opts.scale === 'log') {
             // Clamp to input range, turning logmin and logmax back into min/max in linear space
@@ -179,20 +179,20 @@ export default class Range extends EventEmitter {
     }
 
     SetValue(value) {
-        let validated = this.ValidatedInputValue(value);
+        let validated = this._ValidatedInputValue(value);
         if(this.focused !== true) {
-            this.valueComponent.value = this.FormatNumber(validated);
-            this.input.value = this.Position(validated);
+            this.valueComponent.value = this._FormatNumber(validated);
+            this.input.value = this._Position(validated);
             this.lastValue = validated;
         }
     }
 
     GetValue() {
-        return this.Value(this.input.value);
+        return this._Value(this.input.value);
     }
 
     // TODO: Allow configuration of precision here
-    FormatNumber(value) {
+    _FormatNumber(value) {
         // https://stackoverflow.com/a/29249277
         return value.toFixed(3).replace(/\.?0*$/,'');
     }
