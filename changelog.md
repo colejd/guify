@@ -1,7 +1,12 @@
+## 0.13.1
+
+- Fix missing upload artifacts
+
 ## 0.13.0
 
 - Rewrote logic for `range` component.
     - `steps` has been removed for logarithmic sliders.
+- Updated dependencies.
 
 ## 0.12.0
 
