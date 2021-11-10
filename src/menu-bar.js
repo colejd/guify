@@ -23,52 +23,15 @@ export class MenuBar extends EventEmitter {
             this.label = text;
         }
 
-        // Make the menu search input
-        if (opts.search) {
-            let menuButton = this.element.appendChild(document.createElement('input'));
-            menuButton.value = 'search'
-            menuButton.className = styles['guify-bar-search'];
-            // menuButton.innerHTML = 'Controls';
-            css(menuButton, {
-                left: opts.align == 'left' ? '0' : 'unset',
-                right: opts.align == 'left' ? 'unset' : '0',
-            })
-            this.input = menuButton;
-            this.input.onfocus = (e) => {
-                if (this.input.value === 'search') {
-                    this.input.value = '';
-                }
-            }
-            this.input.onblur = (e) => {
-                if (this.input.value === '') {
-                    this.input.value = 'search';
-                }
-            }
-            let timeout;
-            let delay = opts.search.delay || 0;
-            this.input.oninput = (e) => {
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-
-                timeout = setTimeout(() => {
-                    opts.search.filter(this.input.value);
-                    timeout = false;
-                }, delay);
-            }
-            this.input.onkeydown = (e) => {
-                if (e.key != 13)return; // only on enter
-
-                if (timeout) {
-                    clearTimeout(timeout);
-                    timeout = false;
-                    opts.search.filter(this.input.value);
-                }
-                opts.search.action(e);
-            }
-        }
-
-        this.label.onclick = () => {
+        // Make the menu collapse button
+        let menuButton = this.element.appendChild(document.createElement('button'));
+        menuButton.className = styles['guify-bar-button'];
+        menuButton.innerHTML = 'Controls';
+        css(menuButton, {
+            left: opts.align == 'left' ? '0' : 'unset',
+            right: opts.align == 'left' ? 'unset' : '0',
+        })
+        menuButton.onclick = () => {
             this.emit('ontogglepanel');
         }
 
