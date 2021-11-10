@@ -30,7 +30,8 @@
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
     "buildall": "npm run-script build && npm run-script dev",
-    "prepublish": "npm run-script buildall"
+    "prepublish": "npm run-script buildall",
+    "ci": "npm run-script buildall"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
