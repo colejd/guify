@@ -101,7 +101,9 @@ export default class Color extends EventEmitter {
     }
 
     SetValue(value) {
-        this.picker.setColor(value);
+        if (!this.picker.isChoosing) {
+            this.picker.setColor(value);
+        }
     }
 
     GetValue() {
