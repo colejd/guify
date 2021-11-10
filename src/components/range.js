@@ -2,7 +2,11 @@ import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 import isnumeric from 'is-numeric';
 
-const styles = require('styles/components/range-style.js');
+import { default as styles } from 'styles/components/range-style.js';
+
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+import { default as ValuePartial } from './partials/value';
 
 export default class Range extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -12,8 +16,8 @@ export default class Range extends EventEmitter {
 
         this.scale = opts.scale
 
-        this.container = require('./partials/container')(root, opts.label, theme)
-        this.label = require('./partials/label')(this.container, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
+        this.label = LabelPartial(this.container, opts.label, theme)
 
         this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'range'
@@ -85,7 +89,7 @@ export default class Range extends EventEmitter {
             width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         })
 
-        this.valueComponent = require('./partials/value')(this.container, this._Position(this.initial), theme, '16%');
+        this.valueComponent = ValuePartial(this.container, this._Position(this.initial), theme, '16%');
         // Add ARIA attribute to input based on label text
         if(opts.label) this.valueComponent.setAttribute('aria-label', opts.label + ' value');
 

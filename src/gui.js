@@ -4,7 +4,7 @@ import isstring from 'is-string';
 import themes from './themes';
 import { theme } from './theme';
 
-const styles = require('./styles/container-style.js');
+import { default as styles } from './styles/container-style.js'
 
 import { ComponentManager } from './component-manager';
 
@@ -253,12 +253,12 @@ export default class GUI {
 
     ToggleFullscreen() {
         let isFullscreen = screenfull.isFullscreen;
-        if (isFullscreen) { 
+        if (isFullscreen) {
             screenfull.exit()
-        } else { 
+        } else {
             console.log("Request fullscreen")
             screenfull.request(this.opts.root)
-        } 
+        }
     }
 
 }

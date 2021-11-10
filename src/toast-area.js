@@ -1,6 +1,8 @@
 import css from 'dom-css';
 import { theme } from './theme';
 
+import { default as styles } from './styles/toast-area-style.js'
+
 /**
  * Represents a container div that creates and holds toast notifications.
  */
@@ -9,7 +11,7 @@ export class ToastArea {
         this.opts = opts;
 
         // Add toast area styles to the head
-        this.styles = require('./styles/toast-area-style.js');
+        this.styles = styles;
 
         // Make toast area
         this.element = root.appendChild(document.createElement('div'));

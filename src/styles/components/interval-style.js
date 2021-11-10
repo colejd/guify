@@ -6,7 +6,7 @@ let trackColor = theme.colors.componentBackground;
 let thumbColor = theme.colors.componentForeground;
 let thumbHighlight = theme.colors.componentActive;
 
-module.exports = csjs`
+export default csjs`
 .guify-interval {
     -webkit-appearance: none;
     position: absolute;

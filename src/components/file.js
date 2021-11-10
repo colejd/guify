@@ -1,7 +1,9 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
-const styles = require('styles/components/file-style.js');
+import { default as styles } from 'styles/components/file-style.js';
+
+import { default as ContainerPartial } from './partials/container';
 
 /**
  * File component. Drag and drop a file or click to choose a file.
@@ -16,7 +18,7 @@ export default class File extends EventEmitter {
         this.file = null;
         this.fileName = null;
 
-        this.container = require('./partials/container')(root, opts.label, theme);
+        this.container = ContainerPartial(root, opts.label, theme);
         this.container.classList.add(styles['guify-file-container']);
         this.container.setAttribute('role', 'button');
         this.container.setAttribute('tabIndex', '0'); // Make tabbable

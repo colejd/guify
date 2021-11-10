@@ -1,12 +1,14 @@
 import css from 'dom-css';
 import { theme } from './theme';
 
+import { default as styles } from './styles/panel-style.js'
+
 export class Panel {
     constructor(root, opts) {
         this.opts = opts;
 
         // Add styles to the head
-        this.styles = require('./styles/panel-style.js');
+        this.styles = styles;
 
         // Container the panel will sit in
         this.container = root.appendChild(document.createElement('div'));

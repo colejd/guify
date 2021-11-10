@@ -1,12 +1,14 @@
 import css from 'dom-css';
 
-const styles = require('styles/components/folder-style.js');
+import { default as styles } from 'styles/components/folder-style.js';
+
+import { default as ContainerPartial } from './partials/container';
 
 export default class Folder {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
 
-        this.container = require('./partials/container')(root, opts.label, theme);
+        this.container = ContainerPartial(root, opts.label, theme);
         this.container.classList.add(styles['guify-folder']);
         this.container.setAttribute('role', 'button');
         this.container.setAttribute('tabIndex', '0'); // Make tabbable

@@ -1,5 +1,8 @@
 import css from 'dom-css';
 
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+
 /**
  * Display component. Shows the state of a variable.
  */
@@ -7,9 +10,8 @@ export default class Display {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
 
-        this.container = require('./partials/container')(root, opts.label, theme)
-
-        require('./partials/label')(this.container, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
+        this.label = LabelPartial(this.container, opts.label, theme)
 
         this.text = this.container.appendChild(document.createElement('div'));
         css(this.text, {

@@ -4,6 +4,10 @@ import css from 'dom-css';
 import tinycolor from 'tinycolor2';
 import insertCss from 'insert-css';
 
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+import { default as ValuePartial } from './partials/value';
+
 export default class Color extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
@@ -13,13 +17,13 @@ export default class Color extends EventEmitter {
         opts.format = opts.format || 'rgb'
         opts.initial = opts.initial || '#123456'
 
-        this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
+        this.label = LabelPartial(this.container, opts.label, theme)
 
         var icon = this.container.appendChild(document.createElement('span'))
         icon.className = 'guify-color-' + uuid
 
-        var value = require('./partials/value')(this.container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`)
+        var value = ValuePartial(this.container, '', theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`)
         value.setAttribute('readonly', 'true');
 
         icon.onmouseover = () => {

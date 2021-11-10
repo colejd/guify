@@ -1,56 +1,74 @@
 /* global __dirname, require, module*/
 
 const webpack = require('webpack');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
 
 let libraryName = 'guify';
 
 let plugins = [], outputFile;
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
-}
+module.exports = (env, argv) => {
 
-const config = {
-  entry: __dirname + '/src/guify.js',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/lib',
-    filename: outputFile,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  module: {
-    rules: [
-      { // Process js files
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/
-      },
-    //   { // Lint all js files with eslint-loader
-    //     test: /(\.jsx|\.js)$/,
-    //     loader: 'eslint-loader',
-    //     exclude: /node_modules/
-    //   }
-    ]
-  },
-  resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
-    extensions: ['.json', '.js']
-  },
-  plugins: plugins,
-  devServer: {
-    compress: true,
-    port: 9000,
-    open: true,
-    openPage: 'example'
+  console.log(`Current mode=${argv.mode}\n`)
+
+  if (argv.mode === 'production') { // Uses --mode argument to webpack, or NODE_ENV if not defined.
+    outputFile = libraryName + '.min.js';
+  } else if (argv.mode === 'development') {
+    let linter = new ESLintPlugin({
+      files: [
+        "/src/**/*.js"
+      ],
+      ignore: [
+      ]
+    })
+    // plugins.push(linter);
+    outputFile = libraryName + '.js';
+  } else {
+    throw new Error(`Invalid development mode ${argv.mode}!`)
   }
-};
 
-module.exports = config;
+  let config = {
+    entry: __dirname + '/src/guify.js',
+    devtool: 'source-map',
+    output: {
+      path: __dirname + '/lib',
+      filename: outputFile,
+      library: {
+        type: 'umd',
+      },
+    },
+    module: {
+      rules: [
+        { // Process js files
+          test: /(\.jsx|\.js)$/,
+          loader: 'babel-loader',
+          exclude: /(node_modules|bower_components)/
+        },
+      //   { // Lint all js files with eslint-loader
+      //     test: /(\.jsx|\.js)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /node_modules/
+      //   }
+      ]
+    },
+    resolve: {
+      modules: [path.resolve('./node_modules'), path.resolve('./src')],
+      extensions: ['.json', '.js'],
+    },
+    plugins: plugins,
+    devServer: {
+      compress: true,
+      port: 9000,
+      static: {
+        directory: path.join(__dirname, ''),
+        serveIndex: true,
+      },
+      open: {
+        target: ['/example'],
+      }
+    }
+  }
+
+  return config
+}

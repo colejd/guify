@@ -1,14 +1,17 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+
 export default class Text extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
 
         this.opts = opts;
 
-        this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
+        this.label = LabelPartial(this.container, opts.label, theme)
 
         this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'text'
