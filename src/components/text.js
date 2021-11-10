@@ -36,10 +36,6 @@ export default class Text extends EventEmitter {
             this.emit('initialized', this.input.value)
         })
 
-        this.input.oninput = (data) => {
-            // this.emit('input', data.target.value)
-        }
-
         this.input.onchange = (data) => {
             this.emit('input', data.target.value)
         }
