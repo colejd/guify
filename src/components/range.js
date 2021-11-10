@@ -8,14 +8,12 @@ export default class Range extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super()
 
-        this.opts = opts;
+        this.opts = opts
+
+        this.scale = opts.scale
 
         this.container = require('./partials/container')(root, opts.label, theme)
         this.label = require('./partials/label')(this.container, opts.label, theme)
-
-        if (!!opts.step && !!opts.steps) {
-            throw new Error('Cannot specify both step and steps. Got step = ' + opts.step + ', steps = ', opts.steps)
-        }
 
         this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'range'
@@ -25,69 +23,69 @@ export default class Range extends EventEmitter {
 
         // Get initial value:
         if (opts.scale === 'log') {
-            // Get options or set defaults:
-            opts.max = (isnumeric(opts.max)) ? opts.max : 100
-            opts.min = (isnumeric(opts.min)) ? opts.min : 0.1
+            // If logarithmic, we're going to set the slider to a known linear range. Then we'll
+            // map that linear range to the user-set range using a log scale.
 
-            // Check if all signs are valid:
+            // Check if all signs are valid
             if (opts.min * opts.max <= 0) {
                 throw new Error('Log range min/max must have the same sign and not equal zero. Got min = ' + opts.min + ', max = ' + opts.max)
-            } else {
-                // Pull these into separate variables so that opts can define the *slider* mapping
-                this.logmin = opts.min
-                this.logmax = opts.max
-                this.logsign = opts.min > 0 ? 1 : -1
-
-                // Got the sign so force these positive:
-                this.logmin = Math.abs(this.logmin)
-                this.logmax = Math.abs(this.logmax)
-
-                // These are now simply 0-100 to which we map the log range:
-                opts.min = 0
-                opts.max = 100
-
-                // Step is invalid for a log range:
-                if (isnumeric(opts.step)) {
-                    throw new Error('Log may only use steps (integer number of steps), not a step value. Got step =' + opts.step)
-                }
-                // Default step is simply 1 in linear slider space:
-                opts.step = 1
             }
 
-            opts.initial = this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial : scaleValue((opts.min + opts.max) * 0.5))
+            // Step is invalid for log scale slider
+            if (isnumeric(opts.step)) {
+                console.warn(`Step is unused for log scale sliders.`)
+            }
 
-            if (opts.initial * this.InverseScaleValue(opts.max) <= 0) {
-                throw new Error('Log range initial value must have the same sign as min/max and must not equal zero. Got initial value = ' + opts.initial)
+            // Warn that `steps` was removed
+            if (isnumeric(opts.steps)) {
+                console.warn(`"steps" option for log scale sliders has been removed.`)
+            }
+
+            // Min/max are forced to a known range, and log value will be derived from slider position within.
+            this.minPos = 0
+            this.maxPos = 1000000
+
+            this.min = Math.log( (isnumeric(opts.min)) ? opts.min : 0.000001 ) // This cannot be 0
+            this.max = Math.log( (isnumeric(opts.max)) ? opts.max : 100 )
+
+            this.precision = (isnumeric(opts.precision)) ? opts.precision : 3
+            this.logScale = (this.max - this.min) / (this.maxPos - this.minPos)
+
+            this.initial = isnumeric(opts.initial) ? opts.initial : (this.min + this.max) * 0.5
+
+            if (opts.initial < 0) {
+                throw new Error(`Log range initial value must be > 0. Got initial value = ${opts.initial}`)
             }
         } else {
-            // If linear, this is much simpler:
-            opts.max = (isnumeric(opts.max)) ? opts.max : 100
-            opts.min = (isnumeric(opts.min)) ? opts.min : 0
-            opts.step = (isnumeric(opts.step)) ? opts.step : 0.01
+            // If linear, this is much simpler. Pos and value can directly match.
+            this.minPos = (isnumeric(opts.min)) ? opts.min : 0
+            this.maxPos = (isnumeric(opts.max)) ? opts.max : 100
+            this.min = this.minPos
+            this.max = this.maxPos
 
-            opts.initial = isnumeric(opts.initial) ? opts.initial : (opts.min + opts.max) * 0.5
+            this.precision = (isnumeric(opts.precision)) ? opts.precision : 3
+            this.step = (isnumeric(opts.step)) ? opts.step : (10 / Math.pow(10, 3)) // Default is the lowest possible number given the precision. When precision = 3, step = 0.01.
+
+            this.initial = isnumeric(opts.initial) ? opts.initial : (this.min + this.max) * 0.5
+
+            // Quantize the initial value to the nearest step:
+            var initialStep = Math.round((opts.initial - this.min) / this.step)
+            this.initial = this.min + this.step * initialStep
         }
-
-        // If we got a number of steps, use that instead:
-        if (isnumeric(opts.steps)) {
-            opts.step = isnumeric(opts.steps) ? (opts.max - opts.min) / opts.steps : opts.step
-        }
-
-        // Quantize the initial value to the requested step:
-        var initialStep = Math.round((opts.initial - opts.min) / opts.step)
-        opts.initial = opts.min + opts.step * initialStep
 
         // Set value on the this.input itself:
-        this.input.min = opts.min
-        this.input.max = opts.max
-        this.input.step = opts.step
-        this.input.value = opts.initial
+        this.input.min = this.minPos
+        this.input.max = this.maxPos
+        if (isnumeric(this.step)) {
+            this.input.step = this.step
+        }
+        this.input.value = this.initial
 
         css(this.input, {
             width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         })
 
-        this.valueComponent = require('./partials/value')(this.container, this.ScaleValue(opts.initial), theme, '16%');
+        this.valueComponent = require('./partials/value')(this.container, this._Position(this.initial), theme, '16%');
         // Add ARIA attribute to input based on label text
         if(opts.label) this.valueComponent.setAttribute('aria-label', opts.label + ' value');
 
@@ -113,9 +111,9 @@ export default class Range extends EventEmitter {
         });
 
         this.input.oninput = (data) => {
-            var scaledValue = this.ScaleValue(parseFloat(data.target.value))
-            this.valueComponent.value = this.FormatNumber(scaledValue);
-            this.lastValue = scaledValue;
+            let position = parseFloat(data.target.value);
+            var scaledValue = this._Value(position);
+            this.valueComponent.value = this._FormatNumber(scaledValue, this.precision);
             this.emit('input', scaledValue)
         }
 
@@ -124,49 +122,83 @@ export default class Range extends EventEmitter {
             if(Number(parseFloat(rawValue)) == rawValue){
                 // Input number is valid
                 var value = parseFloat(rawValue);
-                // Clamp to input range
-                value = Math.min(Math.max(value, opts.min), opts.max);
-                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+
+                // Ensure number fits slider properties
+                value = this._ValidatedInputValue(value)
 
                 this.valueComponent.value = value;
                 this.emit('input', value);
+                this.lastValue = value;
             } else {
                 // Input number is invalid
                 // Go back to before input change
                 this.valueComponent.value = this.lastValue;
             }
         }
-
     }
 
-    ScaleValue(value) {
-        if (this.opts.scale === 'log')
-            return this.logsign * Math.exp(Math.log(this.logmin) + (Math.log(this.logmax) - Math.log(this.logmin)) * value / 100);
-        else
-            return value;
+    /**
+     * Calculate value from slider position
+     */
+    _Value(position) {
+        if (this.scale === 'log') {
+            // Map from slider position range to log value range
+
+            // Map from slider range to min-max value range
+            let rangePos = (position - this.minPos) * this.logScale + this.min
+            // Now convert to log space
+            return Math.exp(rangePos)
+        } else {
+            // Position and value are equivalent
+            return position
+        }
     }
 
-    InverseScaleValue(value) {
-        if (this.opts.scale === 'log')
-            return (Math.log(value * this.logsign) - Math.log(this.logmin)) * 100 / (Math.log(this.logmax) - Math.log(this.logmin));
-        else
-            return value;
+    /**
+     * Calculate slider position from value
+     */
+    _Position(value) {
+        if (this.scale === 'log') {
+            // Map from log value range to the slider's position range
+            return this.minPos + (Math.log(value) - this.min) / this.logScale
+        } else {
+            // Value and position are equivalent
+            return value
+        }
+    }
+
+    _ValidatedInputValue(value) {
+        var newValue
+        if (this.scale === 'log') {
+            // Clamp to input range, turning logmin and logmax back into min/max in linear space
+            newValue = Math.min(Math.max(value, Math.exp(this.min)), Math.exp(this.max))
+        } else {
+            // Clamp to input range
+            newValue = Math.min(Math.max(value, this.min), this.max)
+            // Quantize to step
+            newValue = Math.ceil((newValue - this.min) / this.step) * this.step + this.min
+        }
+        return newValue
     }
 
     SetValue(value) {
+        let validated = this._ValidatedInputValue(value);
         if(this.focused !== true) {
-            this.valueComponent.value = this.FormatNumber(value);
-            this.input.value = this.InverseScaleValue(value);
-            this.lastValue = this.input.value;
+            this.valueComponent.value = this._FormatNumber(validated, this.precision);
+            this.input.value = this._Position(validated);
+            this.lastValue = validated;
         }
     }
 
     GetValue() {
-        return this.input.value;
+        return this._Value(this.input.value);
     }
 
-    FormatNumber(value) {
+    // Formats the number for display.
+    // `opts.precision` lets you customize how many decimal places you want here.
+    // The default is 3.
+    _FormatNumber(value, precision) {
         // https://stackoverflow.com/a/29249277
-        return value.toFixed(3).replace(/\.?0*$/,'');
+        return value.toFixed(precision).replace(/\.?0*$/,'');
     }
 }

@@ -1,3 +1,13 @@
+## 0.13.1
+
+- Fix missing upload artifacts
+
+## 0.13.0
+
+- Rewrote logic for `range` component.
+    - `steps` has been removed for logarithmic sliders.
+- Updated dependencies.
+
 ## 0.12.0
 
 - Added Interval control type (Thank you @ccrisrober!)
@@ -67,7 +77,7 @@ the call is now `new guify(...)`.
 
 - Actually fixed `"above"` barMode
 
-#### 0.7.1 
+#### 0.7.1
 
 - Fixed `"above"` barMode
 

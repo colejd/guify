@@ -57,7 +57,7 @@ export class MenuBar extends EventEmitter {
                 }, delay);
             }
             this.input.onkeydown = (e) => {
-                if (e.keyCode != 13)return; // only on enter
+                if (e.key != 13)return; // only on enter
 
                 if (timeout) {
                     clearTimeout(timeout);
