@@ -19,8 +19,8 @@ export default class Interval extends EventEmitter {
 
         this.opts = opts;
 
-        this.container = require('./partials/container')(root, opts.label, theme)
-        require('./partials/label')(this.container, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
+        this.label = LabelPartial(this.container, opts.label, theme)
 
         if (!!opts.step && !!opts.steps) {
             throw new Error('Cannot specify both step and steps. Got step = ' + opts.step + ', steps = ', opts.steps)
@@ -113,8 +113,8 @@ export default class Interval extends EventEmitter {
         });
 
         // Display the values:
-        this.lValue = require('./partials/value')(this.container, this.ScaleValue(opts.initial[0]), theme, '11%', true);
-        this.rValue = require('./partials/value')(this.container, this.ScaleValue(opts.initial[1]), theme, '11%',);
+        this.lValue = ValuePartial(this.container, this.ScaleValue(opts.initial[0]), theme, '11%', true);
+        this.rValue = ValuePartial(this.container, this.ScaleValue(opts.initial[1]), theme, '11%',);
 
         // Add ARIA attribute to input based on label text
         if(opts.label) this.lValue.setAttribute('aria-label', opts.label + ' lower value');
