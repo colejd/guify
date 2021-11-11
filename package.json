@@ -60,7 +60,7 @@
     "screenfull": "^5.0.0",
     "simple-color-picker": "^1.0.5",
     "tinycolor2": "^1.4.1",
-    "uuid": "^3.1.0",
+    "uuid": "^3.4.0",
     "wolfy87-eventemitter": "^5.2.2"
   }
 }
