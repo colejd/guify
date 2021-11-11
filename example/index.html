@@ -173,8 +173,8 @@
         gui.Register({
             type: 'text',
             label: 'Text',
-            object: this,
-            property: 'testText',
+            object: this, property: 'testText',
+            listenMode: 'input', // Can be 'input' or 'change'
             onChange: (data) => {
                 console.log(testText);
             }

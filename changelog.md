@@ -2,7 +2,12 @@
 
 - Updated dependencies
 - Redid NPM build scripts. See readme for updated commands
-- Fixed checkbox bug reported in #6 (thanks @belafonte!)
+- Fixed checkbox bug reported in #6
+- Checkbox can now be toggled by clicking anywhere in the row
+- Made it possible to have nested folders with identical names
+- Allow setting input listening mode on `text` components using a new `listenMode` option. New values are `"input"` (default) and `"change"`.
+
+Thank you to @indivisualvj for your PR (#20)!
 
 ## 0.13.1
 

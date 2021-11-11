@@ -61,6 +61,16 @@ Some component types have their own options. These will be specified for each co
 
 ## Components
 
+### Text
+`type: 'text'`
+
+Shows an editable text box.
+
+Special options:
+- `listenMode` (String, default=`"input"`): Corresponds to the string you'd pass to `addEventListener()` on a vanilla text field. Can be either `"input"` or `"change"`.
+    - `"input"` makes it so that every keystroke sends an event.
+    - `"change"` makes it so that an event is only sent when the field loses focus or you press Enter.
+
 ### Button
 `type: 'button'`
 
@@ -105,7 +115,7 @@ Special options:
 - `min` (int): The smallest possible value on the slider.
 - `max` (int): The largest possible value on the slider.
 - `precision` (int, default=`3`): The maximum number of digits displayed for the value if it's a decimal.
-- `step` (int, default=`0.01, see notes`): The amount that is incremented by each movement of the slider. Only effective when `"scale = linear"`.
+- `step` (int, default=`0.01` [see notes]): The amount that is incremented by each movement of the slider. Only effective when `"scale = linear"`.
     - If the `precision` is set, then the `step` will by default be the smallest value possible given the precision. For example, if `precision = 3`, then `step = 0.01`, or if `precision = 5`, then `step = 0.0001`.
 - `scale` (String): Specifies the scaling behavior of the slider.
     - Values: `"linear"`, `"log"`
@@ -135,4 +145,3 @@ An expanding/collapsing area that you can put other components into. To do this,
 
 Special options:
 - `open` (bool, default=`true`): Show or hide the folder by default
-

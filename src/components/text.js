@@ -5,10 +5,17 @@ import { default as ContainerPartial } from './partials/container';
 import { default as LabelPartial } from './partials/label';
 
 export default class Text extends EventEmitter {
+    static #supportedInputListenModes = ["input", "change"]
+
     constructor (root, opts, theme, uuid) {
         super();
 
         this.opts = opts;
+
+        this.listenMode = opts.listenMode || "input"
+        if (!Text.#supportedInputListenModes.includes(this.listenMode)) {
+            console.error(`listenMode "${listenMode}" is not supported for text component "${opts.label}"! Falling back on "input".`)
+        }
 
         this.container = ContainerPartial(root, opts.label, theme)
         this.label = LabelPartial(this.container, opts.label, theme)
@@ -39,9 +46,10 @@ export default class Text extends EventEmitter {
             this.emit('initialized', this.input.value)
         })
 
-        this.input.oninput = (data) => {
+        this.input.addEventListener(this.listenMode, (data) => {
+            console.log(data)
             this.emit('input', data.target.value)
-        }
+        })
 
         // Gain focus
         this.input.addEventListener('focus', () => {
