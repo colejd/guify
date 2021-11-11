@@ -34,7 +34,7 @@ export default class Select extends EventEmitter {
             for (i = 0; i < opts.options.length; i++) {
                 option = opts.options[i]
                 el = document.createElement('option')
-                el.value = i
+                el.value = el.textContent = option
                 if (opts.initial === option) {
                     el.selected = 'selected'
                 }
