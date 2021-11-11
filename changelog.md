@@ -1,3 +1,9 @@
+## 0.14.0
+
+- Updated dependencies
+- Redid NPM build scripts. See readme for updated commands
+- Fixed checkbox bug reported in #6 (thanks @belafonte!)
+
 ## 0.13.1
 
 - Fix missing upload artifacts
