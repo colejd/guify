@@ -128,7 +128,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# IntelliJ Project Data
-.idea
-
 # End of https://www.gitignore.io/api/osx,node,linux,windows
