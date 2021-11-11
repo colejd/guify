@@ -1,6 +1,9 @@
 import EventEmitter from 'wolfy87-eventemitter';
 
-const styles = require('styles/components/select-style.js');
+import { default as styles } from 'styles/components/select-style.js';
+
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
 
 export default class Select extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -11,7 +14,7 @@ export default class Select extends EventEmitter {
         var i, downTriangle, upTriangle, key, option, el, keys
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        this.label = require('./partials/label')(this.container, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         this.input = document.createElement('select')
         this.input.className = styles['guify-select-dropdown'];
@@ -31,8 +34,7 @@ export default class Select extends EventEmitter {
             for (i = 0; i < opts.options.length; i++) {
                 option = opts.options[i]
                 el = document.createElement('option')
-                el.value = i
-                el.textContent = option
+                el.value = el.textContent = option
                 if (opts.initial === option) {
                     el.selected = 'selected'
                 }

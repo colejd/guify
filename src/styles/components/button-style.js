@@ -2,7 +2,7 @@ const csjs = require('csjs-inject');
 
 import { theme } from '../../theme.js';
 
-module.exports = csjs`
+export default csjs`
 
 .guify-button {
     box-sizing: border-box !important;

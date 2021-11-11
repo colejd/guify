@@ -11,7 +11,7 @@
     <a href="https://jons.website/projects/guify">Demo</a>
 </p>
 
-Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like [three.js](https://threejs.org/) or [p5.js](https://p5js.org/) projects. 
+Guify provides you a simple GUI for your JS code. I made this because there wasn't anything really good for quick GUI creation for things like [three.js](https://threejs.org/) or [p5.js](https://p5js.org/) projects.
 
 Guify gives you toast notifications, as well as an optional header bar to give your project a "web app" look. Each component of the GUI can be bound to a variable so you don't have to manually poll its state.
 
@@ -26,10 +26,10 @@ Guify is designed to be accessibility-friendly, but I don't have a good way to t
 
 ## Usage
 For browser projects, you can use the transpiled version in [`/lib`](/lib).
-If you're working with ES6 (for example, in a Node project), you can 
+If you're working with ES6 (for example, in a Node project), you can
 use the files at [`/src`](/src) directly.
 
-The API can be found at [/docs/api.md](/docs/api.md). 
+The API can be found at [/docs/api.md](/docs/api.md).
 
 
 ### Quick Start
@@ -51,15 +51,15 @@ var gui = new guify({
 });
 
 gui.Register([
-    { 
-        type: 'range', label: 'Range', 
-        min: 0, max: 20, step: 1 
+    {
+        type: 'range', label: 'Range',
+        min: 0, max: 20, step: 1
     },
-    { 
-        type: 'button', label: 'Button' 
+    {
+        type: 'button', label: 'Button'
     },
-    { 
-        type: 'checkbox', label: 'Checkbox' 
+    {
+        type: 'checkbox', label: 'Checkbox'
     }
 ]);
 ```
@@ -68,13 +68,13 @@ See [example.html](/example/index.html) for a more complete example.
 
 
 ### Building This Package
-If you want to build this package, you can run `npm install` and then `npm run build`, which will create `/lib/guify.min.js`. 
+If you want to build this package, you can run `npm install` and then `npm run build`, which will create `/lib/guify.min.js`.
 
 NPM commands:
 
-- `build`: Creates `/lib/guify.min.js`, the default script used by this package.
-- `dev`: Creates `/lib/guify.js`.
-- `dev:watch`: Runs `dev` and serves the `/example` directory as a static web page.
+- `build:prod`: Creates `/lib/guify.min.js`, the default script used by this package.
+- `build:dev`: Creates `/lib/guify.js`.
+- `develop`: Runs `build:dev` and serves the `/example` directory as a static web page.
 
 If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName=colejd.vscode-language-csjs) plugin to help when editing any of the `.csjs.js` files in `/styles`.
 

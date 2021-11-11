@@ -1,6 +1,9 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+
 export default class Text extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
@@ -8,7 +11,7 @@ export default class Text extends EventEmitter {
         this.opts = opts;
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        this.label = require('./partials/label')(this.container, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'text'
@@ -36,7 +39,7 @@ export default class Text extends EventEmitter {
             this.emit('initialized', this.input.value)
         })
 
-        this.input.onchange = (data) => {
+        this.input.oninput = (data) => {
             this.emit('input', data.target.value)
         }
 
@@ -47,9 +50,8 @@ export default class Text extends EventEmitter {
         });
 
         // Lose focus
-        this.input.addEventListener('blur', (data) => {
+        this.input.addEventListener('blur', () => {
             this.focused = false;
-            this.emit('input', data.target.value)
         });
     }
 

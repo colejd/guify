@@ -4,6 +4,10 @@ import css from 'dom-css';
 import tinycolor from 'tinycolor2';
 import insertCss from 'insert-css';
 
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
+import { default as ValuePartial } from './partials/value';
+
 export default class Color extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
@@ -14,7 +18,7 @@ export default class Color extends EventEmitter {
         opts.initial = opts.initial || '#123456'
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        this.label = require('./partials/label')(this.container, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         var icon = this.container.appendChild(document.createElement('span'))
         icon.className = 'guify-color-' + uuid

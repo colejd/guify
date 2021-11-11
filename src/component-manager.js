@@ -1,6 +1,18 @@
 import uuid from 'uuid/v4';
 import { theme } from './theme';
 
+import { default as TitleComponent } from './components/title'
+import { default as RangeComponent } from './components/range'
+import { default as ButtonComponent } from './components/button'
+import { default as CheckboxComponent } from './components/checkbox'
+import { default as SelectComponent } from './components/select'
+import { default as TextComponent } from './components/text'
+import { default as ColorComponent } from './components/color'
+import { default as FolderComponent } from './components/folder'
+import { default as FileComponent } from './components/file'
+import { default as DisplayComponent } from './components/display'
+import { default as IntervalComponent } from './components/interval'
+
 /**
  * Manages the loading and instantiation of Components.
  */
@@ -9,17 +21,17 @@ export class ComponentManager {
         this.uuid = uuid();
 
         this.components = {
-            'title': require('./components/title'),
-            'range': require('./components/range'),
-            'button': require('./components/button'),
-            'checkbox': require('./components/checkbox'),
-            'select': require('./components/select'),
-            'text': require('./components/text'),
-            'color': require('./components/color'),
-            'folder': require('./components/folder'),
-            'file': require('./components/file'),
-            'display': require('./components/display'),
-            'interval': require('./components/interval')
+            'title': TitleComponent,
+            'range': RangeComponent,
+            'button': ButtonComponent,
+            'checkbox': CheckboxComponent,
+            'select': SelectComponent,
+            'text': TextComponent,
+            'color': ColorComponent,
+            'folder': FolderComponent,
+            'file': FileComponent,
+            'display': DisplayComponent,
+            'interval': IntervalComponent,
         }
 
     }
@@ -43,7 +55,7 @@ export class ComponentManager {
                 this.container.parentNode.removeChild(this.container);
             }
         });
-        
+
         return newComponent;
     }
 

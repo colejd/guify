@@ -1,7 +1,10 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import css from 'dom-css';
 
-const styles = require('styles/components/checkbox-style.js');
+import { default as styles } from 'styles/components/checkbox-style.js';
+
+import { default as ContainerPartial } from './partials/container';
+import { default as LabelPartial } from './partials/label';
 
 export default class Checkbox extends EventEmitter {
     constructor (root, opts, theme, uuid) {
@@ -10,10 +13,10 @@ export default class Checkbox extends EventEmitter {
         this.opts = opts;
 
         this.container = require('./partials/container')(root, opts.label, theme)
-        this.label = require('./partials/label')(this.container, opts.label, theme)
+        require('./partials/label')(this.container, opts.label, theme)
 
         this.input = this.container.appendChild(document.createElement('input'))
-        this.input.id = 'checkbox-' + opts.property + uuid
+        this.input.id = 'checkbox-' + opts.label + uuid
         this.input.type = 'checkbox'
         this.input.checked = opts.initial
         this.input.className = styles['guify-checkbox'];

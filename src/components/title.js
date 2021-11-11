@@ -1,10 +1,12 @@
 import css from 'dom-css';
 
+import { default as ContainerPartial } from './partials/container';
+
 export default class Title {
     constructor (root, opts, theme) {
         this.opts = opts;
 
-        this.container = require('./partials/container')(root, opts.label, theme)
+        this.container = ContainerPartial(root, opts.label, theme)
         css(this.container, {
             //'font-size': '13px'
         });

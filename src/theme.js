@@ -2,7 +2,10 @@ import themes from './themes';
 
 class Theme {
     constructor() {
-        //this.Set(themes.dark);
+        // TODOjon:
+        // This needs to be turned on or when we import the theme in *-theme.js, the values are not populated yet.
+        // This is a bug.
+        this.Set(themes.dark);
     }
 
     Set(theme) {

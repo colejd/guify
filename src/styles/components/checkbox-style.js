@@ -4,7 +4,7 @@ import { theme } from '../../theme.js';
 
 let borderSize = '4px'
 
-module.exports = csjs`
+export default csjs`
 
 input[type=checkbox].guify-checkbox {
     opacity: 0;
