@@ -12,7 +12,7 @@ export default class File extends EventEmitter {
     constructor (root, opts, theme, uuid) {
         super();
         this.opts = opts;
-        this.theme = theme;
+        this.styles = styles(theme);
 
         this.opts.fileReadFunc = this.opts.fileReadFunc || "readAsDataURL";
 
@@ -20,7 +20,7 @@ export default class File extends EventEmitter {
         this.fileName = null;
 
         this.container = ContainerPartial(root, opts.label, theme);
-        this.container.classList.add(styles(this.theme)['guify-file-container']);
+        this.container.classList.add(this.styles['guify-file-container']);
         this.container.setAttribute('role', 'button');
         this.container.setAttribute('tabIndex', '0'); // Make tabbable
         css(this.container, {
@@ -72,19 +72,19 @@ export default class File extends EventEmitter {
         this.container.addEventListener('dragover', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.add(styles(this.theme)['guify-dragover']);
+            this.container.classList.add(this.styles['guify-dragover']);
         });
 
         this.container.addEventListener('dragleave', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.remove(styles(this.theme)['guify-dragover']);
+            this.container.classList.remove(this.styles['guify-dragover']);
         });
 
         this.container.addEventListener('drop', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.remove(styles(this.theme)['guify-dragover']);
+            this.container.classList.remove(this.styles['guify-dragover']);
             FileDropped(event);
         });
 
@@ -108,7 +108,6 @@ export default class File extends EventEmitter {
 
     SetValue(value) {
         return;
-        if(value === null || value === undefined) return;
     }
 
     GetValue() {

@@ -9,11 +9,11 @@ export class ToastArea {
     constructor(root, opts, theme) {
         this.opts = opts;
 
-        this.theme = theme;
+        this.styles = styles(theme);
 
         // Make toast area
         this.element = root.appendChild(document.createElement('div'));
-        this.element.classList.add(styles(this.theme)['guify-toast-area']);
+        this.element.classList.add(this.styles['guify-toast-area']);
         css(this.element, {
             position: 'absolute',
             'width': '100%',
@@ -28,7 +28,7 @@ export class ToastArea {
         console.log('[Toast] ' + message);
 
         let toast = this.element.appendChild(document.createElement('div'));
-        toast.classList.add(styles(this.theme)['guify-toast-notification']);
+        toast.classList.add(this.styles['guify-toast-notification']);
         toast.setAttribute('aria-live', 'polite');
 
         toast.innerHTML = message;
@@ -42,7 +42,7 @@ export class ToastArea {
         // Make close button in toast
         let closeButton = toast.appendChild(document.createElement('button'));
         closeButton.innerHTML = '&#10006;'
-        closeButton.classList.add(styles(this.theme)['guify-toast-close-button']);
+        closeButton.classList.add(this.styles['guify-toast-close-button']);
 
         let timeout;
 

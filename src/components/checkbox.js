@@ -11,7 +11,7 @@ export default class Checkbox extends EventEmitter {
         super();
 
         this.opts = opts;
-        this.theme = theme;
+        this.styles = styles(theme);
 
         this.container = ContainerPartial(root, opts.label, theme)
         this.label = LabelPartial(this.container, opts.label, theme)
@@ -20,7 +20,7 @@ export default class Checkbox extends EventEmitter {
         this.input.id = 'checkbox-' + opts.label + uuid
         this.input.type = 'checkbox'
         this.input.checked = opts.initial
-        this.input.className = styles(this.theme)['guify-checkbox'];
+        this.input.className = this.styles['guify-checkbox'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 

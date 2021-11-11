@@ -7,10 +7,10 @@ import { default as ContainerPartial } from './partials/container';
 export default class Folder {
     constructor (root, opts, theme, uuid) {
         this.opts = opts;
-        this.theme = theme;
+        this.styles = styles(theme);
 
         this.container = ContainerPartial(root, opts.label, theme);
-        this.container.classList.add(styles(this.theme)['guify-folder']);
+        this.container.classList.add(styles(theme)['guify-folder']);
         this.container.setAttribute('role', 'button');
         this.container.setAttribute('tabIndex', '0'); // Make tabbable
         // css(container, {
@@ -43,7 +43,7 @@ export default class Folder {
         });
 
         this.folderContainer = root.appendChild(document.createElement('div'));
-        this.folderContainer.classList.add(styles(this.theme)['guify-folder-contents']);
+        this.folderContainer.classList.add(this.styles['guify-folder-contents']);
 
         this.open = this.opts.open || false;
         this.SetOpen(this.open);
@@ -61,12 +61,12 @@ export default class Folder {
     SetOpen(show) {
         this.open = show;
         if(show) {
-            this.folderContainer.classList.remove(styles(this.theme)['guify-folder-closed']);
+            this.folderContainer.classList.remove(this.styles['guify-folder-closed']);
             this.arrow.innerHTML = '&#9662;'; // Down triangle
 
         }
         else {
-            this.folderContainer.classList.add(styles(this.theme)['guify-folder-closed']);
+            this.folderContainer.classList.add(this.styles['guify-folder-closed']);
             this.arrow.innerHTML = '&#9656;'; // Right triangle
         }
 
