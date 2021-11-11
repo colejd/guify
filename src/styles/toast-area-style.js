@@ -1,7 +1,5 @@
 const csjs = require('csjs-inject');
 
-import { theme } from '../theme.js';
-
 export default (theme) => {
     return csjs`
         .guify-toast-notification {

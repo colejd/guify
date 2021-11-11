@@ -14,7 +14,7 @@ export default class Text extends EventEmitter {
 
         this.listenMode = opts.listenMode || "input"
         if (!Text.#supportedInputListenModes.includes(this.listenMode)) {
-            console.error(`listenMode "${listenMode}" is not supported for text component "${opts.label}"! Falling back on "input".`)
+            console.error(`listenMode "${this.listenMode}" is not supported for text component "${opts.label}"! Falling back on "input".`)
         }
 
         this.container = ContainerPartial(root, opts.label, theme)

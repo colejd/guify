@@ -76,10 +76,10 @@ export default class Interval extends EventEmitter {
             }
 
             opts.initial = [
-                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[0] : scaleValue(opts.min + (opts.max - opts.min) * 0.25)),
-                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[1] : scaleValue(opts.min + (opts.max - opts.min) * 0.75))
+                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[0] : this.ScaleValue(opts.min + (opts.max - opts.min) * 0.25)),
+                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[1] : this.ScaleValue(opts.min + (opts.max - opts.min) * 0.75))
             ];
-            if (this.ScaleValue(opts.initial[0]) * this.ScaleValue(opts.max) <= 0 || scaleValue(opts.initial[1]) * this.ScaleValue(opts.max) <= 0) {
+            if (this.ScaleValue(opts.initial[0]) * this.ScaleValue(opts.max) <= 0 || this.ScaleValue(opts.initial[1]) * this.ScaleValue(opts.max) <= 0) {
                 throw new Error('Log range initial value must have the same sign as min/max and must not equal zero. Got initial value = [' + this.ScaleValue(opts.initial[0]) + ', ' + this.ScaleValue(opts.initial[1]) + ']');
             }
         }

@@ -69,7 +69,7 @@ export default class Color extends EventEmitter {
 
         this.InjectStyles();
 
-        icon.onmouseout = (e) => {
+        icon.onmouseout = () => {
             this.picker.$el.style.display = 'none'
         }
 

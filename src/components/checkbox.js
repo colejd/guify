@@ -1,5 +1,4 @@
 import EventEmitter from 'wolfy87-eventemitter';
-import css from 'dom-css';
 
 import { default as styles } from 'styles/components/checkbox-style.js';
 

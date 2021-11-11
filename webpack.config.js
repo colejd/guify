@@ -19,10 +19,8 @@ module.exports = (env, argv) => {
       files: [
         "/src/**/*.js"
       ],
-      ignore: [
-      ]
     })
-    // plugins.push(linter);
+    plugins.push(linter);
     outputFile = libraryName + '.js';
   } else {
     throw new Error(`Invalid development mode ${argv.mode}!`)

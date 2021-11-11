@@ -1,5 +1,4 @@
 import css from 'dom-css';
-import isstring from 'is-string';
 
 import { default as Theme } from './theme';
 
