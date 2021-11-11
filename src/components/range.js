@@ -21,7 +21,7 @@ export default class Range extends EventEmitter {
 
         this.input = this.container.appendChild(document.createElement('input'))
         this.input.type = 'range'
-        this.input.className = styles['guify-range'];
+        this.input.className = styles(theme)['guify-range'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label + ' input');
 

@@ -10,6 +10,7 @@ export default class Select extends EventEmitter {
         super();
 
         this.opts = opts;
+        this.theme = theme;
 
         var i, downTriangle, upTriangle, key, option, el, keys
 
@@ -17,15 +18,15 @@ export default class Select extends EventEmitter {
         this.label = LabelPartial(this.container, opts.label, theme)
 
         this.input = document.createElement('select')
-        this.input.className = styles['guify-select-dropdown'];
+        this.input.className = styles(this.theme)['guify-select-dropdown'];
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute('aria-label', opts.label);
 
         downTriangle = document.createElement('span')
-        downTriangle.classList.add(styles['guify-select-triangle'], styles['guify-select-triangle--down']);
+        downTriangle.classList.add(styles(this.theme)['guify-select-triangle'], styles(this.theme)['guify-select-triangle--down']);
 
         upTriangle = document.createElement('span')
-        upTriangle.classList.add(styles['guify-select-triangle'], styles['guify-select-triangle--up']);
+        upTriangle.classList.add(styles(this.theme)['guify-select-triangle'], styles(this.theme)['guify-select-triangle--up']);
 
         this.container.appendChild(downTriangle)
         this.container.appendChild(upTriangle)
@@ -64,13 +65,13 @@ export default class Select extends EventEmitter {
         // I'd like to do this through CSS :focus/:hover selectors but I just couldn't figure it out.
         // It could be done easily if CSS had a "general previous sibling" selector.
         let StyleFocus = () => {
-            downTriangle.classList.add(styles['guify-select-triangle--down-highlight']);
-            upTriangle.classList.add(styles['guify-select-triangle--up-highlight']);
+            downTriangle.classList.add(styles(this.theme)['guify-select-triangle--down-highlight']);
+            upTriangle.classList.add(styles(this.theme)['guify-select-triangle--up-highlight']);
         }
 
         let StyleUnfocus = () => {
-            downTriangle.classList.remove(styles['guify-select-triangle--down-highlight']);
-            upTriangle.classList.remove(styles['guify-select-triangle--up-highlight']);
+            downTriangle.classList.remove(styles(this.theme)['guify-select-triangle--down-highlight']);
+            upTriangle.classList.remove(styles(this.theme)['guify-select-triangle--up-highlight']);
         }
         let focused = false;
 

@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-import { theme } from './theme';
 
 import { default as TitleComponent } from './components/title'
 import { default as RangeComponent } from './components/range'
@@ -17,7 +16,8 @@ import { default as IntervalComponent } from './components/interval'
  * Manages the loading and instantiation of Components.
  */
 export class ComponentManager {
-    constructor() {
+    constructor(theme) {
+        this.theme = theme
         this.components = {
             'title': TitleComponent,
             'range': RangeComponent,
@@ -46,7 +46,7 @@ export class ComponentManager {
             throw new Error(`No component type named '${opts.type}' exists.`);
         }
 
-        let newComponent = new this.components[opts.type](root, opts, theme, uuidv4());
+        let newComponent = new this.components[opts.type](root, opts, this.theme, uuidv4());
 
         Object.assign(newComponent, {
             Remove: function() {

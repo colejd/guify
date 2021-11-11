@@ -1,5 +1,4 @@
 import css from 'dom-css';
-import { theme } from './theme';
 
 import { default as styles } from './styles/toast-area-style.js'
 
@@ -7,15 +6,14 @@ import { default as styles } from './styles/toast-area-style.js'
  * Represents a container div that creates and holds toast notifications.
  */
 export class ToastArea {
-    constructor(root, opts) {
+    constructor(root, opts, theme) {
         this.opts = opts;
 
-        // Add toast area styles to the head
-        this.styles = styles;
+        this.theme = theme;
 
         // Make toast area
         this.element = root.appendChild(document.createElement('div'));
-        this.element.classList.add(this.styles['guify-toast-area']);
+        this.element.classList.add(styles(this.theme)['guify-toast-area']);
         css(this.element, {
             position: 'absolute',
             'width': '100%',
@@ -30,7 +28,7 @@ export class ToastArea {
         console.log('[Toast] ' + message);
 
         let toast = this.element.appendChild(document.createElement('div'));
-        toast.classList.add(this.styles['guify-toast-notification']);
+        toast.classList.add(styles(this.theme)['guify-toast-notification']);
         toast.setAttribute('aria-live', 'polite');
 
         toast.innerHTML = message;
@@ -44,7 +42,7 @@ export class ToastArea {
         // Make close button in toast
         let closeButton = toast.appendChild(document.createElement('button'));
         closeButton.innerHTML = '&#10006;'
-        closeButton.classList.add(this.styles['guify-toast-close-button']);
+        closeButton.classList.add(styles(this.theme)['guify-toast-close-button']);
 
         let timeout;
 

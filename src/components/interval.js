@@ -27,10 +27,10 @@ export default class Interval extends EventEmitter {
         }
 
         this.input = this.container.appendChild(document.createElement('span'));
-        this.input.className = styles['guify-interval'];
+        this.input.className = styles(theme)['guify-interval'];
 
         this.handle = document.createElement("span");
-        this.handle.className = styles['guify-interval-handle'];
+        this.handle.className = styles(theme)['guify-interval-handle'];
         this.input.appendChild(this.handle);
 
 

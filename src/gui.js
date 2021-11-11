@@ -1,8 +1,7 @@
 import css from 'dom-css';
 import isstring from 'is-string';
 
-import themes from './themes';
-import { theme } from './theme';
+import { default as Theme } from './theme';
 
 import { default as styles } from './styles/container-style.js'
 
@@ -29,21 +28,13 @@ export default class GUI {
         opts.open = opts.open || false;
 
         // Set theme global from opts
-        let chosenTheme = opts.theme;
-        if(opts.theme === undefined) chosenTheme = themes.dark;
-        if(isstring(opts.theme)) {
-            if(themes[opts.theme] === undefined) {
-                console.error(`There is no theme preset with the name '${opts.theme}'! Defaulting to dark theme.`);
-                chosenTheme = themes.dark;
-            }
-            else chosenTheme = themes[opts.theme];
-        }
-        theme.Set(chosenTheme);
+        let themeName = opts.theme || themes.dark;
+        this.theme = new Theme(themeName)
 
         this._ConstructElements();
         this._LoadStyles();
 
-        this.componentManager = new ComponentManager();
+        this.componentManager = new ComponentManager(this.theme);
 
         this.loadedComponents = [];
 
@@ -68,12 +59,12 @@ export default class GUI {
         // Mono font
         AppendFont('//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
         // Theme font
-        if(theme.font) {
+        if(this.theme.font) {
             // Set default font to theme font
-            if(theme.font.fontURL) AppendFont(theme.font.fontURL);
-            if(theme.font.fontFamily) css(this.container, 'font-family', theme.font.fontFamily);
-            if(theme.font.fontSize) css(this.container, 'font-size', theme.font.fontSize);
-            if(theme.font.fontWeight) css(this.container, 'font-weight', theme.font.fontWeight);
+            if(this.theme.font.fontURL) AppendFont(this.theme.font.fontURL);
+            if(this.theme.font.fontFamily) css(this.container, 'font-family', this.theme.font.fontFamily);
+            if(this.theme.font.fontSize) css(this.container, 'font-size', this.theme.font.fontSize);
+            if(this.theme.font.fontWeight) css(this.container, 'font-weight', this.theme.font.fontWeight);
         } else {
             css(this.container, 'font-family', `'Hack', monospace`);
         }
@@ -85,7 +76,7 @@ export default class GUI {
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement('div');
-        this.container.classList.add(styles['guify-container']);
+        this.container.classList.add(styles(this.theme)['guify-container']);
 
         let containerCSS = {};
 
@@ -94,7 +85,7 @@ export default class GUI {
             containerCSS.position = 'absolute';
         }
         if(this.hasRoot && this.opts.barMode == 'above'){
-            containerCSS.top = `-${theme.sizing.menuBarHeight}`;
+            containerCSS.top = `-${this.theme.sizing.menuBarHeight}`;
         }
         css(this.container, containerCSS);
 
@@ -103,7 +94,7 @@ export default class GUI {
 
         // Create a menu bar if specified in `opts`
         if(this.opts.barMode !== 'none') {
-            this.bar = new MenuBar(this.container, this.opts);
+            this.bar = new MenuBar(this.container, this.opts, this.theme);
             this.bar.addListener('ontogglepanel', () => {
                 this.panel.ToggleVisible();
             });
@@ -113,7 +104,7 @@ export default class GUI {
         }
 
         // Create panel
-        this.panel = new Panel(this.container, this.opts);
+        this.panel = new Panel(this.container, this.opts, this.theme);
 
         // Show the panel by default if there's no menu bar or it's requested
         if(this.opts.barMode === 'none' || this.opts.open === true) {
@@ -124,7 +115,7 @@ export default class GUI {
         }
 
         // Create toast area
-        this.toaster = new ToastArea(this.container, this.opts);
+        this.toaster = new ToastArea(this.container, this.opts, this.theme);
 
     }
 

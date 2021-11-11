@@ -1,21 +1,18 @@
 import themes from './themes';
 
-class Theme {
-    constructor() {
-        // TODOjon:
-        // This needs to be turned on or when we import the theme in *-theme.js, the values are not populated yet.
-        // This is a bug.
-        this.Set(themes.dark);
-    }
+export default class Theme {
+    constructor(themeName) {
 
-    Set(theme) {
+        var theme = themes[themeName]
+        if(theme === undefined) {
+            console.error(`There is no theme preset with the name '${themeName}'! Defaulting to dark theme.`)
+            theme = themes.dark
+        }
 
         // Merge the base theme with the theme parameters and make
         // the result properties of this object
-        Object.assign(this, baseTheme, theme);
-
+        Object.assign(this, baseTheme, theme)
     }
-
 }
 
 const baseTheme = {
@@ -44,6 +41,3 @@ const baseTheme = {
         labelWidth: '42%',
     },
 };
-
-// Export "singleton" instance
-export let theme = new Theme();

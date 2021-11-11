@@ -16,7 +16,7 @@ export default class Button extends EventEmitter {
         this.label = LabelPartial(this.container, '', theme)
 
         var input = this.container.appendChild(document.createElement('button'))
-        input.className = styles['guify-button'];
+        input.className = styles(theme)['guify-button'];
 
         input.textContent = opts.label
         this.button = input
