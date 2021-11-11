@@ -22,6 +22,7 @@ export class MenuBar extends EventEmitter {
             let text = this.element.appendChild(document.createElement('div'));
             text.className = this.styles['guify-bar-title'];
             text.innerHTML = opts.title;
+            this.label = text;
         }
 
         // Make the menu collapse button

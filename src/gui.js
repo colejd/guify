@@ -201,7 +201,7 @@ export default class GUI {
         // and get its folderContainer.
         if(opts.folder) {
             let folderComp = this.loadedComponents.find((cmp) => {
-                return cmp.opts.type === 'folder' && cmp.opts.label === opts.folder;
+                return cmp === opts.folder || (cmp.opts.type === 'folder' && cmp.opts.label === opts.folder);
             });
 
             if(folderComp) root = folderComp.folderContainer;

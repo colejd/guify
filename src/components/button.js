@@ -19,6 +19,7 @@ export default class Button extends EventEmitter {
         input.className = styles['guify-button'];
 
         input.textContent = opts.label
+        this.button = input
 
         input.addEventListener('click', opts.action)
 
