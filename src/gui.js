@@ -223,11 +223,10 @@ export default class GUI {
             });
 
             component.on('input', (data) => {
-                let oldValue = opts.object[opts.property];
                 if(opts.object && opts.property)
                     opts.object[opts.property] = data;
 
-                if(data !== oldValue && opts.onChange) {
+                if(opts.onChange) {
                     opts.onChange(data);
                 }
             });
