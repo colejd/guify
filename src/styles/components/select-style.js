@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
 
@@ -71,5 +71,5 @@ export default (theme) => {
         .guify-select-triangle--down-highlight {
             border-top-color: ${theme.colors.textHover};
         }
-    `
+    `;
 };

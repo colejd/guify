@@ -1,15 +1,15 @@
-import css from 'dom-css';
+import css from "dom-css";
 
-import { default as Theme } from './theme';
+import { default as Theme } from "./theme";
 
-import { default as styles } from './styles/container-style.js'
+import { default as styles } from "./styles/container-style.js";
 
-import { ComponentManager } from './component-manager';
+import { ComponentManager } from "./component-manager";
 
-import { MenuBar } from './menu-bar';
-import { Panel } from './panel';
-import { ToastArea } from './toast-area';
-import screenfull from 'screenfull';
+import { MenuBar } from "./menu-bar";
+import { Panel } from "./panel";
+import { ToastArea } from "./toast-area";
+import screenfull from "screenfull";
 
 export default class GUI {
     constructor(opts) {
@@ -19,16 +19,16 @@ export default class GUI {
 
         opts.width = opts.width || 300;
         opts.root = opts.root || document.body;
-        opts.align = opts.align || 'left'; // Can be 'left' or 'right'
+        opts.align = opts.align || "left"; // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
-        opts.barMode = opts.barMode || 'offset'; // Can be 'none', 'above', 'offset', or 'overlay'
-        opts.panelMode = opts.panelMode || 'inner';
+        opts.barMode = opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
+        opts.panelMode = opts.panelMode || "inner";
         opts.pollRateMS = opts.pollRateMS || 100;
         opts.open = opts.open || false;
 
-        // Set theme global from opts
-        let themeName = opts.theme || themes.dark;
-        this.theme = new Theme(themeName)
+        // Set theme from opts
+        let themeName = opts.theme || "dark";
+        this.theme = new Theme(themeName);
 
         this._ConstructElements();
         this._LoadStyles();
@@ -48,24 +48,24 @@ export default class GUI {
     _LoadStyles() {
         // Loads a font and appends it to the head
         let AppendFont = (href) => {
-            var elem = document.createElement('style');
-            elem.setAttribute('type', 'text/css');
-            elem.setAttribute('rel', 'stylesheet');
-            elem.setAttribute('href', href);
-            document.getElementsByTagName('head')[0].appendChild(elem);
-        }
+            var elem = document.createElement("style");
+            elem.setAttribute("type", "text/css");
+            elem.setAttribute("rel", "stylesheet");
+            elem.setAttribute("href", href);
+            document.getElementsByTagName("head")[0].appendChild(elem);
+        };
         // Load the fonts we'll be using
         // Mono font
-        AppendFont('//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css');
+        AppendFont("//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css");
         // Theme font
         if(this.theme.font) {
             // Set default font to theme font
             if(this.theme.font.fontURL) AppendFont(this.theme.font.fontURL);
-            if(this.theme.font.fontFamily) css(this.container, 'font-family', this.theme.font.fontFamily);
-            if(this.theme.font.fontSize) css(this.container, 'font-size', this.theme.font.fontSize);
-            if(this.theme.font.fontWeight) css(this.container, 'font-weight', this.theme.font.fontWeight);
+            if(this.theme.font.fontFamily) css(this.container, "font-family", this.theme.font.fontFamily);
+            if(this.theme.font.fontSize) css(this.container, "font-size", this.theme.font.fontSize);
+            if(this.theme.font.fontWeight) css(this.container, "font-weight", this.theme.font.fontWeight);
         } else {
-            css(this.container, 'font-family', `'Hack', monospace`);
+            css(this.container, "font-family", "'Hack', monospace");
         }
     }
 
@@ -74,16 +74,16 @@ export default class GUI {
      */
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
-        this.container = document.createElement('div');
-        this.container.classList.add(styles(this.theme)['guify-container']);
+        this.container = document.createElement("div");
+        this.container.classList.add(styles(this.theme)["guify-container"]);
 
         let containerCSS = {};
 
         // Position the container relative to the root based on `opts`
-        if(this.opts.barMode == 'overlay' || this.opts.barMode == 'above' || this.opts.barMode == 'none'){
-            containerCSS.position = 'absolute';
+        if(this.opts.barMode == "overlay" || this.opts.barMode == "above" || this.opts.barMode == "none"){
+            containerCSS.position = "absolute";
         }
-        if(this.hasRoot && this.opts.barMode == 'above'){
+        if(this.hasRoot && this.opts.barMode == "above"){
             containerCSS.top = `-${this.theme.sizing.menuBarHeight}`;
         }
         css(this.container, containerCSS);
@@ -92,12 +92,12 @@ export default class GUI {
         this.opts.root.insertBefore(this.container, this.opts.root.childNodes[0]);
 
         // Create a menu bar if specified in `opts`
-        if(this.opts.barMode !== 'none') {
+        if(this.opts.barMode !== "none") {
             this.bar = new MenuBar(this.container, this.opts, this.theme);
-            this.bar.addListener('ontogglepanel', () => {
+            this.bar.addListener("ontogglepanel", () => {
                 this.panel.ToggleVisible();
             });
-            this.bar.addListener('onfullscreenrequested', () => {
+            this.bar.addListener("onfullscreenrequested", () => {
                 this.ToggleFullscreen();
             });
         }
@@ -106,7 +106,7 @@ export default class GUI {
         this.panel = new Panel(this.container, this.opts, this.theme);
 
         // Show the panel by default if there's no menu bar or it's requested
-        if(this.opts.barMode === 'none' || this.opts.open === true) {
+        if(this.opts.barMode === "none" || this.opts.open === true) {
             this.panel.SetVisible(true);
         } else {
             // Otherwise hide it by default
@@ -163,8 +163,8 @@ export default class GUI {
     Remove(obj) {
         obj.Remove();
         this.loadedComponents = this.loadedComponents.filter((item) => {
-            return item !== obj
-        })
+            return item !== obj;
+        });
     }
 
     /**
@@ -191,7 +191,7 @@ export default class GUI {
         // and get its folderContainer.
         if(opts.folder) {
             let folderComp = this.loadedComponents.find((cmp) => {
-                return cmp === opts.folder || (cmp.opts.type === 'folder' && cmp.opts.label === opts.folder);
+                return cmp === opts.folder || (cmp.opts.type === "folder" && cmp.opts.label === opts.folder);
             });
 
             if(folderComp) root = folderComp.folderContainer;
@@ -202,17 +202,17 @@ export default class GUI {
 
         // Add binding properties if specified
         if(opts.object && opts.property) {
-            component['binding'] = { object: opts.object, property: opts.property };
+            component["binding"] = { object: opts.object, property: opts.property };
         }
 
         // If the component has events, add listeners for those events.
         if(component.on) {
-            component.on('initialized', function (data) {
+            component.on("initialized", function (data) {
                 if(opts.onInitialize)
                     opts.onInitialize(data);
             });
 
-            component.on('input', (data) => {
+            component.on("input", (data) => {
                 if(opts.object && opts.property)
                     opts.object[opts.property] = data;
 
@@ -244,10 +244,10 @@ export default class GUI {
     ToggleFullscreen() {
         let isFullscreen = screenfull.isFullscreen;
         if (isFullscreen) {
-            screenfull.exit()
+            screenfull.exit();
         } else {
-            console.log("Request fullscreen")
-            screenfull.request(this.opts.root)
+            console.log("Request fullscreen");
+            screenfull.request(this.opts.root);
         }
     }
 

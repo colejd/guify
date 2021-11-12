@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
     return csjs`
@@ -39,5 +39,5 @@ export default (theme) => {
             bottom: 0;
             right: 8px;
         }
-    `
+    `;
 };

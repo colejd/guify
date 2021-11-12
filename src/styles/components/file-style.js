@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
     return csjs`

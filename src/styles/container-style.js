@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
     return  csjs`
@@ -9,5 +9,5 @@ export default (theme) => {
             font-size: 11px;
             z-index: 9999;
         }
-    `
+    `;
 };

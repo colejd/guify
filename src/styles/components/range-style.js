@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
     let trackColor = theme.colors.componentBackground;
@@ -98,5 +98,5 @@ export default (theme) => {
             background: ${thumbHighlight};
             outline: none;
         }
-    `
+    `;
 };

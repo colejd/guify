@@ -1,4 +1,4 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
     return csjs`
@@ -61,5 +61,5 @@ export default (theme) => {
             color: ${theme.colors.textActive} !important;
             background-color: ${theme.colors.componentActive} !important;
         }
-    `
+    `;
 };

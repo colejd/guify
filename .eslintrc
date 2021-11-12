@@ -9,6 +9,12 @@
   ],
   "ignorePatterns": [
     "webpack.config.js",
+    "lib",
     "test/**/*.spec.js"
-  ]
+  ],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "no-unused-vars": 1
+  }
 }

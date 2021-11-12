@@ -32,7 +32,8 @@
     "test": "mocha --require @babel/register --colors ./test/*.spec.js",
     "buildall": "npm-run-all build:prod build:dev",
     "prepublish": "npm run-script buildall",
-    "ci": "npm run-script buildall"
+    "ci": "npm run-script buildall",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

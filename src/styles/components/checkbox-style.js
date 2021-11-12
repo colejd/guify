@@ -1,7 +1,7 @@
-const csjs = require('csjs-inject');
+const csjs = require("csjs-inject");
 
 export default (theme) => {
-    let borderSize = '4px'
+    let borderSize = "4px";
     return csjs`
         input[type=checkbox].guify-checkbox {
             opacity: 0;
@@ -63,5 +63,5 @@ export default (theme) => {
             background-color: ${theme.colors.componentBackgroundHover};
         }
 
-    `
+    `;
 };
