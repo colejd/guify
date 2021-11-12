@@ -1,13 +1,12 @@
 import ComponentBase from "./component-base.js";
 
-import { default as styles } from "./checkbox-style.js";
-
 import { default as LabelPartial } from "./partials/label";
+
+import "./checkbox.css";
 
 export default class Checkbox extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
-        this.styles = styles(theme);
 
         this.label = LabelPartial(this.container, opts.label, theme);
 
@@ -15,7 +14,7 @@ export default class Checkbox extends ComponentBase {
         this.input.id = "checkbox-" + opts.label + this.uuid;
         this.input.type = "checkbox";
         this.input.checked = opts.initial;
-        this.input.className = this.styles["guify-checkbox"];
+        this.input.classList.add("guify-checkbox");
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute("aria-label", opts.label);
 

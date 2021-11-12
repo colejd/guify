@@ -1,0 +1,71 @@
+@import "../variables.css";
+
+:root {
+    --border-width: 4px;
+}
+
+input[type=checkbox].guify-checkbox {
+    opacity: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+input[type=checkbox].guify-checkbox + label {
+    margin: 0;
+}
+
+input[type=checkbox].guify-checkbox + label:before {
+    content: "";
+    display: inline-block;
+    width: var(--size-component-height);
+    height: var(--size-component-height);
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    background-color: var(--color-component-background);
+    border-radius: 0px;
+    cursor: pointer;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+
+}
+
+/* Hover style */
+input[type=checkbox].guify-checkbox:hover:not(:disabled) + label:before {
+    width: calc(var(--size-component-height) - (var(--border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    background-color: var(--color-component-background-hover);
+    border: solid 4px var(--color-component-background);
+}
+
+/* Checked style */
+input[type=checkbox]:checked.guify-checkbox + label:before {
+    width: calc(var(--size-component-height) - (var(--border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    background-color: var(--color-component-foreground);
+    border: solid var(--border-width) var(--color-component-background);
+}
+
+/* Focused and checked */
+input[type=checkbox]:checked.guify-checkbox:focus + label:before {
+    width: calc(var(--size-component-height) - (var(--border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    background-color: var(--color-component-foreground);
+    border: solid var(--border-width) var(--color-component-background-hover);
+}
+
+/* Focus and unchecked */
+input[type=checkbox].guify-checkbox:focus + label:before {
+    background-color: var(--color-component-background-hover);
+}
+
+/* Disabled style */
+.guify-checkbox:disabled,
+.guify-checkbox:disabled + label {
+    pointer-events: none;
+}
