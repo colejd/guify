@@ -1,0 +1,20 @@
+:root {
+    --color-menu-bar-background: "black";
+    --color-menu-bar-text: "black";
+    --color-panel-background: "black";
+
+    --color-component-background: "black";
+    --color-component-background-hover: "black";
+    --color-component-foreground: "black";
+    --color-component-active: "black";
+
+    --color-text-primary: "black";
+    --color-text-secondary: "black";
+    --color-text-hover: "black";
+    --color-text-active: "black";
+
+    --size-menu-bar-height: 25px;
+    --size-component-height: 20px;
+    --size-component-spacing: 5px;
+    --size-label-width: 42%;
+}

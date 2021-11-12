@@ -35,9 +35,13 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         { // Process js files
-          test: /(\.jsx|\.js)$/,
+          test: /\.js$/i,
           loader: 'babel-loader',
           exclude: /(node_modules|bower_components)/
+        },
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader", "postcss-loader"],
         },
       //   { // Lint all js files with eslint-loader
       //     test: /(\.jsx|\.js)$/,

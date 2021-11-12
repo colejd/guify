@@ -1,0 +1,43 @@
+@import "../variables.css";
+
+.guify-button {
+    box-sizing: border-box !important;
+    color: var(--color-text-secondary);
+    background-color: var(--color-component-background);
+
+    position: absolute;
+    text-align: center;
+    height: var(--size-component-height);
+    line-height: var(--size-component-height);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: calc(100% - var(--size-label-width));
+    border: none;
+    cursor: pointer;
+    right: 0;
+    font-family: inherit;
+}
+
+.guify-button:focus {
+    outline:none;
+}
+.guify-button::-moz-focus-inner {
+    border:0;
+}
+
+.guify-button:hover,
+.guify-button:focus {
+    color: var(--color-text-hover);
+    background-color: var(--color-component-foreground);
+}
+
+.guify-button:active {
+    color: var(--color-text-active) !important;
+    background-color: var(--color-component-active) !important;
+}
+
+*.disabled > .guify-button {
+    pointer-events: none;
+    background-color: var(--color-component-background-disabled);
+    color: var(--color-text-disabled);
+}

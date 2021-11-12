@@ -29,6 +29,7 @@ export default class GUI {
         // Set theme from opts
         let themeName = opts.theme || "dark";
         this.theme = new Theme(themeName);
+        this.theme.Apply();
 
         this._ConstructElements();
         this._LoadStyles();
