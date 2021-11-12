@@ -1,15 +1,14 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
 
 import { default as styles } from "styles/components/button-style.js";
 
 import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 
-export default class Button extends EventEmitter {
-constructor(root, opts, theme, uuid) {
-    super();
+export default class Button extends ComponentBase {
+constructor(root, opts, theme) {
+    super(root, opts, theme);
 
-    this.opts = opts;
     this.styles = styles(theme);
 
     this.container = ContainerPartial(root, opts.label, theme);

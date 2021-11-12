@@ -1,4 +1,5 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
+
 import ColorPicker from "simple-color-picker";
 import css from "dom-css";
 import tinycolor from "tinycolor2";
@@ -8,11 +9,9 @@ import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
 
-export default class Color extends EventEmitter {
-    constructor (root, opts, theme, uuid) {
-        super();
-        this.opts = opts;
-        this.theme = theme;
+export default class Color extends ComponentBase {
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
 
         opts.format = opts.format || "rgb";
         opts.initial = opts.initial || "#123456";
@@ -21,7 +20,7 @@ export default class Color extends EventEmitter {
         this.label = LabelPartial(this.container, opts.label, theme);
 
         var icon = this.container.appendChild(document.createElement("span"));
-        icon.className = "guify-color-" + uuid;
+        icon.className = "guify-color-" + this.uuid;
 
         var value = ValuePartial(this.container, "", theme, `calc(100% - ${theme.sizing.labelWidth} - 12% - 0.5em)`);
         value.setAttribute("readonly", "true");

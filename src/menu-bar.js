@@ -1,12 +1,13 @@
+import ComponentBase from "./components/component-base.js";
+
 import css from "dom-css";
-import EventEmitter from "wolfy87-eventemitter";
 import screenfull from "screenfull";
 
 import { default as styles } from "./styles/menu-bar-style.js";
 
-export class MenuBar extends EventEmitter {
+export class MenuBar extends ComponentBase {
     constructor(root, opts, theme) {
-        super();
+        super(root, opts, theme);
 
         this.styles = styles(theme);
 

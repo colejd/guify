@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { default as TitleComponent } from "./components/title";
 import { default as RangeComponent } from "./components/range";
 import { default as ButtonComponent } from "./components/button";
@@ -42,17 +40,12 @@ export class ComponentManager {
      * @param {Object} [opts] Options used to create the component
      */
     Create(root, opts) {
-        if(this.components[opts.type] === undefined) {
+        let initializer = this.components[opts.type];
+        if(initializer === undefined) {
             throw new Error(`No component type named '${opts.type}' exists.`);
         }
 
-        let newComponent = new this.components[opts.type](root, opts, this.theme, uuidv4());
-
-        Object.assign(newComponent, {
-            Remove: function() {
-                this.container.parentNode.removeChild(this.container);
-            }
-        });
+        let newComponent = new initializer(root, opts, this.theme);
 
         return newComponent;
     }

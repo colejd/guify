@@ -1,16 +1,15 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
+
 import css from "dom-css";
 
 import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 
-export default class Text extends EventEmitter {
+export default class Text extends ComponentBase {
     static #supportedInputListenModes = ["input", "change"];
 
-    constructor (root, opts, theme, uuid) {
-        super();
-
-        this.opts = opts;
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
 
         this.listenMode = opts.listenMode || "input";
         if (!Text.#supportedInputListenModes.includes(this.listenMode)) {

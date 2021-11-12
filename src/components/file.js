@@ -1,4 +1,4 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
 import css from "dom-css";
 
 import { default as styles } from "styles/components/file-style.js";
@@ -8,10 +8,10 @@ import { default as ContainerPartial } from "./partials/container";
 /**
  * File component. Drag and drop a file or click to choose a file.
  */
-export default class File extends EventEmitter {
-    constructor (root, opts, theme, uuid) {
-        super();
-        this.opts = opts;
+export default class File extends ComponentBase {
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
+
         this.styles = styles(theme);
 
         this.opts.fileReadFunc = this.opts.fileReadFunc || "readAsDataURL";

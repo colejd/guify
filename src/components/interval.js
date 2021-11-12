@@ -1,4 +1,5 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
+
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
@@ -13,11 +14,10 @@ function clamp(x, min, max)
     return Math.min(Math.max(x, min), max);
 }
 
-export default class Interval extends EventEmitter {
-    constructor (root, opts, theme, uuid) {
-        super();
+export default class Interval extends ComponentBase {
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
 
-        this.opts = opts;
         this.styles = styles(theme);
 
         this.container = ContainerPartial(root, opts.label, theme);

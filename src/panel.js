@@ -1,10 +1,13 @@
+import ComponentBase from "./components/component-base.js";
+
 import css from "dom-css";
 
 import { default as styles } from "./styles/panel-style.js";
 
-export class Panel {
+export class Panel extends ComponentBase {
     constructor(root, opts, theme) {
-        this.opts = opts;
+        super(root, opts, theme);
+
         this.styles = styles(theme);
 
         // Container the panel will sit in

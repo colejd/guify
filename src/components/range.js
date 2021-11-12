@@ -1,4 +1,5 @@
-import EventEmitter from "wolfy87-eventemitter";
+import ComponentBase from "./component-base.js";
+
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
@@ -8,11 +9,10 @@ import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
 
-export default class Range extends EventEmitter {
-    constructor (root, opts, theme, uuid) {
-        super();
+export default class Range extends ComponentBase {
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
 
-        this.opts = opts;
         this.styles = styles(theme);
 
         this.scale = opts.scale;

@@ -1,10 +1,12 @@
+import ComponentBase from "./component-base.js";
+
 import css from "dom-css";
 
 import { default as ContainerPartial } from "./partials/container";
 
-export default class Title {
+export default class Title extends ComponentBase {
     constructor (root, opts, theme) {
-        this.opts = opts;
+        super(root, opts, theme);
 
         this.container = ContainerPartial(root, opts.label, theme);
         css(this.container, {

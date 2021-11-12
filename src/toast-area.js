@@ -1,3 +1,5 @@
+import ComponentBase from "./components/component-base.js";
+
 import css from "dom-css";
 
 import { default as styles } from "./styles/toast-area-style.js";
@@ -5,9 +7,9 @@ import { default as styles } from "./styles/toast-area-style.js";
 /**
  * Represents a container div that creates and holds toast notifications.
  */
-export class ToastArea {
+export class ToastArea extends ComponentBase {
     constructor(root, opts, theme) {
-        this.opts = opts;
+        super(root, opts, theme);
 
         this.styles = styles(theme);
 

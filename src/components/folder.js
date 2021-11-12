@@ -1,12 +1,15 @@
+import ComponentBase from "./component-base.js";
+
 import css from "dom-css";
 
 import { default as styles } from "styles/components/folder-style.js";
 
 import { default as ContainerPartial } from "./partials/container";
 
-export default class Folder {
-    constructor (root, opts, theme, uuid) {
-        this.opts = opts;
+export default class Folder extends ComponentBase {
+    constructor (root, opts, theme) {
+        super(root, opts, theme);
+
         this.styles = styles(theme);
 
         this.container = ContainerPartial(root, opts.label, theme);
