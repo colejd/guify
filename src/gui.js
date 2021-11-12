@@ -2,7 +2,7 @@ import css from "dom-css";
 
 import { default as Theme } from "./theme";
 
-import { default as styles } from "./components/internal/container-style.js";
+import "./components/internal/container.css";
 
 import { ComponentManager } from "./component-manager";
 
@@ -76,7 +76,7 @@ export default class GUI {
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement("div");
-        this.container.classList.add(styles(this.theme)["guify-container"]);
+        this.container.classList.add("guify-container");
 
         let containerCSS = {};
 
