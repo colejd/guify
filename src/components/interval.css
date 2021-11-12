@@ -1,9 +1,9 @@
 @import "../variables.css";
 
 :root {
-    --track-color: var(--color-component-background);
-    --thumb-color: var(--color-component-foreground);
-    --thumb-highlight: var(--color-component-active);
+    --interval-track-color: var(--color-component-background);
+    --interval-thumb-color: var(--color-component-foreground);
+    --interval-thumb-highlight: var(--color-component-active);
 }
 
 .guify-interval {
@@ -13,7 +13,7 @@
     margin: 0px 0;
     width: 33%;
     left: 54.5%;
-    background-color: var(--track-color);
+    background-color: var(--interval-track-color);
     cursor: ew-resize;
 
     -webkit-touch-callout: none;
@@ -24,13 +24,13 @@
     user-select: none;
 }
 .guify-interval-handle {
-    background-color: var(--thumb-color);
+    background-color: var(--interval-thumb-color);
     position: absolute;
     height: var(--size-component-height);
     min-width: 1px;
 }
 .guify-interval-handle:focus {
-    background: var(--thumb-highlight);
+    background: var(--interval-thumb-highlight);
 }
 
 input:disabled {

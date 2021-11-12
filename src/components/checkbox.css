@@ -1,7 +1,7 @@
 @import "../variables.css";
 
 :root {
-    --border-width: 4px;
+    --checkbox-border-width: 4px;
 }
 
 input[type=checkbox].guify-checkbox {
@@ -37,26 +37,26 @@ input[type=checkbox].guify-checkbox + label:before {
 
 /* Hover style */
 input[type=checkbox].guify-checkbox:hover:not(:disabled) + label:before {
-    width: calc(var(--size-component-height) - (var(--border-width) * 2));
-    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    width: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
     background-color: var(--color-component-background-hover);
     border: solid 4px var(--color-component-background);
 }
 
 /* Checked style */
 input[type=checkbox]:checked.guify-checkbox + label:before {
-    width: calc(var(--size-component-height) - (var(--border-width) * 2));
-    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    width: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
     background-color: var(--color-component-foreground);
-    border: solid var(--border-width) var(--color-component-background);
+    border: solid var(--checkbox-border-width) var(--color-component-background);
 }
 
 /* Focused and checked */
 input[type=checkbox]:checked.guify-checkbox:focus + label:before {
-    width: calc(var(--size-component-height) - (var(--border-width) * 2));
-    height: calc(var(--size-component-height) - (var(--border-width) * 2));
+    width: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
+    height: calc(var(--size-component-height) - (var(--checkbox-border-width) * 2));
     background-color: var(--color-component-foreground);
-    border: solid var(--border-width) var(--color-component-background-hover);
+    border: solid var(--checkbox-border-width) var(--color-component-background-hover);
 }
 
 /* Focus and unchecked */
