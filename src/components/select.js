@@ -1,6 +1,6 @@
 import ComponentBase from "./component-base.js";
 
-import { default as styles } from "./select-style.js";
+import "./select.css";
 
 import { default as LabelPartial } from "./partials/label";
 
@@ -8,22 +8,20 @@ export default class Select extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.styles = styles(theme);
-
         var i, downTriangle, upTriangle, key, option, el, keys;
 
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = document.createElement("select");
-        this.input.className = this.styles["guify-select-dropdown"];
+        this.input.classList.add("guify-select-dropdown");
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute("aria-label", opts.label);
 
         downTriangle = document.createElement("span");
-        downTriangle.classList.add(this.styles["guify-select-triangle"], this.styles["guify-select-triangle--down"]);
+        downTriangle.classList.add("guify-select-triangle", "guify-select-triangle--down");
 
         upTriangle = document.createElement("span");
-        upTriangle.classList.add(this.styles["guify-select-triangle"], this.styles["guify-select-triangle--up"]);
+        upTriangle.classList.add("guify-select-triangle", "guify-select-triangle--up");
 
         this.container.appendChild(downTriangle);
         this.container.appendChild(upTriangle);
@@ -62,13 +60,13 @@ export default class Select extends ComponentBase {
         // I'd like to do this through CSS :focus/:hover selectors but I just couldn't figure it out.
         // It could be done easily if CSS had a "general previous sibling" selector.
         let StyleFocus = () => {
-            downTriangle.classList.add(this.styles["guify-select-triangle--down-highlight"]);
-            upTriangle.classList.add(this.styles["guify-select-triangle--up-highlight"]);
+            downTriangle.classList.add("guify-select-triangle--down-highlight");
+            upTriangle.classList.add("guify-select-triangle--up-highlight");
         };
 
         let StyleUnfocus = () => {
-            downTriangle.classList.remove(this.styles["guify-select-triangle--down-highlight"]);
-            upTriangle.classList.remove(this.styles["guify-select-triangle--up-highlight"]);
+            downTriangle.classList.remove("guify-select-triangle--down-highlight");
+            upTriangle.classList.remove("guify-select-triangle--up-highlight");
         };
         let focused = false;
 
