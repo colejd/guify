@@ -5,6 +5,7 @@
 
     --color-component-background: "black";
     --color-component-background-hover: "black";
+    --color-component-background-disabled: "black";
     --color-component-foreground: "black";
     --color-component-active: "black";
 
@@ -12,6 +13,7 @@
     --color-text-secondary: "black";
     --color-text-hover: "black";
     --color-text-active: "black";
+    --color-text-disabled: "black";
 
     --size-menu-bar-height: 25px;
     --size-component-height: 20px;
