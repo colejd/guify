@@ -41,4 +41,9 @@ export default class Checkbox extends ComponentBase {
     GetValue() {
         return this.input.checked;
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
+    }
 }

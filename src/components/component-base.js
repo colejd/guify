@@ -12,7 +12,10 @@ export default class ComponentBase extends EventEmitter  {
         this.uuid = uuidv4();
     }
 
-    SetEnabled(enabled) { }
+    // eslint-disable-next-line no-unused-vars
+    SetEnabled(enabled) {
+        // No-op. Override this when inheriting.
+    }
 
     Remove() {
         this.container.parentNode.removeChild(this.container);

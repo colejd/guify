@@ -336,4 +336,9 @@ export default class Interval extends ComponentBase {
             right: rightPercent + "%"
         });
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
+    }
 }

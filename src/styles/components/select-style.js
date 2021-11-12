@@ -71,5 +71,9 @@ export default (theme) => {
         .guify-select-triangle--down-highlight {
             border-top-color: ${theme.colors.textHover};
         }
+
+        .guify-select-dropdown:disabled {
+            pointer-events: none;
+        }
     `;
 };

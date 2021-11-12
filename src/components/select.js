@@ -88,4 +88,9 @@ export default class Select extends ComponentBase {
     GetValue() {
         return this.input.value;
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
+    }
 }

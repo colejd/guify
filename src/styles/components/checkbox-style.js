@@ -35,7 +35,7 @@ export default (theme) => {
         }
 
         /* Hover style */
-        input[type=checkbox].guify-checkbox:hover + label:before {
+        input[type=checkbox].guify-checkbox:hover.not(:disabled) + label:before {
             width: calc(${theme.sizing.componentHeight} - (${borderSize} * 2));
             height: calc(${theme.sizing.componentHeight} - (${borderSize} * 2));
             background-color: ${theme.colors.componentBackgroundHover};
@@ -61,6 +61,12 @@ export default (theme) => {
         /* Focus and unchecked */
         input[type=checkbox].guify-checkbox:focus + label:before {
             background-color: ${theme.colors.componentBackgroundHover};
+        }
+
+        /* Disabled style */
+        .guify-checkbox:disabled,
+        .guify-checkbox:disabled + label {
+            pointer-events: none;
         }
 
     `;

@@ -36,12 +36,12 @@ export default class File extends ComponentBase {
         label.innerHTML = opts.label;
         css(label, "padding-bottom", "5px");
 
-        let input = this.container.appendChild(document.createElement("input"));
-        input.setAttribute("type", "file");
-        input.setAttribute("multiple", false);
-        input.style.display = "none";
+        this.input = this.container.appendChild(document.createElement("input"));
+        this.input.setAttribute("type", "file");
+        this.input.setAttribute("multiple", false);
+        this.input.style.display = "none";
         // Add ARIA attribute to input based on label text
-        if(opts.label) input.setAttribute("aria-label", opts.label);
+        if(opts.label) this.input.setAttribute("aria-label", opts.label);
 
         this.fileLabel = this.container.appendChild(document.createElement("div"));
         this.fileLabel.innerHTML = "Choose a file...";
@@ -67,7 +67,7 @@ export default class File extends ComponentBase {
             reader[this.opts.fileReadFunc](files[0]);
         };
 
-        input.addEventListener("change", FileDropped);
+        this.input.addEventListener("change", FileDropped);
 
         this.container.addEventListener("dragover", (event) => {
             event.preventDefault();
@@ -89,13 +89,13 @@ export default class File extends ComponentBase {
         });
 
         this.container.onclick = () => {
-            input.click();
+            this.input.click();
         };
 
         this.container.addEventListener("keydown", (e) => {
             // Listen for Space or Enter
             if(e.which === 13 || e.which === 32) {
-                input.click();
+                this.input.click();
             }
         });
 
@@ -112,6 +112,11 @@ export default class File extends ComponentBase {
 
     GetValue() {
         return this.file;
+    }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
     }
 
 }

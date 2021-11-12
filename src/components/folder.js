@@ -74,4 +74,14 @@ export default class Folder extends ComponentBase {
         }
 
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        if (enabled === true) {
+            this.container.classList.remove(styles["disabled"]);
+        }
+        else {
+            this.container.classList.add(styles["disabled"]);
+        }
+    }
 }

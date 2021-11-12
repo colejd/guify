@@ -166,4 +166,14 @@ export default class Color extends ComponentBase {
 
         `);
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        if (enabled === true) {
+            this.container.classList.remove("disabled");
+        }
+        else {
+            this.container.classList.add("disabled");
+        }
+    }
 }

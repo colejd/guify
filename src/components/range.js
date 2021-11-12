@@ -206,4 +206,9 @@ export default class Range extends ComponentBase {
         // https://stackoverflow.com/a/29249277
         return value.toFixed(precision).replace(/\.?0*$/,"");
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
+    }
 }

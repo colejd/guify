@@ -38,5 +38,11 @@ export default (theme) => {
             background-color: ${theme.colors.componentActive} !important;
         }
 
+        .guify-button:disabled {
+            pointer-events: none;
+            color: ${theme.colors.disabledText};
+            background-color: ${theme.colors.disabledBackground};
+        }
+
     `;
 };

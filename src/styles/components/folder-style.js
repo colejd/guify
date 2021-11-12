@@ -34,5 +34,9 @@ export default (theme) => {
             height: 0;
             display: none;
         }
+
+        .disabled {
+            pointer-events: none;
+        }
     `;
 };

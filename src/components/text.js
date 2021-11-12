@@ -70,4 +70,9 @@ export default class Text extends ComponentBase {
     GetValue() {
         return this.input.value;
     }
+
+    // From ComponentBase
+    SetEnabled(enabled) {
+        this.input.disabled = !enabled;
+    }
 }

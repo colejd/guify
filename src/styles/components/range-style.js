@@ -98,5 +98,9 @@ export default (theme) => {
             background: ${thumbHighlight};
             outline: none;
         }
+
+        input[type=range].guify-range:disabled {
+            pointer-events: none;
+        }
     `;
 };

@@ -32,5 +32,9 @@ export default (theme) => {
         .guify-interval-handle:focus {
             background: ${thumbHighlight};
         }
+
+        input:disabled {
+            pointer-events: none;
+        }
     `;
 };
