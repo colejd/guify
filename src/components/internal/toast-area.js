@@ -1,8 +1,8 @@
-import ComponentBase from "./components/component-base.js";
+import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 
-import { default as styles } from "./styles/toast-area-style.js";
+import { default as styles } from "../../styles/toast-area-style.js";
 
 /**
  * Represents a container div that creates and holds toast notifications.

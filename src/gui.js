@@ -6,9 +6,9 @@ import { default as styles } from "./styles/container-style.js";
 
 import { ComponentManager } from "./component-manager";
 
-import { MenuBar } from "./menu-bar";
-import { Panel } from "./panel";
-import { ToastArea } from "./toast-area";
+import { MenuBar } from "./components/internal/menu-bar";
+import { Panel } from "./components/internal/panel";
+import { ToastArea } from "./components/internal/toast-area";
 import screenfull from "screenfull";
 
 export default class GUI {

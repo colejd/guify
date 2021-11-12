@@ -1,8 +1,8 @@
-import ComponentBase from "./components/component-base.js";
+import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 
-import { default as styles } from "./styles/panel-style.js";
+import { default as styles } from "../../styles/panel-style.js";
 
 export class Panel extends ComponentBase {
     constructor(root, opts, theme) {
@@ -37,7 +37,7 @@ export class Panel extends ComponentBase {
 
         // Add a title to the panel
         if(opts.barMode === "none" && opts.title)
-            require("./components/partials/header")(this.panel, opts.title, theme);
+            require("../partials/header")(this.panel, opts.title, theme);
 
     }
 
