@@ -9,7 +9,7 @@ import { default as styles } from "../../styles/toast-area-style.js";
  */
 export class ToastArea extends ComponentBase {
     constructor(root, opts, theme) {
-        super(root, opts, theme);
+        super(root, opts, theme, false);
 
         this.styles = styles(theme);
 

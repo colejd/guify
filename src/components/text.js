@@ -2,7 +2,6 @@ import ComponentBase from "./component-base.js";
 
 import css from "dom-css";
 
-import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 
 export default class Text extends ComponentBase {
@@ -16,7 +15,6 @@ export default class Text extends ComponentBase {
             console.error(`listenMode "${this.listenMode}" is not supported for text component "${opts.label}"! Falling back on "input".`);
         }
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = this.container.appendChild(document.createElement("input"));
@@ -69,10 +67,5 @@ export default class Text extends ComponentBase {
 
     GetValue() {
         return this.input.value;
-    }
-
-    // From ComponentBase
-    SetEnabled(enabled) {
-        this.input.disabled = !enabled;
     }
 }

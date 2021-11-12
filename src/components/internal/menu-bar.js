@@ -7,7 +7,7 @@ import { default as styles } from "../../styles/menu-bar-style.js";
 
 export class MenuBar extends ComponentBase {
     constructor(root, opts, theme) {
-        super(root, opts, theme);
+        super(root, opts, theme, false);
 
         this.styles = styles(theme);
 

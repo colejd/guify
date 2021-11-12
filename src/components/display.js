@@ -2,7 +2,6 @@ import ComponentBase from "./component-base.js";
 
 import css from "dom-css";
 
-import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 
 /**
@@ -12,7 +11,6 @@ export default class Display extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.text = this.container.appendChild(document.createElement("div"));

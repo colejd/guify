@@ -4,15 +4,12 @@ import css from "dom-css";
 
 import { default as styles } from "styles/components/folder-style.js";
 
-import { default as ContainerPartial } from "./partials/container";
-
 export default class Folder extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
         this.styles = styles(theme);
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.container.classList.add(styles(theme)["guify-folder"]);
         this.container.setAttribute("role", "button");
         this.container.setAttribute("tabIndex", "0"); // Make tabbable
@@ -73,15 +70,5 @@ export default class Folder extends ComponentBase {
             this.arrow.innerHTML = "&#9656;"; // Right triangle
         }
 
-    }
-
-    // From ComponentBase
-    SetEnabled(enabled) {
-        if (enabled === true) {
-            this.container.classList.remove(styles["disabled"]);
-        }
-        else {
-            this.container.classList.add(styles["disabled"]);
-        }
     }
 }

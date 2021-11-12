@@ -6,7 +6,7 @@ import { default as styles } from "../../styles/panel-style.js";
 
 export class Panel extends ComponentBase {
     constructor(root, opts, theme) {
-        super(root, opts, theme);
+        super(root, opts, theme, false);
 
         this.styles = styles(theme);
 

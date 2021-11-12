@@ -5,7 +5,6 @@ import isnumeric from "is-numeric";
 
 import { default as styles } from "styles/components/interval-style.js";
 
-import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
 
@@ -20,7 +19,6 @@ export default class Interval extends ComponentBase {
 
         this.styles = styles(theme);
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.label = LabelPartial(this.container, opts.label, theme);
 
         if (!!opts.step && !!opts.steps) {
@@ -335,10 +333,5 @@ export default class Interval extends ComponentBase {
             left: leftPercent + "%",
             right: rightPercent + "%"
         });
-    }
-
-    // From ComponentBase
-    SetEnabled(enabled) {
-        this.input.disabled = !enabled;
     }
 }

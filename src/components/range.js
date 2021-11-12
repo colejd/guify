@@ -5,7 +5,6 @@ import isnumeric from "is-numeric";
 
 import { default as styles } from "styles/components/range-style.js";
 
-import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
 
@@ -17,7 +16,6 @@ export default class Range extends ComponentBase {
 
         this.scale = opts.scale;
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = this.container.appendChild(document.createElement("input"));
@@ -205,10 +203,5 @@ export default class Range extends ComponentBase {
     _FormatNumber(value, precision) {
         // https://stackoverflow.com/a/29249277
         return value.toFixed(precision).replace(/\.?0*$/,"");
-    }
-
-    // From ComponentBase
-    SetEnabled(enabled) {
-        this.input.disabled = !enabled;
     }
 }

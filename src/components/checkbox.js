@@ -2,7 +2,6 @@ import ComponentBase from "./component-base.js";
 
 import { default as styles } from "styles/components/checkbox-style.js";
 
-import { default as ContainerPartial } from "./partials/container";
 import { default as LabelPartial } from "./partials/label";
 
 export default class Checkbox extends ComponentBase {
@@ -10,7 +9,6 @@ export default class Checkbox extends ComponentBase {
         super(root, opts, theme);
         this.styles = styles(theme);
 
-        this.container = ContainerPartial(root, opts.label, theme);
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = this.container.appendChild(document.createElement("input"));
@@ -40,10 +38,5 @@ export default class Checkbox extends ComponentBase {
 
     GetValue() {
         return this.input.checked;
-    }
-
-    // From ComponentBase
-    SetEnabled(enabled) {
-        this.input.disabled = !enabled;
     }
 }
