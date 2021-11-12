@@ -76,9 +76,6 @@ NPM commands:
 - `build:dev`: Creates `/lib/guify.js`.
 - `develop`: Runs `build:dev` and serves the `/example` directory as a static web page.
 
-If you're working with Visual Studio Code, download my [CSJS Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName=colejd.vscode-language-csjs) plugin to help when editing any of the `.csjs.js` files in `/styles`.
-
-
 ## Changelog
 See [changelog.md](/changelog.md).
 

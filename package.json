@@ -57,7 +57,6 @@
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
-    "csjs-inject": "^1.0.1",
     "dom-css": "^2.1.0",
     "insert-css": "^2.0.0",
     "is-numeric": "0.0.5",
