@@ -3,7 +3,7 @@ import ComponentBase from "./component-base.js";
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
-import { default as styles } from "./interval-style.js";
+import "./interval.css";
 
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
@@ -17,8 +17,6 @@ export default class Interval extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.styles = styles(theme);
-
         this.label = LabelPartial(this.container, opts.label, theme);
 
         if (!!opts.step && !!opts.steps) {
@@ -26,10 +24,10 @@ export default class Interval extends ComponentBase {
         }
 
         this.input = this.container.appendChild(document.createElement("span"));
-        this.input.className = this.styles["guify-interval"];
+        this.input.classList.add("guify-interval");
 
         this.handle = document.createElement("span");
-        this.handle.className = this.styles["guify-interval-handle"];
+        this.handle.classList.add("guify-interval-handle");
         this.input.appendChild(this.handle);
 
 

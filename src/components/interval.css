@@ -1,0 +1,38 @@
+@import "../variables.css";
+
+:root {
+    --track-color: var(--color-component-background);
+    --thumb-color: var(--color-component-foreground);
+    --thumb-highlight: var(--color-component-active);
+}
+
+.guify-interval {
+    -webkit-appearance: none;
+    position: absolute;
+    height: 20px;
+    margin: 0px 0;
+    width: 33%;
+    left: 54.5%;
+    background-color: var(--track-color);
+    cursor: ew-resize;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.guify-interval-handle {
+    background-color: var(--thumb-color);
+    position: absolute;
+    height: var(--size-component-height);
+    min-width: 1px;
+}
+.guify-interval-handle:focus {
+    background: var(--thumb-highlight);
+}
+
+input:disabled {
+    pointer-events: none;
+}
