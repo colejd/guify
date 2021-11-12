@@ -52,8 +52,6 @@ export default class File extends ComponentBase {
                 files = event.target.files;
             }
 
-            //this.SetValue(files[0]);
-            let value = files[0];
             var reader = new FileReader();
             reader.onload = () => {
                 this.file = reader.result;
@@ -103,6 +101,7 @@ export default class File extends ComponentBase {
 
     }
 
+    // eslint-disable-next-line no-unused-vars
     SetValue(value) {
         return;
     }

@@ -1,5 +1,4 @@
 import EventEmitter from "wolfy87-eventemitter";
-import css from "dom-css";
 import { v4 as uuidv4 } from "uuid";
 
 import { default as ContainerPartial } from "./partials/container";
