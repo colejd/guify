@@ -2,7 +2,7 @@ import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 
-import { default as styles } from "../../styles/panel-style.js";
+import { default as styles } from "../../styles/components/internal/panel-style.js";
 
 export class Panel extends ComponentBase {
     constructor(root, opts, theme) {

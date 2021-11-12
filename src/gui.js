@@ -2,7 +2,7 @@ import css from "dom-css";
 
 import { default as Theme } from "./theme";
 
-import { default as styles } from "./styles/container-style.js";
+import { default as styles } from "./styles/components/internal/container-style.js";
 
 import { ComponentManager } from "./component-manager";
 

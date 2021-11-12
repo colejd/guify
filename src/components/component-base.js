@@ -5,6 +5,21 @@ import { v4 as uuidv4 } from "uuid";
 import { default as ContainerPartial } from "./partials/container";
 
 export default class ComponentBase extends EventEmitter  {
+    SetEnabled(enabled) {
+        this.enabled = enabled;
+        if (enabled) {
+            this.container?.classList.remove("disabled");
+        } else {
+            this.container?.classList.add("disabled");
+        }
+    }
+
+    Remove() {
+        if (this.container) {
+            this.container.parentNode.removeChild(this.container);
+        }
+    }
+
     constructor(root, opts, theme, makeContainer=true) {
         super();
 
@@ -17,17 +32,7 @@ export default class ComponentBase extends EventEmitter  {
         if (makeContainer) {
             this.container = ContainerPartial(root, opts.label, theme);
         }
-    }
 
-    SetEnabled(enabled) {
-        if (enabled) {
-            this.container.classList.remove("disabled");
-        } else {
-            this.container.classList.add("disabled");
-        }
-    }
-
-    Remove() {
-        this.container.parentNode.removeChild(this.container);
+        this.SetEnabled(opts.enabled || true);
     }
 }

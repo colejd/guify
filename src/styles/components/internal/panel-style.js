@@ -33,6 +33,11 @@ export default (theme) => {
             -moz-box-sizing: initial;
         }
 
+        /* Handle disabled components */
+        *[class^=guify-panel] *[class^=guify-component-container].disabled {
+            pointer-events: none;
+        }
+
         .guify-panel input {
             font-family: 'Hack';
             font-size: 11px;

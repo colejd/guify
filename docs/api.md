@@ -56,6 +56,7 @@ The common properties are:
 - `object` (Object): The object holding the property you want the component to be bound to.
 - `property` (String): The name of the property in `object` that you want the component to be bound to. `object[property]` and the value of the component will be bound (updating one will change the other).
 - `folder` (String): The label of the folder to put the component into. If none is specified it'll just go in the panel at the root level.
+- `enabled` (Bool): Whether the component starts out enabled or not (only works for interactive components). This can be modified at runtime with `component.SetEnabled(Bool)`.
 
 Some component types have their own options. These will be specified for each component listed below.
 
