@@ -15,11 +15,7 @@ module.exports = (env, argv) => {
   if (argv.mode === 'production') { // Uses --mode argument to webpack, or NODE_ENV if not defined.
     outputFile = libraryName + '.min.js';
   } else if (argv.mode === 'development') {
-    let linter = new ESLintPlugin({
-      files: [
-        "/src/**/*.js"
-      ],
-    })
+    let linter = new ESLintPlugin();
     plugins.push(linter);
     outputFile = libraryName + '.js';
   } else {
