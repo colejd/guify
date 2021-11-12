@@ -1,0 +1,104 @@
+@import "../variables.css";
+
+:root {
+    --track-color: var(--color-component-background);
+    --thumb-color: var(--color-component-foreground);
+    --thumb-highlight: var(--color-component-active);
+}
+
+input[type=range].guify-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: var(--size-component-height);
+    margin: 0px 0;
+    padding: 0;
+    display: inline-block;
+}
+
+/* Remove outlines since we'll be adding our own */
+input[type=range].guify-range:focus {
+    outline: none;
+}
+input[type=range].guify-range::-moz-focus-outer {
+    border: 0;
+}
+
+/* Webkit */
+input[type=range].guify-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: var(--size-component-height);
+    cursor: ew-resize;
+    background: var(--track-color);
+}
+input[type=range].guify-range::-webkit-slider-thumb {
+    height: var(--size-component-height);
+    width: 10px;
+    background: var(--thumb-color);
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    margin-top: 0px;
+}
+input[type=range].guify-range:focus::-webkit-slider-runnable-track {
+    background: var(--thumb-highlight);
+    outline: none;
+}
+
+/* Gecko */
+input[type=range].guify-range::-moz-range-track {
+    width: 100%;
+    height: var(--size-component-height);
+    cursor: ew-resize;
+    background: var(--track-color);
+}
+input[type=range].guify-range:focus::-moz-range-track {
+    background: var(--thumb-highlight);
+}
+input[type=range].guify-range::-moz-range-thumb {
+    height: var(--size-component-height);
+    width: 10px;
+    background: var(--thumb-color);
+    cursor: ew-resize;
+    border: none;
+    border-radius: 0;
+}
+
+/* IE */
+input[type=range].guify-range::-ms-track {
+    width: 100%;
+    height: var(--size-component-height);
+    cursor: ew-resize;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+input[type=range].guify-range::-ms-fill-lower {
+    background: var(--track-color);
+}
+input[type=range].guify-range::-ms-fill-upper {
+    background: var(--track-color);
+}
+input[type=range].guify-range:focus::-ms-fill-lower {
+    background: var(--thumb-highlight);
+}
+input[type=range].guify-range:focus::-ms-fill-upper {
+    background: var(--thumb-highlight);
+}
+input[type=range].guify-range::-ms-thumb {
+    width: 10px;
+    border-radius: 0px;
+    background: var(--thumb-color);
+    cursor: ew-resize;
+    height: var(--size-component-height);
+}
+input[type=range].guify-range:focus::-ms-fill-lower {
+    background: var(--thumb-highlight);
+    outline: none;
+}
+input[type=range].guify-range:focus::-ms-fill-upper {
+    background: var(--thumb-highlight);
+    outline: none;
+}
+
+input[type=range].guify-range:disabled {
+    pointer-events: none;
+}

@@ -3,7 +3,7 @@ import ComponentBase from "./component-base.js";
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
-import { default as styles } from "./range-style.js";
+import "./range.css";
 
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";
@@ -12,15 +12,13 @@ export default class Range extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.styles = styles(theme);
-
         this.scale = opts.scale;
 
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = this.container.appendChild(document.createElement("input"));
         this.input.type = "range";
-        this.input.className = this.styles["guify-range"];
+        this.input.classList.add("guify-range");
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute("aria-label", opts.label + " input");
 
