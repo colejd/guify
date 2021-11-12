@@ -3,7 +3,7 @@ import ComponentBase from "./component-base.js";
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
-import { default as styles } from "styles/components/interval-style.js";
+import { default as styles } from "./interval-style.js";
 
 import { default as LabelPartial } from "./partials/label";
 import { default as ValuePartial } from "./partials/value";

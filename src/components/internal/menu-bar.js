@@ -3,7 +3,7 @@ import ComponentBase from "../component-base.js";
 import css from "dom-css";
 import screenfull from "screenfull";
 
-import { default as styles } from "../../styles/components/internal/menu-bar-style.js";
+import { default as styles } from "./menu-bar-style.js";
 
 export class MenuBar extends ComponentBase {
     constructor(root, opts, theme) {
