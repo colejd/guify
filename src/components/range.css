@@ -43,6 +43,16 @@ input[type=range].guify-range:focus::-webkit-slider-runnable-track {
     outline: none;
 }
 
+.disabled input[type=range].guify-range::-webkit-slider-runnable-track { /* Disabled track */
+    pointer-events: none;
+    background: var(--color-component-background-disabled);
+}
+
+.disabled input[type=range].guify-range::-webkit-slider-thumb { /* Disabled thumb */
+    pointer-events: none;
+    background: var(--color-text-disabled);
+}
+
 /* Gecko */
 input[type=range].guify-range::-moz-range-track {
     width: 100%;
@@ -62,43 +72,12 @@ input[type=range].guify-range::-moz-range-thumb {
     border-radius: 0;
 }
 
-/* IE */
-input[type=range].guify-range::-ms-track {
-    width: 100%;
-    height: var(--size-component-height);
-    cursor: ew-resize;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-}
-input[type=range].guify-range::-ms-fill-lower {
-    background: var(--range-track-color);
-}
-input[type=range].guify-range::-ms-fill-upper {
-    background: var(--range-track-color);
-}
-input[type=range].guify-range:focus::-ms-fill-lower {
-    background: var(--range-thumb-highlight);
-}
-input[type=range].guify-range:focus::-ms-fill-upper {
-    background: var(--range-thumb-highlight);
-}
-input[type=range].guify-range::-ms-thumb {
-    width: 10px;
-    border-radius: 0px;
-    background: var(--range-thumb-color);
-    cursor: ew-resize;
-    height: var(--size-component-height);
-}
-input[type=range].guify-range:focus::-ms-fill-lower {
-    background: var(--range-thumb-highlight);
-    outline: none;
-}
-input[type=range].guify-range:focus::-ms-fill-upper {
-    background: var(--range-thumb-highlight);
-    outline: none;
+.disabled input[type=range].guify-range::-moz-range-track { /* Disabled track */
+    pointer-events: none;
+    background: var(--color-component-background-disabled);
 }
 
-input[type=range].guify-range:disabled {
+.disabled input[type=range].guify-range::-moz-range-thumb { /* Disabled thumb */
     pointer-events: none;
+    background: var(--color-text-disabled);
 }
