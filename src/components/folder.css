@@ -33,6 +33,9 @@
     display: none;
 }
 
-.disabled {
+/* Disabled styles */
+
+.guify-folder.disabled {
     pointer-events: none;
+    color: var(--color-text-disabled);
 }
