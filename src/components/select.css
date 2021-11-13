@@ -69,6 +69,14 @@
     border-top-color: var(--color-text-hover);
 }
 
-.guify-select-dropdown:disabled {
+/* Disabled styles */
+
+.disabled .guify-select-dropdown {
     pointer-events: none;
+    color: var(--color-text-disabled);
+    background-color: var(--color-component-background-disabled);
+}
+
+.disabled *[class^="guify-select-triangle"] {
+    border-color: var(--color-text-disabled);
 }
