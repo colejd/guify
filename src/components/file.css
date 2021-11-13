@@ -25,11 +25,9 @@
     box-shadow: inset 0 0 0 3px var(--color-component-foreground);
 }
 
-/*
-.guify-file-container:disabled {
+.disabled.guify-file-container {
     pointer-events: none;
-    color: ${theme.colors.disabledText} !important;
-    background-color: ${theme.colors.disabledBackground} !important;
-    box-shadow: inset 0 0 0 3px ${theme.colors.disabledBackground} !important;
+    color: var(--color-text-disabled) !important;
+    background-color: var(--color-component-background-disabled) !important;
+    box-shadow: inset 0 0 0 3px var(--color-component-background-disabled) !important;
 }
-*/
