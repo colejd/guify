@@ -52,7 +52,7 @@ export default class Range extends ComponentBase {
             this.precision = (isnumeric(opts.precision)) ? opts.precision : 3;
             this.logScale = (this.max - this.min) / (this.maxPos - this.minPos);
 
-            this.initial = isnumeric(opts.initial) ? opts.initial : (this.min + this.max) * 0.5;
+            this.initial = isnumeric(opts.initial) ? opts.initial : this.min;
 
             if (opts.initial < 0) {
                 throw new Error(`Log range initial value must be > 0. Got initial value = ${opts.initial}`);
@@ -67,11 +67,13 @@ export default class Range extends ComponentBase {
             this.precision = (isnumeric(opts.precision)) ? opts.precision : 3;
             this.step = (isnumeric(opts.step)) ? opts.step : (10 / Math.pow(10, 3)); // Default is the lowest possible number given the precision. When precision = 3, step = 0.01.
 
-            this.initial = isnumeric(opts.initial) ? opts.initial : (this.min + this.max) * 0.5;
+            this.initial = isnumeric(opts.initial) ? opts.initial : this.min;
 
             // Quantize the initial value to the nearest step:
-            var initialStep = Math.round((opts.initial - this.min) / this.step);
-            this.initial = this.min + this.step * initialStep;
+            if (this.step != 0) {
+                var initialStep = Math.round((this.initial - this.min) / this.step);
+                this.initial = this.min + this.step * initialStep;
+            }
         }
 
         // Set value on the this.input itself:
