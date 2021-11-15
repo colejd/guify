@@ -1,23 +1,12 @@
-import css from "dom-css";
+import "./label.css";
 
+// eslint-disable-next-line no-unused-vars
 export default (root, text, theme) => {
     var background = root.appendChild(document.createElement("div"));
-    css(background, {
-        left: 0,
-        width: `calc(${theme.sizing.labelWidth} - 2%)`,
-        display: "inline-block",
-        "margin-right": "2%",
-        verticalAlign: "top"
-    });
+    background.classList.add("guify-component-label");
 
     var label = background.appendChild(document.createElement("div"));
+    label.classList.add("guify-component-label-text");
     label.innerHTML = text;
-    css(label, {
-        color: theme.colors.textPrimary,
-        display: "inline-block",
-        verticalAlign: "sub",
-        "min-height": theme.sizing.componentHeight,
-        "line-height": theme.sizing.componentHeight
-    });
     return label;
 };
