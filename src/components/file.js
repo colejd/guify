@@ -1,7 +1,7 @@
 import ComponentBase from "./component-base.js";
 import css from "dom-css";
 
-import { default as styles } from "./file-style.js";
+import "./file.css";
 
 /**
  * File component. Drag and drop a file or click to choose a file.
@@ -10,14 +10,12 @@ export default class File extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.styles = styles(theme);
-
         this.opts.fileReadFunc = this.opts.fileReadFunc || "readAsDataURL";
 
         this.file = null;
         this.fileName = null;
 
-        this.container.classList.add(this.styles["guify-file-container"]);
+        this.container.classList.add("guify-file-container");
         this.container.setAttribute("role", "button");
         this.container.setAttribute("tabIndex", "0"); // Make tabbable
         css(this.container, {
@@ -67,19 +65,19 @@ export default class File extends ComponentBase {
         this.container.addEventListener("dragover", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.add(this.styles["guify-dragover"]);
+            this.container.classList.add("guify-dragover");
         });
 
         this.container.addEventListener("dragleave", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.remove(this.styles["guify-dragover"]);
+            this.container.classList.remove("guify-dragover");
         });
 
         this.container.addEventListener("drop", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.container.classList.remove(this.styles["guify-dragover"]);
+            this.container.classList.remove("guify-dragover");
             FileDropped(event);
         });
 

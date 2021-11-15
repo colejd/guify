@@ -1,0 +1,60 @@
+@import "../../variables.css";
+
+.guify-bar {
+    background-color: var(--color-menu-bar-background);
+    height: var(--size-menu-bar-height);
+    width: 100%;
+    opacity: 1.0;
+    position: relative;
+    cursor: default;
+}
+
+.guify-bar-title {
+    color: var(--color-menu-bar-text);
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    line-height: var(--size-menu-bar-height);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.guify-bar-button {
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    color: var(--color-text-primary);
+    background-color: var(--color-component-background);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+
+}
+
+/* Hide default accessibility outlines since we're providing our own visual feedback */
+.guify-bar-button:focus {
+    outline: none;
+}
+.guify-bar-button::-moz-focus-inner {
+    border: 0;
+}
+
+.guify-bar-button:hover,
+.guify-bar-button:focus {
+    color: var(--color-text-hover);
+    background-color: var(--color-component-foreground);
+}
+
+.guify-bar-button:active {
+    color: var(--color-text-active) !important;
+    background-color: var(--color-component-active) !important;
+}

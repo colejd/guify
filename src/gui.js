@@ -2,7 +2,7 @@ import css from "dom-css";
 
 import { default as Theme } from "./theme";
 
-import { default as styles } from "./components/internal/container-style.js";
+import "./components/internal/container.css";
 
 import { ComponentManager } from "./component-manager";
 
@@ -29,6 +29,7 @@ export default class GUI {
         // Set theme from opts
         let themeName = opts.theme || "dark";
         this.theme = new Theme(themeName);
+        this.theme.Apply();
 
         this._ConstructElements();
         this._LoadStyles();
@@ -75,7 +76,7 @@ export default class GUI {
     _ConstructElements() {
         // Create the container that all the other elements will be contained within
         this.container = document.createElement("div");
-        this.container.classList.add(styles(this.theme)["guify-container"]);
+        this.container.classList.add("guify-container");
 
         let containerCSS = {};
 
@@ -249,6 +250,13 @@ export default class GUI {
             console.log("Request fullscreen");
             screenfull.request(this.opts.root);
         }
+    }
+
+    // Just for debugging.
+    _SetAllEnabled(enabled) {
+        this.loadedComponents.forEach((item) => {
+            item.SetEnabled(enabled);
+        });
     }
 
 }

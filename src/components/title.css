@@ -1,0 +1,26 @@
+@import "../variables.css";
+
+.guify-title {
+    box-sizing: border-box;
+    width: 100%;
+    display: inline-block;
+    height: var(--size-component-height);
+    vertical-align: top;
+}
+
+.guify-title-text {
+    display: inline-block;
+    vertical-align: sub;
+    height: var(--size-component-height);
+    line-height: var(--size-component-height);
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--color-text-primary);
+    color: var(--color-panel-background);
+}
+
+/* Disabled style */
+
+.disabled .guify-title-text {
+    background-color: var(--color-text-disabled);
+}

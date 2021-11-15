@@ -13,6 +13,35 @@ export default class Theme {
         // the result properties of this object
         Object.assign(this, baseTheme, theme);
     }
+
+    /**
+     * Applies the CSS to the global scope.
+     */
+    Apply() {
+        console.log(this);
+
+        let root = document.documentElement;
+        root.style.setProperty("--color-menu-bar-background", this.colors.menuBarBackground);
+        root.style.setProperty("--color-menu-bar-text", this.colors.menuBarText);
+        root.style.setProperty("--color-panel-background", this.colors.panelBackground);
+
+        root.style.setProperty("--color-component-background", this.colors.componentBackground);
+        root.style.setProperty("--color-component-background-hover", this.colors.componentBackgroundHover);
+        root.style.setProperty("--color-component-background-disabled", this.colors.componentBackgroundDisabled);
+        root.style.setProperty("--color-component-foreground", this.colors.componentForeground);
+        root.style.setProperty("--color-component-active", this.colors.componentActive);
+
+        root.style.setProperty("--color-text-primary", this.colors.textPrimary);
+        root.style.setProperty("--color-text-secondary", this.colors.textSecondary);
+        root.style.setProperty("--color-text-hover", this.colors.textHover);
+        root.style.setProperty("--color-text-active", this.colors.textActive);
+        root.style.setProperty("--color-text-disabled", this.colors.textDisabled);
+
+        root.style.setProperty("--size-menu-bar-height", this.sizing.menuBarHeight);
+        root.style.setProperty("--size-component-height", this.sizing.componentHeight);
+        root.style.setProperty("--size-component-spacing", this.sizing.componentSpacing);
+        root.style.setProperty("--size-label-width", this.sizing.labelWidth);
+    }
 }
 
 const baseTheme = {
@@ -25,6 +54,7 @@ const baseTheme = {
 
         componentBackground: "black",
         componentBackgroundHover: "black",
+        componentBackgroundDisabled: "black",
         componentForeground: "black",
         componentActive: "black",
 
@@ -32,6 +62,7 @@ const baseTheme = {
         textSecondary: "black",
         textHover: "black",
         textActive: "black",
+        textDisabled: "black",
     },
 
     sizing: {

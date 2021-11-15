@@ -1,6 +1,6 @@
 import ComponentBase from "./component-base.js";
 
-import css from "dom-css";
+import "./text.css";
 
 import { default as LabelPartial } from "./partials/label";
 
@@ -19,25 +19,10 @@ export default class Text extends ComponentBase {
 
         this.input = this.container.appendChild(document.createElement("input"));
         this.input.type = "text";
-        this.input.className = "guify-text";
+        this.input.classList.add("guify-text-input");
         if (opts.initial) this.input.value = opts.initial;
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute("aria-label", opts.label);
-
-        css(this.input, {
-            position: "absolute",
-            paddingLeft: "6px",
-            height: theme.sizing.componentHeight,
-            width: `calc(100% - ${theme.sizing.labelWidth})`,
-            border: "none",
-            background: theme.colors.componentBackground,
-            color: theme.colors.textSecondary,
-            fontFamily: "inherit",
-            "box-sizing": "border-box",
-            "-moz-box-sizing": "border-box",
-            "-webkit-box-sizing": "border-box",
-            resize: "vertical"
-        });
 
         setTimeout(() => {
             this.emit("initialized", this.input.value);
@@ -50,7 +35,6 @@ export default class Text extends ComponentBase {
 
         // Gain focus
         this.input.addEventListener("focus", () => {
-            css(this.input, { outline: "none" });
             this.focused = true;
         });
 

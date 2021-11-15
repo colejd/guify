@@ -2,17 +2,15 @@ import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 
-import { default as styles } from "./panel-style.js";
+import "./panel.css";
 
 export class Panel extends ComponentBase {
     constructor(root, opts, theme) {
         super(root, opts, theme, false);
 
-        this.styles = styles(theme);
-
         // Container the panel will sit in
         this.container = root.appendChild(document.createElement("div"));
-        this.container.className = this.styles["guify-panel-container"];
+        this.container.classList.add("guify-panel-container");
         css(this.container, {
             width: opts.width,
             opacity: opts.opacity || 1.0,
@@ -33,7 +31,7 @@ export class Panel extends ComponentBase {
 
         // Create panel inside container
         this.panel = this.container.appendChild(document.createElement("div"));
-        this.panel.className = this.styles["guify-panel"];
+        this.panel.classList.add("guify-panel");
 
         // Add a title to the panel
         if(opts.barMode === "none" && opts.title)
@@ -50,7 +48,7 @@ export class Panel extends ComponentBase {
             // this.panel.style.height = Array.prototype.reduce.call(this.panel.childNodes, function(p, c) {return p + (c.offsetHeight || 0) + 5 + 1;}, 0) + 'px';
             // this.panel.style.paddingTop = '14px';
             // this.panel.style.paddingBottom = '8px';
-            this.panel.classList.remove(this.styles["guify-panel-hidden"]);
+            this.panel.classList.remove("guify-panel-hidden");
 
             if(this.menuButton) this.menuButton.setAttribute("alt", "Close GUI");
 
@@ -59,7 +57,7 @@ export class Panel extends ComponentBase {
             // this.panel.style.height = '0px';
             // this.panel.style.paddingTop = '0px';
             // this.panel.style.paddingBottom = '0px';
-            this.panel.classList.add(this.styles["guify-panel-hidden"]);
+            this.panel.classList.add("guify-panel-hidden");
 
             if(this.menuButton) this.menuButton.setAttribute("alt", "Open GUI");
 
@@ -70,7 +68,7 @@ export class Panel extends ComponentBase {
      * Toggles the visibility of the panel.
      */
     ToggleVisible() {
-        if (this.panel.classList.contains(this.styles["guify-panel-hidden"]))
+        if (this.panel.classList.contains("guify-panel-hidden"))
             this.SetVisible(true);
         else
             this.SetVisible(false);
@@ -82,7 +80,7 @@ export class Panel extends ComponentBase {
     _MakeToggleButton() {
         // Make the menu collapse button
         this.menuButton = this.container.appendChild(document.createElement("button"));
-        this.menuButton.className = this.styles["guify-panel-toggle-button"];
+        this.menuButton.className = "guify-panel-toggle-button";
         css(this.menuButton, {
             left: this.opts.align == "left" ? "0px" : "unset",
             right: this.opts.align == "left" ? "unset" : "0px",

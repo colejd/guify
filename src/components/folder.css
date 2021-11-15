@@ -1,0 +1,49 @@
+@import "../variables.css";
+
+.guify-folder {
+    cursor: pointer;
+    padding-left: 0.5em;
+    color: var(--color-text-primary);
+}
+
+.guify-folder div {
+    display: inline-block;
+    vertical-align: sub;
+    line-height: calc(var(--size-component-height) + 5px);
+}
+
+.guify-folder:hover,
+.guify-folder:focus {
+    color: var(--color-text-hover);
+    background-color: var(--color-component-foreground);
+    outline: none;
+}
+
+
+.guify-folder-contents {
+    display: block;
+    box-sizing: border-box;
+    padding-left: 14px;
+    margin-bottom: 5px;
+    border-left: 2px solid var(--color-component-background);
+}
+
+.guify-folder-contents.guify-folder-closed {
+    height: 0;
+    display: none;
+}
+
+.guify-folder .guify-folder-arrow {
+    width: 1.5em;
+}
+
+/* Disabled styles */
+
+.guify-folder.disabled {
+    pointer-events: none;
+    color: var(--color-text-disabled);
+}
+
+.guify-folder.disabled + .guify-folder-contents {
+    pointer-events: none;
+}

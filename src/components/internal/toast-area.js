@@ -2,7 +2,7 @@ import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 
-import { default as styles } from "./toast-area-style.js";
+import "./toast-area.css";
 
 /**
  * Represents a container div that creates and holds toast notifications.
@@ -11,11 +11,9 @@ export class ToastArea extends ComponentBase {
     constructor(root, opts, theme) {
         super(root, opts, theme, false);
 
-        this.styles = styles(theme);
-
         // Make toast area
         this.element = root.appendChild(document.createElement("div"));
-        this.element.classList.add(this.styles["guify-toast-area"]);
+        this.element.classList.add("guify-toast-area");
         css(this.element, {
             position: "absolute",
             "width": "100%",
@@ -30,7 +28,7 @@ export class ToastArea extends ComponentBase {
         console.log("[Toast] " + message);
 
         let toast = this.element.appendChild(document.createElement("div"));
-        toast.classList.add(this.styles["guify-toast-notification"]);
+        toast.classList.add("guify-toast-notification");
         toast.setAttribute("aria-live", "polite");
 
         toast.innerHTML = message;
@@ -44,7 +42,7 @@ export class ToastArea extends ComponentBase {
         // Make close button in toast
         let closeButton = toast.appendChild(document.createElement("button"));
         closeButton.innerHTML = "&#10006;";
-        closeButton.classList.add(this.styles["guify-toast-close-button"]);
+        closeButton.classList.add("guify-toast-close-button");
 
         let timeout;
 

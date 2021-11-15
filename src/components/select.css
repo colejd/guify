@@ -1,0 +1,82 @@
+@import "../variables.css";
+
+.guify-select-dropdown {
+    display: inline-block;
+    position: absolute;
+    width: calc(100% - var(--size-label-width));
+    padding-left: 1.5%;
+    height: var(--size-component-height);
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance:none;
+    appearance: none;
+    font-family: inherit;
+    background-color: var(--color-component-background);
+    color: var(--color-text-secondary);
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+}
+
+/* Disable default outline since we're providing our own */
+.guify-select-dropdown:focus {
+    outline: none;
+}
+.guify-select-dropdown::-moz-focus-inner {
+    border: 0;
+}
+
+
+.guify-select-dropdown:focus,
+.guify-select-dropdown:hover {
+    color: var(--color-text-hover);
+    background-color: var(--color-component-foreground);
+}
+
+.guify-select-dropdown::-ms-expand {
+    display:none;
+}
+.guify-select-triangle {
+    content: ' ';
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    line-height: var(--size-component-height);
+    position: absolute;
+    right: 2.5%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.guify-select-triangle--up {
+    bottom: 55%;
+    border-bottom: 5px solid var(--color-text-secondary);
+    border-top: 0px transparent;
+}
+
+.guify-select-triangle--down {
+    top: 55%;
+    border-top: 5px solid var(--color-text-secondary);
+    border-bottom: 0px transparent;
+}
+
+.guify-select-triangle--up-highlight {
+    border-bottom-color: var(--color-text-hover);
+}
+
+.guify-select-triangle--down-highlight {
+    border-top-color: var(--color-text-hover);
+}
+
+/* Disabled styles */
+
+.disabled .guify-select-dropdown {
+    pointer-events: none;
+    color: var(--color-text-disabled);
+    background-color: var(--color-component-background-disabled);
+}
+
+.disabled *[class^="guify-select-triangle"] {
+    border-color: var(--color-text-disabled);
+}

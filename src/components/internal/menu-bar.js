@@ -3,30 +3,28 @@ import ComponentBase from "../component-base.js";
 import css from "dom-css";
 import screenfull from "screenfull";
 
-import { default as styles } from "./menu-bar-style.js";
+import "./menu-bar.css";
 
 export class MenuBar extends ComponentBase {
     constructor(root, opts, theme) {
         super(root, opts, theme, false);
 
-        this.styles = styles(theme);
-
         // Create menu bar
         this.element = document.createElement("div");
-        this.element.className = this.styles["guify-bar"];
+        this.element.classList.add("guify-bar");
         root.appendChild(this.element);
 
         if (opts.title) {
             // Create a text label inside of the bar
             let text = this.element.appendChild(document.createElement("div"));
-            text.className = this.styles["guify-bar-title"];
+            text.classList.add("guify-bar-title");
             text.innerHTML = opts.title;
             this.label = text;
         }
 
         // Make the menu collapse button
         let menuButton = this.element.appendChild(document.createElement("button"));
-        menuButton.className = this.styles["guify-bar-button"];
+        menuButton.classList.add("guify-bar-button");
         menuButton.innerHTML = "Controls";
         css(menuButton, {
             left: opts.align == "left" ? "0" : "unset",
@@ -39,7 +37,7 @@ export class MenuBar extends ComponentBase {
         // Make the fullscreen button
         if (screenfull.isEnabled) {
             let fullscreenButton = this.element.appendChild(document.createElement("button"));
-            fullscreenButton.className = this.styles["guify-bar-button"];
+            fullscreenButton.classList.add("guify-bar-button");
             fullscreenButton.innerHTML = "「　」";
             fullscreenButton.setAttribute("aria-label", "Toggle Fullscreen");
             css(fullscreenButton, {

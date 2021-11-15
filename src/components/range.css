@@ -1,0 +1,90 @@
+@import "../variables.css";
+
+:root {
+    --range-track-color: var(--color-component-background);
+    --range-thumb-color: var(--color-component-foreground);
+    --range-thumb-highlight: var(--color-component-active);
+
+    --range-track-color-disabled: var(--color-component-background-disabled);
+    --range-thumb-color-disabled: var(--color-text-disabled);
+}
+
+input[type=range].guify-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: var(--size-component-height);
+    margin: 0px 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.disabled input[type=range].guify-range {
+    pointer-events: none;
+}
+
+/* Remove outlines since we'll be adding our own */
+input[type=range].guify-range:focus {
+    outline: none;
+}
+input[type=range].guify-range::-moz-focus-outer {
+    border: 0;
+}
+
+/* Webkit */
+input[type=range].guify-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: var(--size-component-height);
+    cursor: ew-resize;
+    background: var(--range-track-color);
+}
+input[type=range].guify-range::-webkit-slider-thumb {
+    height: var(--size-component-height);
+    width: 10px;
+    background: var(--range-thumb-color);
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    margin-top: 0px;
+}
+input[type=range].guify-range:focus::-webkit-slider-runnable-track {
+    background: var(--range-thumb-highlight);
+    outline: none;
+}
+
+.disabled input[type=range].guify-range::-webkit-slider-runnable-track { /* Disabled track */
+    pointer-events: none;
+    background: var(--range-track-color-disabled);
+}
+
+.disabled input[type=range].guify-range::-webkit-slider-thumb { /* Disabled thumb */
+    pointer-events: none;
+    background: var(--color-text-disabled);
+}
+
+/* Gecko */
+input[type=range].guify-range::-moz-range-track {
+    width: 100%;
+    height: var(--size-component-height);
+    cursor: ew-resize;
+    background: var(--range-track-color);
+}
+input[type=range].guify-range:focus::-moz-range-track {
+    background: var(--range-thumb-highlight);
+}
+input[type=range].guify-range::-moz-range-thumb {
+    height: var(--size-component-height);
+    width: 10px;
+    background: var(--range-thumb-color);
+    cursor: ew-resize;
+    border: none;
+    border-radius: 0;
+}
+
+.disabled input[type=range].guify-range::-moz-range-track { /* Disabled track */
+    pointer-events: none;
+    background: var(--range-track-color-disabled);
+}
+
+.disabled input[type=range].guify-range::-moz-range-thumb { /* Disabled thumb */
+    pointer-events: none;
+    background: var(--range-thumb-color-disabled);
+}

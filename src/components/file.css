@@ -1,0 +1,33 @@
+@import "../variables.css";
+
+.guify-file-container {
+    display: inline-block;
+    outline: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: var(--color-text-primary);
+    background-color: var(--color-component-background);
+}
+
+.guify-file-container:hover:not(:disabled),
+.guify-file-container:focus:not(:disabled) {
+    color: var(--color-text-hover);
+    background-color: var(--color-component-foreground);
+}
+
+.guify-file-container:active:not(:disabled) {
+    color: var(--color-text-active) !important;
+    background-color: var(--color-component-active) !important;
+}
+
+.guify-dragover:not(:disabled) {
+    background-color: var(--color-component-background);
+    box-shadow: inset 0 0 0 3px var(--color-component-foreground);
+}
+
+.disabled.guify-file-container {
+    pointer-events: none;
+    color: var(--color-text-disabled) !important;
+    background-color: var(--color-component-background-disabled) !important;
+    box-shadow: inset 0 0 0 3px var(--color-component-background-disabled) !important;
+}

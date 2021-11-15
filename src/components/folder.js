@@ -1,16 +1,12 @@
 import ComponentBase from "./component-base.js";
 
-import css from "dom-css";
-
-import { default as styles } from "./folder-style.js";
+import "./folder.css";
 
 export default class Folder extends ComponentBase {
     constructor (root, opts, theme) {
         super(root, opts, theme);
 
-        this.styles = styles(theme);
-
-        this.container.classList.add(styles(theme)["guify-folder"]);
+        this.container.classList.add("guify-folder");
         this.container.setAttribute("role", "button");
         this.container.setAttribute("tabIndex", "0"); // Make tabbable
         // css(container, {
@@ -18,12 +14,11 @@ export default class Folder extends ComponentBase {
         // })
 
         this.arrow = this.container.appendChild(document.createElement("div"));
+        this.arrow.classList.add("guify-folder-arrow");
         this.arrow.innerHTML = "&#9662;";
-        css(this.arrow, {
-            "width": "1.5em",
-        });
 
         this.label = this.container.appendChild(document.createElement("div"));
+        this.label.classList.add("guify-folder-text");
         this.label.innerHTML = opts.label;
 
         this.container.onclick = () => {
@@ -43,12 +38,21 @@ export default class Folder extends ComponentBase {
         });
 
         this.folderContainer = root.appendChild(document.createElement("div"));
-        this.folderContainer.classList.add(this.styles["guify-folder-contents"]);
+        this.folderContainer.classList.add("guify-folder-contents");
 
         this.open = this.opts.open || false;
         this.SetOpen(this.open);
 
+    }
 
+    SetEnabled(enabled) {
+        super.SetEnabled(enabled);
+        // Disable everything in the folder
+        if (enabled) {
+            this.folderContainer?.classList.remove("disabled");
+        } else {
+            this.folderContainer?.classList.add("disabled");
+        }
     }
 
     // Toggle visibility
@@ -61,12 +65,12 @@ export default class Folder extends ComponentBase {
     SetOpen(show) {
         this.open = show;
         if(show) {
-            this.folderContainer.classList.remove(this.styles["guify-folder-closed"]);
+            this.folderContainer.classList.remove("guify-folder-closed");
             this.arrow.innerHTML = "&#9662;"; // Down triangle
 
         }
         else {
-            this.folderContainer.classList.add(this.styles["guify-folder-closed"]);
+            this.folderContainer.classList.add("guify-folder-closed");
             this.arrow.innerHTML = "&#9656;"; // Right triangle
         }
 
