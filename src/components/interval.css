@@ -4,6 +4,9 @@
     --interval-track-color: var(--color-component-background);
     --interval-thumb-color: var(--color-component-foreground);
     --interval-thumb-highlight: var(--color-component-active);
+
+    --interval-track-color-disabled: var(--color-component-background-disabled);
+    --interval-thumb-color-disabled: var(--color-text-disabled);
 }
 
 .guify-interval {
@@ -33,6 +36,11 @@
     background: var(--interval-thumb-highlight);
 }
 
-input:disabled {
+.disabled .guify-interval {
     pointer-events: none;
+    background-color: var(--range-track-color-disabled);
+}
+
+.disabled .guify-interval .guify-interval-handle {
+    background: var(--range-thumb-color-disabled);
 }
