@@ -43,8 +43,15 @@ Removes the specified component.
 
 All properties of `applyToAll` will be applied to each opts object.
 
-## `opts`
-The properties in this object determine the type and behavior of the created component.
+## Components
+
+Components have a few shared methods you may call after initialization.
+
+- `SetEnabled(enabled)`: Sets the component enabled/disabled style.
+- `Remove()`: Removes the component from the GUI.
+
+### `opts`
+The properties in this object determine the type and behavior of the created component. Pass this into `Register(opts)`.
 
 The common properties are:
 
@@ -59,8 +66,6 @@ The common properties are:
 - `enabled` (Bool): Whether the component starts out enabled or not (only works for interactive components). This can be modified at runtime with `component.SetEnabled(Bool)`.
 
 Some component types have their own options. These will be specified for each component listed below.
-
-## Components
 
 ### Text
 `type: 'text'`

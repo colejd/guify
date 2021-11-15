@@ -6,6 +6,9 @@
 - Checkbox can now be toggled by clicking anywhere in the row
 - Made it possible to have nested folders with identical names
 - Allow setting input listening mode on `text` components using a new `listenMode` option. New values are `"input"` (default) and `"change"`.
+- Added the ability to enable/disable components with `SetEnabled(Bool)`.
+    - I added new theme elements `"colorTextDisabled"` and `"colorComponentBackgroundDisabled"` to support this. If you're using a custom theme, make sure you add values for these!
+    - This involved totally rewriting the way styles are added to components internally. This shouldn't cause any issues externally, but if you encounter anything, please file an issue!
 
 Thank you to @indivisualvj for your PR (#20)!
 
