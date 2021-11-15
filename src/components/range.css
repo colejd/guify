@@ -4,6 +4,9 @@
     --range-track-color: var(--color-component-background);
     --range-thumb-color: var(--color-component-foreground);
     --range-thumb-highlight: var(--color-component-active);
+
+    --range-track-color-disabled: var(--color-component-background-disabled);
+    --range-thumb-color-disabled: var(--color-text-disabled);
 }
 
 input[type=range].guify-range {
@@ -13,6 +16,10 @@ input[type=range].guify-range {
     margin: 0px 0;
     padding: 0;
     display: inline-block;
+}
+
+.disabled input[type=range].guify-range {
+    pointer-events: none;
 }
 
 /* Remove outlines since we'll be adding our own */
@@ -45,7 +52,7 @@ input[type=range].guify-range:focus::-webkit-slider-runnable-track {
 
 .disabled input[type=range].guify-range::-webkit-slider-runnable-track { /* Disabled track */
     pointer-events: none;
-    background: var(--color-component-background-disabled);
+    background: var(--range-track-color-disabled);
 }
 
 .disabled input[type=range].guify-range::-webkit-slider-thumb { /* Disabled thumb */
@@ -74,10 +81,10 @@ input[type=range].guify-range::-moz-range-thumb {
 
 .disabled input[type=range].guify-range::-moz-range-track { /* Disabled track */
     pointer-events: none;
-    background: var(--color-component-background-disabled);
+    background: var(--range-track-color-disabled);
 }
 
 .disabled input[type=range].guify-range::-moz-range-thumb { /* Disabled thumb */
     pointer-events: none;
-    background: var(--color-text-disabled);
+    background: var(--range-thumb-color-disabled);
 }
