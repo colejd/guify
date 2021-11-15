@@ -252,4 +252,11 @@ export default class GUI {
         }
     }
 
+    // Just for debugging.
+    _SetAllEnabled(enabled) {
+        this.loadedComponents.forEach((item) => {
+            item.SetEnabled(enabled);
+        });
+    }
+
 }
