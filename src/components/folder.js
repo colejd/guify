@@ -1,7 +1,5 @@
 import ComponentBase from "./component-base.js";
 
-import css from "dom-css";
-
 import "./folder.css";
 
 export default class Folder extends ComponentBase {
@@ -16,12 +14,11 @@ export default class Folder extends ComponentBase {
         // })
 
         this.arrow = this.container.appendChild(document.createElement("div"));
+        this.arrow.classList.add("guify-folder-arrow");
         this.arrow.innerHTML = "&#9662;";
-        css(this.arrow, {
-            "width": "1.5em",
-        });
 
         this.label = this.container.appendChild(document.createElement("div"));
+        this.label.classList.add("guify-folder-text");
         this.label.innerHTML = opts.label;
 
         this.container.onclick = () => {
@@ -46,7 +43,16 @@ export default class Folder extends ComponentBase {
         this.open = this.opts.open || false;
         this.SetOpen(this.open);
 
+    }
 
+    SetEnabled(enabled) {
+        super.SetEnabled(enabled);
+        // Disable everything in the folder
+        if (enabled) {
+            this.folderContainer?.classList.remove("disabled");
+        } else {
+            this.folderContainer?.classList.add("disabled");
+        }
     }
 
     // Toggle visibility
