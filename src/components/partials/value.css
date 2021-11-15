@@ -1,0 +1,33 @@
+@import "../../variables.css";
+
+.guify-value-input {
+    position: absolute;
+    background-color: var(--color-component-background);
+    padding-left: 1%;
+    height: var(--size-component-height);
+    display: inline-block;
+    overflow: hidden;
+    border: none;
+
+    font-family: 'Hack', monospace;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    user-select: text;
+    cursor: text;
+    line-height: var(--size-component-height);
+    word-break: break-all;
+
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+}
+
+.guify-value-input-right {
+    right: 0 !important;
+}
+
+.disabled .guify-value-input {
+    pointer-events: none;
+    background-color: var(--color-component-background-disabled);
+    color: var(--color-text-disabled);
+}
