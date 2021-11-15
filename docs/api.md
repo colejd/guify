@@ -132,7 +132,9 @@ Special options:
 Shows an adjustable two-handle slider representing an interval.
 - `min` (int): The smallest possible value on the slider.
 - `max` (int): The largest possible value on the slider.
+- `precision` (int, default=`3`): The maximum number of digits displayed for the value if it's a decimal.
 - `step` (int, default=`0.01`): The amount that is incremented by each movement of the slider.
+    - If the `precision` is set, then the `step` will by default be the smallest value possible given the precision. For example, if `precision = 3`, then `step = 0.01`, or if `precision = 5`, then `step = 0.0001`.
 - `scale` (String): Specifies the scaling behavior of the slider.
     - Values: `"linear"`, `"log"`
 

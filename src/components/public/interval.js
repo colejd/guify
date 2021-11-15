@@ -8,6 +8,8 @@ import "./interval.css";
 import { default as LabelPartial } from "../partials/label";
 import { default as ValuePartial } from "../partials/value";
 
+import { lerp } from "../../utils/math-utils";
+
 function clamp(x, min, max)
 {
     return Math.min(Math.max(x, min), max);
@@ -36,82 +38,76 @@ export default class Interval extends ComponentBase {
             opts.initial = [];
         }
 
+        this.scale = opts.scale;
+
+        // Get initial value:
         if( opts.scale === "log" )
         {
-            // Get options or set defaults:
-            opts.max = (isnumeric(opts.max)) ? opts.max : 100;
-            opts.min = (isnumeric(opts.min)) ? opts.min : 0.1;
+            // If logarithmic, we're going to set the slider to a known linear range. Then we'll
+            // map that linear range to the user-set range using a log scale.
 
-            // Check if all signs are valid:
-            if (opts.min * opts.max <= 0)
-            {
+            // Check if all signs are valid
+            if (opts.min * opts.max <= 0) {
                 throw new Error("Log range min/max must have the same sign and not equal zero. Got min = " + opts.min + ", max = " + opts.max);
             }
-            else
-            {
-                // Pull these into separate variables so that opts can define the *slider* mapping
-                this.logmin = opts.min;
-                this.logmax = opts.max;
-                this.logsign = opts.min > 0 ? 1 : -1;
 
-                // Got the sign so force these positive:
-                this.logmin = Math.abs(this.logmin);
-                this.logmax = Math.abs(this.logmax);
-
-                // These are now simply 0-100 to which we map the log range:
-                opts.min = 0;
-                opts.max = 100;
-
-                // Step is invalid for a log range:
-                if (isnumeric(opts.step))
-                {
-                    throw new Error("Log may only use steps (integer number of steps), not a step value. Got step =" + opts.step);
-                }
-                // Default step is simply 1 in linear slider space:
-                opts.step = 1;
+            // Step is invalid for log scale slider
+            if (isnumeric(opts.step)) {
+                console.warn("Step is unused for log scale sliders.");
             }
 
-            opts.initial = [
-                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[0] : this.ScaleValue(opts.min + (opts.max - opts.min) * 0.25)),
-                this.InverseScaleValue(isnumeric(opts.initial) ? opts.initial[1] : this.ScaleValue(opts.min + (opts.max - opts.min) * 0.75))
+            // Warn that `steps` was removed
+            if (isnumeric(opts.steps)) {
+                console.warn("\"steps\" option for log scale sliders has been removed.");
+            }
+
+            // Min/max are forced to a known range, and log value will be derived from slider position within.
+            this.minPos = 0;
+            this.maxPos = 1000000;
+
+            this.min = Math.log( (isnumeric(opts.min)) ? opts.min : 0.000001 ); // This cannot be 0
+            this.max = Math.log( (isnumeric(opts.max)) ? opts.max : 100 );
+
+            this.precision = (isnumeric(opts.precision)) ? opts.precision : 3;
+            this.logScale = (this.max - this.min) / (this.maxPos - this.minPos);
+
+            this.initial = [
+                isnumeric(opts.initial[0]) ? opts.initial[0] : this.min,
+                isnumeric(opts.initial[1]) ? opts.initial[1] : this.max,
             ];
-            if (this.ScaleValue(opts.initial[0]) * this.ScaleValue(opts.max) <= 0 || this.ScaleValue(opts.initial[1]) * this.ScaleValue(opts.max) <= 0) {
-                throw new Error("Log range initial value must have the same sign as min/max and must not equal zero. Got initial value = [" + this.ScaleValue(opts.initial[0]) + ", " + this.ScaleValue(opts.initial[1]) + "]");
-            }
         }
         else
         {
-            // If linear, this is much simpler:
-            opts.max = (isnumeric(opts.max)) ? opts.max : 100;
-            opts.min = (isnumeric(opts.min)) ? opts.min : 0;
-            opts.step = (isnumeric(opts.step)) ? opts.step : 0.01;
+            // If linear, this is much simpler. Pos and value can directly match.
+            this.minPos = (isnumeric(opts.min)) ? opts.min : 0;
+            this.maxPos = (isnumeric(opts.max)) ? opts.max : 100;
+            this.min = this.minPos;
+            this.max = this.maxPos;
 
-            opts.initial = [
-                isnumeric(opts.initial[0]) ? opts.initial[0] : (opts.min + opts.max) * 0.25,
-                isnumeric(opts.initial[1]) ? opts.initial[1] : (opts.min + opts.max) * 0.75
+            this.precision = (isnumeric(opts.precision)) ? opts.precision : 3;
+            this.step = (isnumeric(opts.step)) ? opts.step : (10 / Math.pow(10, 3)); // Default is the lowest possible number given the precision. When precision = 3, step = 0.01.
+
+            this.initial = [
+                isnumeric(opts.initial[0]) ? opts.initial[0] : this.min,
+                isnumeric(opts.initial[1]) ? opts.initial[1] : this.max,
             ];
-        }
 
-        // If we got a number of steps, use that instead:
-        if (isnumeric(opts.steps))
-        {
-            opts.step = isnumeric(opts.steps) ? (opts.max - opts.min) / opts.steps : opts.step;
+            // Quantize the initial value to the nearest step:
+            if (this.step != 0) {
+                this.initial = this.initial.map((value) => {
+                    return this.min + this.step * Math.round((value - this.min) / this.step);
+                });
+            }
         }
-
-        // Quantize the initial value to the requested step:
-        opts.initial[0] = opts.min + opts.step * Math.round((opts.initial[0] - opts.min) / opts.step);
-        opts.initial[1] = opts.min + opts.step * Math.round((opts.initial[1] - opts.min) / opts.step);
 
         this.value = opts.initial;
 
-        css(this.handle, {
-            left: ((this.value[0] - opts.min) / (opts.max - opts.min) * 100) + "%",
-            right: (100 - (this.value[1] - opts.min) / (opts.max - opts.min) * 100) + "%"
-        });
+        // Set handle positions from value
+        this._RefreshHandles();
 
         // Display the values:
-        this.lValue = ValuePartial(this.container, this.ScaleValue(opts.initial[0]), theme, "11%", true);
-        this.rValue = ValuePartial(this.container, this.ScaleValue(opts.initial[1]), theme, "11%",);
+        this.lValue = ValuePartial(this.container, this.value[0], theme, "11%", true);
+        this.rValue = ValuePartial(this.container, this.value[1], theme, "11%", false);
 
         // Add ARIA attribute to input based on label text
         if(opts.label) this.lValue.setAttribute("aria-label", opts.label + " lower value");
@@ -120,23 +116,19 @@ export default class Interval extends ComponentBase {
         // An index to track what's being dragged:
         this.activeIndex = -1;
 
-        setTimeout( () => {
-            let scaledLValue = this.ScaleValue(this.value[0]);
-            let scaledRValue = this.ScaleValue(this.value[1]);
-            this.lValue.innerHTML = scaledLValue;
-            this.rValue.innerHTML = scaledRValue;
-            this.emit("initialized", [scaledLValue, scaledRValue]);
+        setTimeout(() => {
+            this.emit("initialized", this.value);
         });
 
-        // Gain focus
-        this.input.addEventListener("focus", () => {
-            this.focused = true;
-        });
+        // // Gain focus
+        // this.input.addEventListener("focus", () => {
+        //     this.focused = true;
+        // });
 
-        // Lose focus
-        this.input.addEventListener("blur", () => {
-            this.focused = false;
-        });
+        // // Lose focus
+        // this.input.addEventListener("blur", () => {
+        //     this.focused = false;
+        // });
 
         let mouseX = (ev) =>
         {
@@ -148,14 +140,14 @@ export default class Interval extends ComponentBase {
         {
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
 
-            this.setActiveValue(fraction);
+            this._SetFromMousePosition(fraction);
         };
 
         let mouseUpListener = ( ev ) =>
         {
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
 
-            this.setActiveValue(fraction);
+            this._SetFromMousePosition(fraction);
 
             document.removeEventListener("mousemove", mouseMoveListener);
             document.removeEventListener("mouseup", mouseUpListener);
@@ -168,14 +160,17 @@ export default class Interval extends ComponentBase {
             // Get mouse position fraction:
             let fraction = clamp(mouseX(ev) / this.input.offsetWidth, 0, 1);
 
+            let posForLeftValue = this._Position(this.value[0]);
+            let posForRightValue = this._Position(this.value[1]);
+
             // Get the current fraction of position --> [0, 1]:
-            let lofrac = (this.value[0] - opts.min) / (opts.max - opts.min);
-            let hifrac = (this.value[1] - opts.min) / (opts.max - opts.min);
+            let lofrac = (posForLeftValue - this.minPos) / (this.maxPos - this.minPos);
+            let hifrac = (posForRightValue - this.minPos) / (this.maxPos - this.minPos);
 
             // This is just for making decisions, so perturb it ever
             // so slightly just in case the bounds are numerically equal:
-            lofrac -= Math.abs(opts.max - opts.min) * 1e-15;
-            hifrac += Math.abs(opts.max - opts.min) * 1e-15;
+            lofrac -= Math.abs(this.maxPos - this.minPos) * 1e-15;
+            hifrac += Math.abs(this.maxPos - this.minPos) * 1e-15;
 
             // Figure out which is closer:
             let lodiff = Math.abs(lofrac - fraction);
@@ -197,30 +192,34 @@ export default class Interval extends ComponentBase {
         });
 
         this.input.oninput = () => {
-            let scaledLValue = this.ScaleValue(this.value[0]);
-            let scaledRValue = this.ScaleValue(this.value[1]);
-            this.lValue.value = scaledLValue;
-            this.rValue.value = scaledRValue;
-            this.emit("input", [scaledLValue, scaledRValue]);
+            // let position = parseFloat(data.target.value);
+            // var scaledValue = this._Value(position);
+            // this.valueComponent.value = this._FormatNumber(scaledValue, this.precision);
+            this.lValue.value = this.value[0];
+            this.rValue.value = this.value[1];
+            this.emit("input", this.value);
         };
 
         // Handle lower bound input box changes
         this.lValue.onchange = () => {
             let rawValue = this.lValue.value;
             let otherValue = parseFloat(this.rValue.value);
-            if(Number(parseFloat(rawValue)) == rawValue){
+            if (Number(parseFloat(rawValue)) == rawValue) {
                 // Input number is valid
                 var value = parseFloat(rawValue);
                 // Clamp to input range
-                value = Math.min(Math.max(value, opts.min), opts.max);
+                value = Math.min(Math.max(value, this.min), this.max);
                 // Map to nearest step
-                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+                if (this.step) {
+                    value = Math.ceil((value - this.min) / this.step ) * this.step + this.min;
+                }
                 // Prevent value from going beyond interval upper value
                 value = Math.min(value, otherValue);
 
                 this.lValue.value = value;
+                this.value = [value, otherValue];
                 this.emit("input", [value, otherValue]);
-                this.RefreshHandle([value, otherValue]);
+                this._RefreshHandles([value, otherValue]);
             } else {
                 // Input number is invalid
                 // Go back to before input change
@@ -232,19 +231,22 @@ export default class Interval extends ComponentBase {
         this.rValue.onchange = () => {
             let rawValue = this.rValue.value;
             let otherValue = parseFloat(this.lValue.value);
-            if(Number(parseFloat(rawValue)) == rawValue){
+            if (Number(parseFloat(rawValue)) == rawValue) {
                 // Input number is valid
                 var value = parseFloat(rawValue);
                 // Clamp to input range
-                value = Math.min(Math.max(value, opts.min), opts.max);
+                value = Math.min(Math.max(value, this.min), this.max);
                 // Map to nearest step
-                value = Math.ceil((value - opts.min) / opts.step ) * opts.step + opts.min;
+                if (this.step) {
+                    value = Math.ceil((value - this.min) / this.step ) * this.step + this.min;
+                }
                 // Prevent value from going below interval lower value
                 value = Math.max(value, otherValue);
 
                 this.rValue.value = value;
+                this.value = [otherValue, value];
                 this.emit("input", [otherValue, value]);
-                this.RefreshHandle([otherValue, value]);
+                this._RefreshHandles();
             } else {
                 // Input number is invalid
                 // Go back to before input change
@@ -253,54 +255,72 @@ export default class Interval extends ComponentBase {
         };
     }
 
-    ScaleValue(value)
-    {
-        if (this.opts.scale === "log")
-            return this.logsign * Math.exp(Math.log(this.logmin) + (Math.log(this.logmax) - Math.log(this.logmin)) * value / 100);
-        else
-            return value;
+    /**
+     * Calculate value from slider position
+     */
+    _Value(position) {
+        if (this.scale === "log") {
+            // Map from slider position range to log value range
+
+            // Map from slider range to min-max value range
+            let rangePos = (position - this.minPos) * this.logScale + this.min;
+            // Now convert to log space
+            return Math.exp(rangePos);
+        } else {
+            // Position and value are equivalent
+            return position;
+        }
     }
 
-    InverseScaleValue(value) {
-        if (this.opts.scale === "log")
-            return (Math.log(value * this.logsign) - Math.log(this.logmin)) * 100 / (Math.log(this.logmax) - Math.log(this.logmin));
-        else
+    /**
+     * Calculate slider position from value
+     */
+    _Position(value) {
+        if (this.scale === "log") {
+            // Map from log value range to the slider's position range
+            return this.minPos + (Math.log(value) - this.min) / this.logScale;
+        } else {
+            // Value and position are equivalent
             return value;
+        }
     }
 
-    setActiveValue( fraction )
+    /**
+     * Updates the current value given a mouse X position normalized from 0 to 1.
+     */
+    _SetFromMousePosition( fraction )
     {
         if (this.activeIndex === -1) {
             return;
         }
 
-        let opts = this.opts;
-
-        // Get the position in the range [0, 1]:
-        let lofrac = (this.value[0] - opts.min) / (opts.max - opts.min);
-        let hifrac = (this.value[1] - opts.min) / (opts.max - opts.min);
-
         // Clip against the other bound:
-        if (this.activeIndex === 0)
-        {
+        if (this.activeIndex === 0) {
+            // Get the right side in position-space [0, 1]:
+            let hifrac = (this._Position(this.value[1]) - this.minPos) / (this.maxPos - this.minPos);
+            // Prevent fraction from exceeding right-side position
             fraction = Math.min(hifrac, fraction);
-        }
-        else
-        {
+        } else {
+            // Get the right side in position-space [0, 1]:
+            let lofrac = (this._Position(this.value[0]) - this.minPos) / (this.maxPos - this.minPos);
+            // Prevent fraction from going below left-side position
             fraction = Math.max(lofrac, fraction);
         }
 
-        // Compute and quantize the new value:
-        let newValue = opts.min + Math.round((opts.max - opts.min) * fraction / opts.step) * opts.step;
+        // Map from 0-1 scale to position-scale
+        let position = lerp(this.minPos, this.maxPos, fraction);
+        // Map from position-scale to value-scale and assign to values
+        var newValue = this._Value(position);
 
-        // Update value, in linearized coords:
+        // Quantize the value
+        if (this.step) {
+            newValue = this.min + this.step * Math.round((newValue - this.min) / this.step);
+        }
+
         this.value[this.activeIndex] = newValue;
 
         // Update and send the event:
-        css(this.handle, {
-            left: ((this.value[0] - opts.min) / (opts.max - opts.min) * 100) + "%",
-            right: (100 - (this.value[1] - opts.min) / (opts.max - opts.min) * 100) + "%"
-        });
+        this._RefreshHandles();
         this.input.oninput();
     }
 
@@ -308,28 +328,31 @@ export default class Interval extends ComponentBase {
     {
         if(this.focused !== true)
         {
-            this.lValue.value = this.FormatNumber(value[0]);
-            this.rValue.value = this.FormatNumber(value[1]);
+            this.lValue.value = this._FormatNumber(value[0], this.precision);
+            this.rValue.value = this._FormatNumber(value[1], this.precision);
 
             this.lastValue = [ this.lValue.value, this.rValue.value ];
         }
     }
 
-    FormatNumber(value) {
+    // Formats the number for display.
+    // `opts.precision` lets you customize how many decimal places you want here.
+    // The default is 3.
+    _FormatNumber(value, precision) {
         // https://stackoverflow.com/a/29249277
-        return value.toFixed(3).replace(/\.?0*$/,"");
+        return value.toFixed(precision).replace(/\.?0*$/,"");
     }
 
     GetValue() {
         return [ this.lValue.value, this.rValue.value ];
     }
 
-    RefreshHandle(interval) {
-        let leftPercent = ((parseFloat(interval[0]) - this.opts.min) / (this.opts.max - this.opts.min) * 100);
-        let rightPercent = (100 - (parseFloat(interval[1]) - this.opts.min) / (this.opts.max - this.opts.min) * 100);
+    _RefreshHandles() {
+        let leftPercent = ((this._Position(this.value[0]) - this.minPos) / (this.maxPos - this.minPos)) * 100;
+        let rightPercent = 100 - (((this._Position(this.value[1]) - this.minPos) / (this.maxPos - this.minPos)) * 100);
         css(this.handle, {
-            left: leftPercent + "%",
-            right: rightPercent + "%"
+            left: `${leftPercent}%`,
+            right: `${rightPercent}%`,
         });
     }
 }

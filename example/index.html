@@ -133,6 +133,18 @@
             }
         });
 
+        var logIntervalNumber = [15, 30];
+        gui.Register({
+            type: 'interval',
+            label: 'Log Interval',
+            scale: 'log',
+            min: 5, max: 750,
+            object: this, property: "logIntervalNumber",
+            onChange: (data) => {
+                console.log(logIntervalNumber);
+            }
+        });
+
         gui.Register({
             type: 'title',
             label: 'Title'
