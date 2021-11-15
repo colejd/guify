@@ -3,7 +3,7 @@ module.exports = {
         [
             "postcss-preset-env",
             {
-                // Options
+                autoprefixer: { grid: true },
             },
         ],
     ],
