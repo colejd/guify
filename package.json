@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "dom-css": "^2.1.0",
-    "insert-css": "^2.0.0",
     "is-numeric": "0.0.5",
     "is-string": "^1.0.4",
     "param-case": "^2.1.1",
