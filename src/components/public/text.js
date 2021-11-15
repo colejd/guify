@@ -1,8 +1,8 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
 import "./text.css";
 
-import { default as LabelPartial } from "./partials/label";
+import { default as LabelPartial } from "../partials/label";
 
 export default class Text extends ComponentBase {
     static #supportedInputListenModes = ["input", "change"];

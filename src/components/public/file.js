@@ -1,4 +1,4 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 import css from "dom-css";
 
 import "./file.css";

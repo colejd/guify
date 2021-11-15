@@ -1,12 +1,12 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
 import css from "dom-css";
 import isnumeric from "is-numeric";
 
 import "./range.css";
 
-import { default as LabelPartial } from "./partials/label";
-import { default as ValuePartial } from "./partials/value";
+import { default as LabelPartial } from "../partials/label";
+import { default as ValuePartial } from "../partials/value";
 
 export default class Range extends ComponentBase {
     constructor (root, opts, theme) {

@@ -1,6 +1,6 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
-import { default as LabelPartial } from "./partials/label";
+import { default as LabelPartial } from "../partials/label";
 
 import "./checkbox.css";
 

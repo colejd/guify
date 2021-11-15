@@ -1,4 +1,4 @@
-@import "../../variables.css";
+@import "../variables.css";
 
 .guify-bar {
     background-color: var(--color-menu-bar-background);

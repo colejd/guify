@@ -1,14 +1,14 @@
-import { default as TitleComponent } from "./components/title";
-import { default as RangeComponent } from "./components/range";
-import { default as ButtonComponent } from "./components/button";
-import { default as CheckboxComponent } from "./components/checkbox";
-import { default as SelectComponent } from "./components/select";
-import { default as TextComponent } from "./components/text";
-import { default as ColorComponent } from "./components/color";
-import { default as FolderComponent } from "./components/folder";
-import { default as FileComponent } from "./components/file";
-import { default as DisplayComponent } from "./components/display";
-import { default as IntervalComponent } from "./components/interval";
+import { default as TitleComponent } from "./components/public/title";
+import { default as RangeComponent } from "./components/public/range";
+import { default as ButtonComponent } from "./components/public/button";
+import { default as CheckboxComponent } from "./components/public/checkbox";
+import { default as SelectComponent } from "./components/public/select";
+import { default as TextComponent } from "./components/public/text";
+import { default as ColorComponent } from "./components/public/color";
+import { default as FolderComponent } from "./components/public/folder";
+import { default as FileComponent } from "./components/public/file";
+import { default as DisplayComponent } from "./components/public/display";
+import { default as IntervalComponent } from "./components/public/interval";
 
 /**
  * Manages the loading and instantiation of Components.

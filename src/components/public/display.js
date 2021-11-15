@@ -1,8 +1,8 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
 import "./display.css";
 
-import { default as LabelPartial } from "./partials/label";
+import { default as LabelPartial } from "../partials/label";
 
 /**
  * Display component. Shows the state of a variable.

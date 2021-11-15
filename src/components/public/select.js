@@ -1,8 +1,8 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
 import "./select.css";
 
-import { default as LabelPartial } from "./partials/label";
+import { default as LabelPartial } from "../partials/label";
 
 export default class Select extends ComponentBase {
     constructor (root, opts, theme) {

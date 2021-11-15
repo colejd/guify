@@ -1,4 +1,4 @@
-import ComponentBase from "./component-base.js";
+import ComponentBase from "../component-base.js";
 
 import ColorPicker from "simple-color-picker";
 import tinycolor from "tinycolor2";
@@ -6,8 +6,8 @@ import tinycolor from "tinycolor2";
 import css from "dom-css";
 import "./color.css";
 
-import { default as LabelPartial } from "./partials/label";
-import { default as ValuePartial } from "./partials/value";
+import { default as LabelPartial } from "../partials/label";
+import { default as ValuePartial } from "../partials/value";
 
 export default class Color extends ComponentBase {
     constructor (root, opts, theme) {
