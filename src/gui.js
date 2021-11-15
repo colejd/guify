@@ -235,7 +235,7 @@ export default class GUI {
      *
      * @param {String} [message] The string you want displayed in the notification.
      * @param {Integer} [stayMS] The number of milliseconds to display the notification for
-     * @param {Integer} [transitionMS ] The number of milliseconds it takes for the notification to transition into disappearing
+     * @param {Integer} [transitionMS] The number of milliseconds it takes for the notification to transition into disappearing
      */
     Toast(message, stayMS = 5000, transitionMS = 0) {
         this.toaster.CreateToast(message, stayMS, transitionMS);
