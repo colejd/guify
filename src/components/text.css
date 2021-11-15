@@ -1,0 +1,29 @@
+@import "../variables.css";
+
+:root {
+    --guify-text-input-padding-left: 6px;
+    --guify-text-input-padding-right: 1px;
+}
+
+.guify-text-input {
+    position: absolute;
+    padding-left: var(--guify-text-input-padding-left);
+    padding-right: var(--guify-text-input-padding-right);
+    height: var(--size-component-height);
+    width: calc(100% - var(--size-label-width) - var(--guify-text-input-padding-left) - var(--guify-text-input-padding-right));
+    border: none;
+    background: var(--color-component-background);
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.guify-text-input:focus {
+    outline: none;
+}
+
+.disabled .guify-text-input {
+    color: var(--color-text-disabled);
+    background-color: var(--color-component-background-disabled);
+}
