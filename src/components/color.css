@@ -1,0 +1,60 @@
+@import "../variables.css";
+
+/* Styling for simple-color-picker */
+
+.guify-color .Scp {
+    width: 125px;
+    height: 100px;
+    -webkit-user-select: none;
+        -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
+}
+.guify-color .Scp-saturation {
+    position: relative;
+    width: calc(100% - 25px);
+    height: 100%;
+    background: linear-gradient(to right, #fff 0%, #f00 100%);
+    float: left;
+    margin-right: 5px;
+}
+.guify-color .Scp-brightness {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #000 0%, rgba(255,255,255,0) 100%);
+}
+.guify-color .Scp-sbSelector {
+    border: 1px solid;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 10px;
+    top: -7px;
+    left: -7px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+.guify-color .Scp-hue {
+    width: 20px;
+    height: 100%;
+    position: relative;
+    float: left;
+    background: linear-gradient(to bottom, #f00 0%, #f0f 17%, #00f 34%, #0ff 50%, #0f0 67%, #ff0 84%, #f00 100%);
+}
+.guify-color .Scp-hSelector {
+    position: absolute;
+    background: #fff;
+    border-bottom: 1px solid #000;
+    right: -3px;
+    width: 10px;
+    height: 2px;
+}
+
+/* Disabled styles */
+.disabled .guify-color {
+    pointer-events: none;
+}
