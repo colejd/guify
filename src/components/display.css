@@ -1,0 +1,20 @@
+@import "../variables.css";
+
+.guify-display {
+    display: inline-block;
+    height: unset;
+    width: calc(100% - var(--size-label-width));
+    border: none;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    vertical-align: sub;
+    line-height: var(--size-component-height);
+    user-select: text;
+}
+
+.disabled .guify-display {
+    color: var(--color-text-disabled);
+}
