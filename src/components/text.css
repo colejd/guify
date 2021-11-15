@@ -1,21 +1,15 @@
 @import "../variables.css";
 
-:root {
-    --guify-text-input-padding-left: 6px;
-    --guify-text-input-padding-right: 1px;
-}
-
 .guify-text-input {
     position: absolute;
-    padding-left: var(--guify-text-input-padding-left);
-    padding-right: var(--guify-text-input-padding-right);
+    padding-left: 6px;
     height: var(--size-component-height);
-    width: calc(100% - var(--size-label-width) - var(--guify-text-input-padding-left) - var(--guify-text-input-padding-right));
+    width: calc(100% - var(--size-label-width));
     border: none;
     background: var(--color-component-background);
     color: var(--color-text-secondary);
     font-family: inherit;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     resize: vertical;
 }
 
