@@ -25,7 +25,6 @@ export default class Color extends ComponentBase {
         value.setAttribute("readonly", "true");
 
         icon.onmouseover = () => {
-            console.log("wow!");
             this.picker.$el.style.display = "";
         };
 
