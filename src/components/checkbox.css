@@ -64,7 +64,10 @@ input[type=checkbox].guify-checkbox:focus + label:before {
     background-color: var(--color-component-background-hover);
 }
 
-/* Disabled style */
+/* Disabled styles */
+.disabled input[type=checkbox].guify-checkbox + label {
+    pointer-events: none;
+}
 .disabled input[type="checkbox"].guify-checkbox + label::before {
     pointer-events: none;
     background-color: var(--color-component-background-disabled);
