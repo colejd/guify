@@ -1,3 +1,10 @@
+## 0.14.1
+
+- Fixed incorrect `interval` height and background
+- Made component height `2rem` by default
+    - Should fix component height issues on some pages
+- Reduced line height for `display` component
+
 ## 0.14.0
 
 - Allow setting input listening mode on `text` components using a new `listenMode` option. New values are `"input"` (default) and `"change"`.

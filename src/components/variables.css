@@ -16,7 +16,7 @@
     --color-text-disabled: "black";
 
     --size-menu-bar-height: 25px;
-    --size-component-height: 20px;
+    --size-component-height: 2rem;
     --size-component-spacing: 5px;
     --size-label-width: 42%;
 }
