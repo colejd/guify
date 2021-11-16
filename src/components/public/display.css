@@ -3,6 +3,7 @@
 .guify-display {
     display: inline-block;
     height: unset;
+    min-height: var(--size-component-height);
     width: calc(100% - var(--size-label-width));
     border: none;
     color: var(--color-text-secondary);
