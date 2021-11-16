@@ -3,7 +3,10 @@ module.exports = {
         [
             "postcss-preset-env",
             {
-                autoprefixer: { grid: true },
+                stage: 3,
+                features: {
+                    "nesting-rules": true,
+                }
             },
         ],
     ],

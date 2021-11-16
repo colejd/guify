@@ -2,7 +2,7 @@
   "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
@@ -50,7 +50,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.11",
     "postcss-loader": "^6.2.0",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.0.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.63.0",
     "webpack-cli": "^4.9.1",
