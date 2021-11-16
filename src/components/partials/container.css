@@ -1,0 +1,7 @@
+@import "../variables.css";
+
+.guify-component-container {
+    position: relative;
+    min-height: var(--size-component-height);
+    margin-bottom: var(--size-component-spacing);
+}
