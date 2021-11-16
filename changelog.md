@@ -3,6 +3,7 @@
 - Fixed incorrect `interval` height and background
 - Made component height `2rem` by default
     - Should fix component height issues on some pages
+- Reduced line height for `display` component
 
 ## 0.14.0
 
