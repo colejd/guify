@@ -9,7 +9,7 @@
 .guify-folder div {
     display: inline-block;
     vertical-align: sub;
-    line-height: calc(var(--size-component-height) + 5px);
+    line-height: var(--size-component-height);
 }
 
 .guify-folder:hover,
@@ -35,6 +35,7 @@
 
 .guify-folder .guify-folder-arrow {
     width: 1.5em;
+    vertical-align: middle;
 }
 
 /* Disabled styles */
