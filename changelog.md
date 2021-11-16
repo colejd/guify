@@ -1,3 +1,7 @@
+## 0.14.3
+
+- Fixed vertical alignment of arrow in `folder` component
+
 ## 0.14.2
 
 - Fixed extra padding below `range` and `color` components
