@@ -6,17 +6,13 @@
     display: inline-block;
     margin-right: 2%;
     vertical-align: top;
-}
-
-.guify-component-label-text {
-    color: var(--color-text-primary);
-    display: inline-block;
-    vertical-align: sub;
     min-height: var(--size-component-height);
     line-height: var(--size-component-height);
+
+    color: var(--color-text-primary);
 }
 
 /* Disabled styles */
-.disabled .guify-component-label-text {
+.disabled .guify-component-label {
     color: var(--color-text-disabled);
 }
