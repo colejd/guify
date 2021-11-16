@@ -1,7 +1,7 @@
 # guify
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/colejd/guify/master/docs/Guify.png" width="80%">
+    <img src="https://raw.githubusercontent.com/colejd/guify/main/docs/Guify.png" width="80%">
 </p>
 <p align="center">
     <a href="https://badge.fury.io/js/guify"><img src="https://badge.fury.io/js/guify.svg" alt="npm version" height="18"></a>
