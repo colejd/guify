@@ -1,3 +1,8 @@
+## 0.14.2
+
+- Fixed extra padding below `range` and `color` components
+- Fixed vertical alignment of `title` component
+
 ## 0.14.1
 
 - Fixed incorrect `interval` height and background
