@@ -58,7 +58,7 @@ export default class Color extends ComponentBase {
         });
 
         css(icon, {
-            position: "relative",
+            position: "absolute", // Fixes extra height being applied below for some reason
             display: "inline-block",
             width: "12.5%",
             height: theme.sizing.componentHeight,
