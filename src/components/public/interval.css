@@ -12,7 +12,7 @@
 .guify-interval {
     -webkit-appearance: none;
     position: absolute;
-    height: 20px;
+    height: var(--size-component-height);
     margin: 0px 0;
     width: 33%;
     left: 54.5%;
@@ -38,9 +38,9 @@
 
 .disabled .guify-interval {
     pointer-events: none;
-    background-color: var(--range-track-color-disabled);
+    background-color: var(--interval-track-color-disabled);
 }
 
 .disabled .guify-interval .guify-interval-handle {
-    background: var(--range-thumb-color-disabled);
+    background: var(--interval-thumb-color-disabled);
 }
