@@ -12,7 +12,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     vertical-align: sub;
-    line-height: var(--size-component-height);
+    line-height: 1rem;
     user-select: text;
 }
 
