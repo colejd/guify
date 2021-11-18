@@ -6,6 +6,7 @@
     width: 100%;
     opacity: 1.0;
     position: relative;
+    top: 0;
     cursor: default;
 }
 

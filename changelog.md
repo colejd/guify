@@ -1,3 +1,9 @@
+## 0.15.0
+
+- Made menu bar visible in fullscreen
+- If `panelMode` is `outer`, the menu will become `inner` when fullscreen
+- Introduced `.guify-fullscreen` CSS class that attaches to the root when fullscreen is enabled
+- Fixed up `barMode = "none"` behavior to match docs
 ## 0.14.3
 
 - Fixed vertical alignment of arrow in `folder` component

@@ -2,7 +2,7 @@ import css from "dom-css";
 
 import { default as Theme } from "./theme";
 
-import "./components/internal/container.css";
+import "./gui.css";
 
 import { ComponentManager } from "./component-manager";
 
@@ -19,10 +19,11 @@ export default class GUI {
 
         opts.width = opts.width || 300;
         opts.root = opts.root || document.body;
-        opts.align = opts.align || "left"; // Can be 'left' or 'right'
+        opts.align = "left";//opts.align || "left"; // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
-        opts.barMode = opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
-        opts.panelMode = opts.panelMode || "inner";
+        opts.barMode = "above";// opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
+        opts.panelMode = "outer";//opts.panelMode || "inner";
+        opts.panelOverflowBehavior = opts.panelOverflowBehavior || "scroll";
         opts.pollRateMS = opts.pollRateMS || 100;
         opts.open = opts.open || false;
 
@@ -84,16 +85,21 @@ export default class GUI {
         this.container = document.createElement("div");
         this.container.classList.add("guify-container");
 
-        let containerCSS = {};
-
         // Position the container relative to the root based on `opts`
-        if(this.opts.barMode == "overlay" || this.opts.barMode == "above" || this.opts.barMode == "none"){
-            containerCSS.position = "absolute";
+        if (this.hasRoot && this.opts.barMode == "above") {
+            this.container.classList.add("guify-container-above");
+        } else if (this.hasRoot && this.opts.barMode == "overlay") {
+            this.container.classList.add("guify-container-overlay");
+        } else if (this.hasRoot && this.opts.barMode == "offset") {
+            // Acts like "above", but adds top margin to the root to offset the title bar.
+            this.container.classList.add("guify-container-above");
+            // Add top margin to the root to offset for the menu bar.
+            console.log(window.getComputedStyle(this.opts.root).getPropertyValue("margin-top"));
+            let topMargin = window.getComputedStyle(this.opts.root).getPropertyValue("margin-top") || "0px";
+            css(this.opts.root, {
+                marginTop: `calc(${topMargin} + var(--size-menu-bar-height))`,
+            });
         }
-        if(this.hasRoot && this.opts.barMode == "above"){
-            containerCSS.top = `-${this.theme.sizing.menuBarHeight}`;
-        }
-        css(this.container, containerCSS);
 
         // Insert the container into the root as the first element
         this.opts.root.insertBefore(this.container, this.opts.root.childNodes[0]);

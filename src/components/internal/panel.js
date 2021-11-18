@@ -4,6 +4,8 @@ import css from "dom-css";
 
 import "./panel.css";
 
+import { default as HeaderPartial } from "../partials/header";
+
 export class Panel extends ComponentBase {
     constructor(root, opts, theme) {
         super(root, opts, theme, false);
@@ -14,19 +16,31 @@ export class Panel extends ComponentBase {
         css(this.container, {
             width: opts.width,
             opacity: opts.opacity || 1.0,
-            left: opts.align == "left" ? "0" : "unset",
-            right: opts.align == "left" ? "unset" : "0",
         });
 
-        if(opts.panelMode == "outer") {
-            css(this.container, {
-                left: opts.align == "left" ? "unset" : "100%",
-                right: opts.align == "left" ? "100%" : "unset",
-            });
+        if (opts.align == "left") {
+            if (opts.panelMode == "outer") {
+                this.container.classList.add("guify-panel-container-left-outer");
+            } else if (opts.panelMode == "inner") {
+                this.container.classList.add("guify-panel-container-left-inner");
+            }
+        } else {
+            if (opts.panelMode == "outer") {
+                this.container.classList.add("guify-panel-container-right-outer");
+            } else if (opts.panelMode == "inner") {
+                this.container.classList.add("guify-panel-container-right-inner");
+            }
+        }
+
+        if (opts.panelOverflowBehavior == "scroll") {
+            this.container.classList.add("guify-panel-container-scrollable");
         }
 
         if(opts.barMode === "none") {
-            this._MakeToggleButton();
+            // this._MakeToggleButton();
+            css(this.container, {
+                maxHeight: "100%",
+            });
         }
 
         // Create panel inside container
@@ -35,7 +49,7 @@ export class Panel extends ComponentBase {
 
         // Add a title to the panel
         if(opts.barMode === "none" && opts.title)
-            require("../partials/header")(this.panel, opts.title, theme);
+            HeaderPartial(this.panel, opts.title, theme);
 
     }
 

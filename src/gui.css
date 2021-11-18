@@ -1,0 +1,28 @@
+@import "./components/variables.css";
+
+.guify-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 11px;
+    z-index: 9999;
+}
+
+.guify-container-overlay {
+    height: 100%;
+}
+
+.guify-container-above {
+    height: calc(100% + var(--size-menu-bar-height));
+    bottom: 0;
+}
+
+/* Overlay container when fullscreen */
+.guify-fullscreen .guify-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
