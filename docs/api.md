@@ -24,11 +24,15 @@ Creates the GUI using the `opts` object for configuration.
             - In this mode, the menu bar can overlap content just above the root. If you don't want this, you can either use the `"offset"` mode, or set `margin-top: var(--size-menu-bar-height)`.
         - `"offset"`: Similar to `"above"`, but some `"margin-top"` is added to the root to compensate for the menu bar's height.
     - I've tried to cover a variety of use cases here. If yours isn't covered, you can use `var(--size-menu-bar-height)` in your CSS to offset things yourself.
-- `panelMode` (String, default=`"inner"`): Changes the way the panel show relative to the container.
+- `panelMode` (String, default=`"inner"`): Changes the way the panel is anchored relative to the container.
     - Values:
         - `"inner"`: The panel shows inside of the container.
         - `"outer"`: The panel shows outside the container, positioned along whichever side you specified with `align`.
     - If you want to put the panel anywhere, use `"inner"` and adjust the CSS however you'd like.
+- `panelOverflowBehavior` (String, default=`"scroll"`): Changes the way the panel behaves when its contents exceed the height of the container.
+    - Values:
+        - `"scroll"`: The contents will be scrollable.
+        - `"overflow"`: The panel will grow beyond the edge of the container.
 - `opacity` (float, default=`1.0`): Opacity value for the panel.
 - `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
 - `open` (bool, default=`false`): If true, the panel will be forced open at startup.
