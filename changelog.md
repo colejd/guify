@@ -5,6 +5,13 @@
 - Introduced `.guify-fullscreen` CSS class that attaches to the root when fullscreen is enabled
 - Fixed up `barMode = "none"` behavior to match docs
 - Added `panelOverflowBehavior` parameter to GUI opts, which lets you make the panel scrollable if it grows beyond the edge of the container.
+- Fixed brief display of incorrect value when initializing `range` and `display`
+
+- Fixed the font on Safari
+- Fixed `range` backgrounds on Safari
+- Made `range`, `interval`, and `color` touch-friendly
+- Made `interval` accessible
+
 ## 0.14.3
 
 - Fixed vertical alignment of arrow in `folder` component
