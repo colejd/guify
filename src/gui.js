@@ -19,10 +19,10 @@ export default class GUI {
 
         opts.width = opts.width || 300;
         opts.root = opts.root || document.body;
-        opts.align = "left";//opts.align || "left"; // Can be 'left' or 'right'
+        opts.align = opts.align || "left"; // Can be 'left' or 'right'
         opts.opacity = opts.opacity || 1.0;
-        opts.barMode = "above";// opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
-        opts.panelMode = "outer";//opts.panelMode || "inner";
+        opts.barMode = opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
+        opts.panelMode = opts.panelMode || "inner";
         opts.panelOverflowBehavior = opts.panelOverflowBehavior || "scroll";
         opts.pollRateMS = opts.pollRateMS || 100;
         opts.open = opts.open || false;
