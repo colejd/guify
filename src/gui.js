@@ -34,6 +34,12 @@ export default class GUI {
         this._ConstructElements();
         this._LoadStyles();
 
+        if (screenfull.isEnabled) {
+            screenfull.on("change", () => {
+                this.opts.root.classList.toggle("guify-fullscreen", screenfull.isFullscreen);
+            });
+        }
+
         this.componentManager = new ComponentManager(this.theme);
 
         this.loadedComponents = [];
