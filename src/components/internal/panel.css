@@ -12,6 +12,8 @@
     overflow: scroll;
 }
 
+/* Container modes (i.e. inner, outer) */
+
 .guify-panel-container-right-inner {
     right: 0;
     left: unset;
@@ -73,8 +75,6 @@
 }
 
 .guify-panel input {
-    font-family: 'Hack';
-    font-size: 11px;
     display: inline;
 }
 

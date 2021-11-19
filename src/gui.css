@@ -5,8 +5,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    font-size: 11px;
     z-index: 9999;
+}
+
+.guify-container, .guify-container * {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
 }
 
 .guify-container-overlay {

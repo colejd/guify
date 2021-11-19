@@ -63,17 +63,12 @@ export default class GUI {
             document.getElementsByTagName("head")[0].appendChild(elem);
         };
         // Load the fonts we'll be using
-        // Mono font
-        AppendFont("//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css");
-        // Theme font
-        if(this.theme.font) {
-            // Set default font to theme font
-            if(this.theme.font.fontURL) AppendFont(this.theme.font.fontURL);
-            if(this.theme.font.fontFamily) css(this.container, "font-family", this.theme.font.fontFamily);
-            if(this.theme.font.fontSize) css(this.container, "font-size", this.theme.font.fontSize);
-            if(this.theme.font.fontWeight) css(this.container, "font-weight", this.theme.font.fontWeight);
+        if(this.theme.font && this.theme.font.fontURL) {
+            // Load theme font
+            AppendFont(this.theme.font.fontURL);
         } else {
-            css(this.container, "font-family", "'Hack', monospace");
+            // Fall back on "bundled" font
+            AppendFont("//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css");
         }
     }
 

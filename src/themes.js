@@ -72,7 +72,8 @@ module.exports = {
         font: {
             fontFamily: "helvetica, sans-serif",
             fontSize: "14px",
-            fontWeight: "100"
+            fontWeight: "100",
+            inputFontFamily: "ui-monospace, monospace",
         },
     },
 
