@@ -6,6 +6,7 @@
 - Fixed up `barMode = "none"` behavior to match docs
 - Added `panelOverflowBehavior` parameter to GUI opts, which lets you make the panel scrollable if it grows beyond the edge of the container.
 - Fixed brief display of incorrect value when initializing `range` and `display`
+- Added a bit of top margin for `title` components
 
 - Fixed the font on Safari
 - Fixed `range` backgrounds on Safari
