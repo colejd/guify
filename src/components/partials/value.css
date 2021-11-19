@@ -20,6 +20,8 @@
     -webkit-box-sizing: border-box !important;
 
     font-family: var(--font-family-for-input);
+
+    border-radius: 0;
 }
 
 .guify-value-input-right {

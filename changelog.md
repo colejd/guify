@@ -7,9 +7,11 @@
 - Added `panelOverflowBehavior` parameter to GUI opts, which lets you make the panel scrollable if it grows beyond the edge of the container.
 - Fixed brief display of incorrect value when initializing `range` and `display`
 - Added a bit of top margin for `title` components
+- Fixed styling issues on Safari iOS for `text`, `range`, and `checkbox`
+- Fixed incorrect font use on Safari iOS.
+- Added an `inputFontFamily` param to theme objects, allowing a secondary font just for input fields
+- If you provide your own font URL to the theme object, the default `"Hack"` font won't be downloaded
 
-- Fixed the font on Safari
-- Fixed `range` backgrounds on Safari
 - Made `range`, `interval`, and `color` touch-friendly
 - Made `interval` accessible
 
