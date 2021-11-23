@@ -11,9 +11,10 @@
 - Fixed incorrect font use on Safari iOS.
 - Added an `inputFontFamily` param to theme objects, allowing a secondary font just for input fields
 - If you provide your own font URL to the theme object, the default `"Hack"` font won't be downloaded
+- Made `range` and `interval` components respect `precision` more closely. `precision` now affects the value itself, meaning the value and its display will always match.
+- Fixed a bug in `interval` components with a `log` scale, wherein setting the value text would cause the wrong value to be used
 
 - Made `range`, `interval`, and `color` touch-friendly
-- Made `interval` accessible
 
 ## 0.14.3
 
