@@ -194,7 +194,7 @@ export default class Interval extends ComponentBase {
         this.input.oninput = () => {
             // let position = parseFloat(data.target.value);
             // var scaledValue = this._Value(position);
-            // this.valueComponent.value = this._FormatNumber(scaledValue, this.precision);
+            // this.valueComponent.value = this._RoundNumber(scaledValue, this.precision);
             this.lValue.value = this.value[0];
             this.rValue.value = this.value[1];
             this.emit("input", this.value);
@@ -218,6 +218,8 @@ export default class Interval extends ComponentBase {
                 }
                 // Prevent value from going beyond interval upper value
                 value = Math.min(value, otherValue);
+
+                value = this._RoundNumber(value, this.precision);
 
                 this.lValue.value = value;
                 this.value = [value, otherValue];
@@ -249,6 +251,8 @@ export default class Interval extends ComponentBase {
                 }
                 // Prevent value from going below interval lower value
                 value = Math.max(value, otherValue);
+
+                value = this._RoundNumber(value, this.precision);
 
                 this.rValue.value = value;
                 this.value = [otherValue, value];
@@ -324,7 +328,7 @@ export default class Interval extends ComponentBase {
             newValue = this.min + this.step * Math.round((newValue - this.min) / this.step);
         }
 
-        this.value[this.activeIndex] = newValue;
+        this.value[this.activeIndex] = this._RoundNumber(newValue, this.precision);
 
         // Update and send the event:
         this._RefreshHandles();
@@ -335,19 +339,19 @@ export default class Interval extends ComponentBase {
     {
         if(this.focused !== true)
         {
-            this.lValue.value = this._FormatNumber(value[0], this.precision);
-            this.rValue.value = this._FormatNumber(value[1], this.precision);
+            this.lValue.value = this._RoundNumber(parseFloat(value[0]), this.precision);
+            this.rValue.value = this._RoundNumber(parseFloat(value[1]), this.precision);
 
-            this.lastValue = [ this.lValue.value, this.rValue.value ];
+            this.lastValue = [ parseFloat(value[0]), parseFloat(value[1]) ];
         }
     }
 
     // Formats the number for display.
-    // `opts.precision` lets you customize how many decimal places you want here.
+    // `opts.precision` lets you customize how many decimal places you want here at most.
     // The default is 3.
-    _FormatNumber(value, precision) {
-        // https://stackoverflow.com/a/29249277
-        return value.toFixed(precision).replace(/\.?0*$/,"");
+    _RoundNumber(value, precision) {
+        // https://stackoverflow.com/a/12830454/7138792
+        return +parseFloat(value).toFixed(precision);
     }
 
     GetValue() {
