@@ -85,9 +85,9 @@ export default class File extends ComponentBase {
             this.input.click();
         };
 
-        this.container.addEventListener("keydown", (e) => {
-            // Listen for Space or Enter
-            if(e.which === 13 || e.which === 32) {
+        this.container.addEventListener("keydown", (event) => {
+            if (event.code === "Enter" || event.code === "Space") {
+                event.preventDefault();
                 this.input.click();
             }
         });
