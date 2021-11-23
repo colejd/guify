@@ -1,9 +1,52 @@
 @import "../variables.css";
 
+/* Container */
+
 .guify-panel-container {
     position: absolute;
     background: var(--color-panel-background);
 }
+
+.guify-panel-container-scrollable {
+    max-height: calc(100% - var(--size-menu-bar-height));
+    overflow: scroll;
+}
+
+/* Container modes (i.e. inner, outer) */
+
+.guify-panel-container-right-inner {
+    right: 0;
+    left: unset;
+}
+
+.guify-panel-container-left-inner {
+    right: unset;
+    left: 0;
+}
+
+.guify-panel-container-right-outer {
+    right: unset;
+    left: 100%;
+}
+
+.guify-panel-container-left-outer {
+    right: 100%;
+    left: unset;
+}
+
+.guify-fullscreen .guify-panel-container-right-inner,
+.guify-fullscreen .guify-panel-container-right-outer {
+    right: 0;
+    left: unset;
+}
+
+.guify-fullscreen .guify-panel-container-left-inner,
+.guify-fullscreen .guify-panel-container-left-outer {
+    right: unset;
+    left: 0;
+}
+
+/* Panel (in container) */
 
 .guify-panel {
     padding: 14px;
@@ -32,8 +75,6 @@
 }
 
 .guify-panel input {
-    font-family: 'Hack';
-    font-size: 11px;
     display: inline;
 }
 

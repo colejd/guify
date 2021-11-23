@@ -15,7 +15,7 @@ export default class Theme {
     }
 
     /**
-     * Applies the CSS to the global scope.
+     * Takes the values from the theme object and applies them as CSS variables to the page.
      */
     Apply() {
         console.log(this);
@@ -41,6 +41,12 @@ export default class Theme {
         root.style.setProperty("--size-component-height", this.sizing.componentHeight);
         root.style.setProperty("--size-component-spacing", this.sizing.componentSpacing);
         root.style.setProperty("--size-label-width", this.sizing.labelWidth);
+
+        root.style.setProperty("--font-family", this.font.fontFamily);
+        root.style.setProperty("--font-size", this.font.fontSize);
+        root.style.setProperty("--font-weight", this.font.fontWeight);
+
+        root.style.setProperty("--font-family-for-input", this.font.inputFontFamily);
     }
 }
 
@@ -70,5 +76,14 @@ const baseTheme = {
         componentHeight: "20px",
         componentSpacing: "5px",
         labelWidth: "42%",
+    },
+
+    font: {
+        fontFamily: "'Hack', ui-monospace, monospace",
+        fontSize: "11px",
+        fontWeight: "400",
+
+        // The font family used for `value` components.
+        inputFontFamily: "'Hack', ui-monospace, monospace",
     },
 };

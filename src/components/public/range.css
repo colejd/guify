@@ -17,6 +17,11 @@ input[type=range].guify-range {
     margin: 0px 0;
     padding: 0;
     display: inline-block;
+
+    /* Fixes for Safari iOS */
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
 }
 
 .disabled input[type=range].guify-range {
@@ -45,6 +50,7 @@ input[type=range].guify-range::-webkit-slider-thumb {
     cursor: ew-resize;
     -webkit-appearance: none;
     margin-top: 0px;
+    border: 0;
 }
 input[type=range].guify-range:focus::-webkit-slider-runnable-track {
     background: var(--range-thumb-highlight);

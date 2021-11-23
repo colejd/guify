@@ -82,13 +82,13 @@ export default class Range extends ComponentBase {
         if (isnumeric(this.step)) {
             this.input.step = this.step;
         }
-        this.input.value = this.initial;
+        this.input.value = this._Position(this.initial);
 
         css(this.input, {
             width: `calc(100% - ${theme.sizing.labelWidth} - 16% - 0.5em)`
         });
 
-        this.valueComponent = ValuePartial(this.container, this._Position(this.initial), theme, "16%");
+        this.valueComponent = ValuePartial(this.container, this.initial, theme, "16%");
         // Add ARIA attribute to input based on label text
         if(opts.label) this.valueComponent.setAttribute("aria-label", opts.label + " value");
 
@@ -181,7 +181,7 @@ export default class Range extends ComponentBase {
             // Quantize to step
             newValue = Math.ceil((newValue - this.min) / this.step) * this.step + this.min;
         }
-        return newValue;
+        return this._FormatNumber(newValue, this.precision);
     }
 
     SetValue(value) {
@@ -202,6 +202,6 @@ export default class Range extends ComponentBase {
     // The default is 3.
     _FormatNumber(value, precision) {
         // https://stackoverflow.com/a/29249277
-        return value.toFixed(precision).replace(/\.?0*$/,"");
+        return +parseFloat(value).toFixed(precision);
     }
 }

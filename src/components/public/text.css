@@ -11,6 +11,9 @@
     font-family: inherit;
     box-sizing: border-box !important;
     resize: vertical;
+
+    /* Fixes for Safari iOS */
+    border-radius: 0;
 }
 
 .guify-text-input:focus {

@@ -1,3 +1,20 @@
+## 0.15.0
+
+- POTENTIALLY BREAKING CHANGE: Modified the way the GUI elements are constructed internally. If you're modifying the internals in your CSS, make sure everything looks right!
+- Made menu bar visible in fullscreen
+- If `panelMode` is `outer`, the menu will become `inner` when fullscreen
+- Introduced `.guify-fullscreen` CSS class that attaches to the root when fullscreen is enabled
+- Fixed up `barMode = "none"` behavior to match docs
+- Added `panelOverflowBehavior` parameter to GUI opts, which lets you make the panel scrollable if it grows beyond the edge of the container.
+- Fixed brief display of incorrect value when initializing `range` and `display`
+- Added a bit of top margin for `title` components
+- Fixed styling issues on Safari iOS for `text`, `range`, and `checkbox`
+- Fixed incorrect font use on Safari iOS.
+- Added an `inputFontFamily` param to theme objects, allowing a secondary font just for input fields
+- If you provide your own font URL to the theme object, the default `"Hack"` font won't be downloaded
+- Made `range` and `interval` components respect `precision` more closely. `precision` now affects the value itself, meaning the value and its display will always match.
+- Fixed a bug in `interval` components with a `log` scale, wherein setting the value text would cause the wrong value to be used
+
 ## 0.14.3
 
 - Fixed vertical alignment of arrow in `folder` component

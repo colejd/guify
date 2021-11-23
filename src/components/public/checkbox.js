@@ -11,15 +11,16 @@ export default class Checkbox extends ComponentBase {
         this.label = LabelPartial(this.container, opts.label, theme);
 
         this.input = this.container.appendChild(document.createElement("input"));
-        this.input.id = "checkbox-" + opts.label + this.uuid;
+        this.input.id = "guify-checkbox-" + opts.label + this.uuid;
         this.input.type = "checkbox";
         this.input.checked = opts.initial;
         this.input.classList.add("guify-checkbox");
         // Add ARIA attribute to input based on label text
         if(opts.label) this.input.setAttribute("aria-label", opts.label);
 
-        var label = this.container.appendChild(document.createElement("label"));
-        label.htmlFor = this.input.id;
+        // This is a HTML `<label>` element, not a LabelPartial.
+        var labelElement = this.container.appendChild(document.createElement("label"));
+        labelElement.htmlFor = this.input.id;
 
         setTimeout(() => {
             this.emit("initialized", this.input.checked);

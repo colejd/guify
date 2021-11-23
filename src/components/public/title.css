@@ -23,3 +23,9 @@
 .disabled .guify-title-text {
     background-color: var(--color-text-disabled);
 }
+
+/* Add a bit of top margin if immediately after another component */
+
+.guify-component-container > .guify-title {
+    margin-top: 0.5em;
+}

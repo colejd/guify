@@ -2,7 +2,7 @@ import css from "dom-css";
 
 import { default as Theme } from "./theme";
 
-import "./components/internal/container.css";
+import "./gui.css";
 
 import { ComponentManager } from "./component-manager";
 
@@ -23,6 +23,7 @@ export default class GUI {
         opts.opacity = opts.opacity || 1.0;
         opts.barMode = opts.barMode || "offset"; // Can be 'none', 'above', 'offset', or 'overlay'
         opts.panelMode = opts.panelMode || "inner";
+        opts.panelOverflowBehavior = opts.panelOverflowBehavior || "scroll";
         opts.pollRateMS = opts.pollRateMS || 100;
         opts.open = opts.open || false;
 
@@ -33,6 +34,12 @@ export default class GUI {
 
         this._ConstructElements();
         this._LoadStyles();
+
+        if (screenfull.isEnabled) {
+            screenfull.on("change", () => {
+                this.opts.root.classList.toggle("guify-fullscreen", screenfull.isFullscreen);
+            });
+        }
 
         this.componentManager = new ComponentManager(this.theme);
 
@@ -56,17 +63,12 @@ export default class GUI {
             document.getElementsByTagName("head")[0].appendChild(elem);
         };
         // Load the fonts we'll be using
-        // Mono font
-        AppendFont("//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css");
-        // Theme font
-        if(this.theme.font) {
-            // Set default font to theme font
-            if(this.theme.font.fontURL) AppendFont(this.theme.font.fontURL);
-            if(this.theme.font.fontFamily) css(this.container, "font-family", this.theme.font.fontFamily);
-            if(this.theme.font.fontSize) css(this.container, "font-size", this.theme.font.fontSize);
-            if(this.theme.font.fontWeight) css(this.container, "font-weight", this.theme.font.fontWeight);
+        if(this.theme.font && this.theme.font.fontURL) {
+            // Load theme font
+            AppendFont(this.theme.font.fontURL);
         } else {
-            css(this.container, "font-family", "'Hack', monospace");
+            // Fall back on "bundled" font
+            AppendFont("//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css");
         }
     }
 
@@ -78,16 +80,21 @@ export default class GUI {
         this.container = document.createElement("div");
         this.container.classList.add("guify-container");
 
-        let containerCSS = {};
-
         // Position the container relative to the root based on `opts`
-        if(this.opts.barMode == "overlay" || this.opts.barMode == "above" || this.opts.barMode == "none"){
-            containerCSS.position = "absolute";
+        if (this.hasRoot && this.opts.barMode == "above") {
+            this.container.classList.add("guify-container-above");
+        } else if (this.hasRoot && this.opts.barMode == "overlay") {
+            this.container.classList.add("guify-container-overlay");
+        } else if (this.hasRoot && this.opts.barMode == "offset") {
+            // Acts like "above", but adds top margin to the root to offset the title bar.
+            this.container.classList.add("guify-container-above");
+            // Add top margin to the root to offset for the menu bar.
+            console.log(window.getComputedStyle(this.opts.root).getPropertyValue("margin-top"));
+            let topMargin = window.getComputedStyle(this.opts.root).getPropertyValue("margin-top") || "0px";
+            css(this.opts.root, {
+                marginTop: `calc(${topMargin} + var(--size-menu-bar-height))`,
+            });
         }
-        if(this.hasRoot && this.opts.barMode == "above"){
-            containerCSS.top = `-${this.theme.sizing.menuBarHeight}`;
-        }
-        css(this.container, containerCSS);
 
         // Insert the container into the root as the first element
         this.opts.root.insertBefore(this.container, this.opts.root.childNodes[0]);

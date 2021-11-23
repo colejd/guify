@@ -11,6 +11,7 @@ input[type=checkbox].guify-checkbox {
     -webkit-appearance: none;
     margin: 0;
     border-radius: 0;
+    border: none;
     cursor: pointer;
 }
 

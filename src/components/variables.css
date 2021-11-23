@@ -19,4 +19,8 @@
     --size-component-height: 2rem;
     --size-component-spacing: 5px;
     --size-label-width: 42%;
+
+    --font-family: ui-monospace, monospace;
+    --font-height: 11px;
+    --font-weight: 400;
 }

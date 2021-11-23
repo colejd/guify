@@ -11,21 +11,29 @@ Creates the GUI using the `opts` object for configuration.
 `opts` may have the following properties:
 - `title` (String): The name used on the menu bar / panel.
 - `theme` (String or Object, default=`"dark"`): The name of the theme to be used, or an object matching one of the themes in `themes.js` if you want to create your own.
-    - Values: `"light"`, `"dark"`, `"yorha"`, custom theme object
+    - Values: `"light"`, `"dark"`, `"yorha"`, `custom theme object`
+    - If you use a custom theme object, see `theme.js` for the variables you can set.
 - `root` (Element, default=`document.body`): The HTML element that is used as the parent of the created menu and panel.
 - `width` (String, default=`"300"`): The width of the panel. You can use any CSS-compatible value here, so you can use `"30%"` or `"20em"`, for example.
 - `align` (String, default=`"right"`): Aligns the panel to the left or right side of the root.
     - Values:  `"left"`, `"right"`
-- `barMode` (String, default=`"overlay"`): Changes the way the layout bar is inserted into the root.
+- `barMode` (String, default=`"offset"`): Changes the way the layout bar is inserted into the root.
     - Values:
         - `"none"`: No menu bar is created, and the panel will always show.
         - `"overlay"`: The menu bar is fixed to the top of the root, overlapping content beneath it.
         - `"above"`: The menu bar is fixed above the root. Does not alter layout within root.
-        - `"offset"`: The menu bar is inserted as the first child of the root with relative positioning, so other content within the root will be pushed down. The root's size is adjusted to compensate.
-- `panelMode` (String, default=`"inner"`): Changes the way the panel show relative to the container.
+            - In this mode, the menu bar can overlap content just above the root. If you don't want this, you can either use the `"offset"` mode, or set `margin-top: var(--size-menu-bar-height)`.
+        - `"offset"`: Similar to `"above"`, but some `"margin-top"` is added to the root to compensate for the menu bar's height.
+    - I've tried to cover a variety of use cases here. If yours isn't covered, you can use `var(--size-menu-bar-height)` in your CSS to offset things yourself.
+- `panelMode` (String, default=`"inner"`): Changes the way the panel is anchored relative to the container.
     - Values:
         - `"inner"`: The panel shows inside of the container.
         - `"outer"`: The panel shows outside the container, positioned along whichever side you specified with `align`.
+    - If you want to put the panel anywhere, use `"inner"` and adjust the CSS however you'd like.
+- `panelOverflowBehavior` (String, default=`"scroll"`): Changes the way the panel behaves when its contents exceed the height of the container.
+    - Values:
+        - `"scroll"`: The contents will be scrollable.
+        - `"overflow"`: The panel will grow beyond the edge of the container.
 - `opacity` (float, default=`1.0`): Opacity value for the panel.
 - `pollRateMS` (int, default=`100`): The rate in milliseconds at which the components will be refreshed from their bound variables.
 - `open` (bool, default=`false`): If true, the panel will be forced open at startup.

@@ -16,6 +16,10 @@ export default class Display extends ComponentBase {
         this.text = this.container.appendChild(document.createElement("div"));
         this.text.classList.add("guify-display");
 
+        if (opts.initial) {
+            this.SetValue(opts.initial);
+        }
+
         // Add ARIA attribute to text based on label text
         if(opts.label) this.text.setAttribute("aria-label", opts.label);
     }
