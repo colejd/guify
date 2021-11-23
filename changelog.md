@@ -15,8 +15,6 @@
 - Made `range` and `interval` components respect `precision` more closely. `precision` now affects the value itself, meaning the value and its display will always match.
 - Fixed a bug in `interval` components with a `log` scale, wherein setting the value text would cause the wrong value to be used
 
-- Made `range`, `interval`, and `color` touch-friendly
-
 ## 0.14.3
 
 - Fixed vertical alignment of arrow in `folder` component
