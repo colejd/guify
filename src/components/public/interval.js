@@ -205,13 +205,16 @@ export default class Interval extends ComponentBase {
             let rawValue = this.lValue.value;
             let otherValue = parseFloat(this.rValue.value);
             if (Number(parseFloat(rawValue)) == rawValue) {
+                let min = (this.scale == "log") ? Math.exp(this.min) : this.min;
+                let max = (this.scale == "log") ? Math.exp(this.max) : this.max;
+
                 // Input number is valid
                 var value = parseFloat(rawValue);
                 // Clamp to input range
-                value = Math.min(Math.max(value, this.min), this.max);
+                value = Math.min(Math.max(value, min), max);
                 // Map to nearest step
                 if (this.step) {
-                    value = Math.ceil((value - this.min) / this.step ) * this.step + this.min;
+                    value = Math.ceil((value - min) / this.step ) * this.step + min;
                 }
                 // Prevent value from going beyond interval upper value
                 value = Math.min(value, otherValue);
@@ -232,13 +235,17 @@ export default class Interval extends ComponentBase {
             let rawValue = this.rValue.value;
             let otherValue = parseFloat(this.lValue.value);
             if (Number(parseFloat(rawValue)) == rawValue) {
+                let min = (this.scale == "log") ? Math.exp(this.min) : this.min;
+                let max = (this.scale == "log") ? Math.exp(this.max) : this.max;
+
                 // Input number is valid
                 var value = parseFloat(rawValue);
                 // Clamp to input range
-                value = Math.min(Math.max(value, this.min), this.max);
+                value = Math.min(Math.max(value, min), max);
+
                 // Map to nearest step
                 if (this.step) {
-                    value = Math.ceil((value - this.min) / this.step ) * this.step + this.min;
+                    value = Math.ceil((value - min) / this.step ) * this.step + min;
                 }
                 // Prevent value from going below interval lower value
                 value = Math.max(value, otherValue);
