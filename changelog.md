@@ -1,5 +1,6 @@
 ## 0.15.0
 
+- POTENTIALLY BREAKING CHANGE: Modified the way the GUI elements are constructed internally. If you're modifying the internals in your CSS, make sure everything looks right!
 - Made menu bar visible in fullscreen
 - If `panelMode` is `outer`, the menu will become `inner` when fullscreen
 - Introduced `.guify-fullscreen` CSS class that attaches to the root when fullscreen is enabled
