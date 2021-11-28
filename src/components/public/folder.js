@@ -73,6 +73,12 @@ export default class Folder extends ComponentBase {
             this.folderContainer.classList.add("guify-folder-closed");
             this.arrow.innerHTML = "&#9656;"; // Right triangle
         }
+    }
 
+    Remove() {
+        if (this.folderContainer) {
+            this.folderContainer.parentNode.removeChild(this.folderContainer);
+        }
+        super.Remove();
     }
 }
