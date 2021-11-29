@@ -1,3 +1,7 @@
+## 0.15.1
+
+- Fixed the
+
 ## 0.15.0
 
 - POTENTIALLY BREAKING CHANGE: Modified the way the GUI elements are constructed internally. If you're modifying the internals in your CSS, make sure everything looks right!

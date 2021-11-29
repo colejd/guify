@@ -2,16 +2,19 @@
   "//": "--------------- Script Info --------------- ",
   "name": "guify",
   "author": "Jonathan Cole <joncole04412@gmail.com>",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "A simple GUI for inspecting and changing JS variables",
   "keywords": [
     "gui",
+    "ui",
     "inspect",
     "inspector",
     "bind",
-    "ui",
+    "binding",
     "project",
-    "creative coding"
+    "creative coding",
+    "p5",
+    "three"
   ],
   "repository": {
     "type": "git",
@@ -26,11 +29,11 @@
   "scripts": {
     "build:prod": "webpack --mode=production",
     "build:dev": "webpack --mode=development --progress",
+    "buildall": "npm-run-all build:prod build:dev",
     "build:dev:watch": "webpack --mode=development --progress --watch",
     "serve": "webpack serve --mode=development",
     "develop": "npm-run-all --parallel build:dev:watch serve",
     "test": "mocha --require @babel/register --colors ./test/*.spec.js",
-    "buildall": "npm-run-all build:prod build:dev",
     "prepublish": "npm run-script buildall",
     "ci": "npm run-script buildall",
     "lint": "eslint ."
