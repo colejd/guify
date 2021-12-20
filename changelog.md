@@ -1,6 +1,7 @@
 ## 0.15.1
 
-- Fixed the
+- Fixed a bug preventing folders from being removed with `Remove()`.
+- There was an issue introduced by 0.15.0 where the guify-container covers all content and has a higher z-index than the content underneath, eating all touch/click events. To fix this, the z-index of guify-container is now unset, and the sub-elements are given the z-index that guify-container used to get (9999).
 
 ## 0.15.0
 
