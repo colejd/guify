@@ -104,7 +104,7 @@ Represents true/false.
 Represents a color. Can show RGB or hex colors.
 
 Special options:
--  `format` (String): Can be either `"rgb"` or `"hex"`.
+-  `format` (String): Can be `"rgb"`, `"hex"`, or `"array"`.
 
 ### Display
 `type: 'display'`

@@ -213,6 +213,15 @@
             property: 'hexColor'
         })
 
+        var arrayColor = [0, 0, 0];
+        gui.Register({
+            type: 'color',
+            label: 'Array Color',
+            format: 'array',
+            object: this,
+            property: 'arrayColor'
+        })
+
         var file = null;
         gui.Register({
             type: 'file',
