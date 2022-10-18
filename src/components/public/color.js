@@ -90,7 +90,7 @@ export default class Color extends ComponentBase {
                 var rgb = tinycolor(hex).toRgb();
                 return [rgb.r / 255, rgb.g / 255, rgb.b / 255].map((x) => {
                     return x.toFixed(2);
-                });
+                }).join(", ");
             default:
                 return hex;
         }
