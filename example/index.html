@@ -58,11 +58,12 @@
         </div>
     </div>
 
+    <script src="https://rawcdn.githack.com/nextapps-de/winbox/0.2.6/dist/winbox.bundle.min.js"></script>
     <script>
+        var winbox = new WinBox("Mount DOM");
+        var container = document.createElement("div");
 
-
-        var container = document.getElementById("fake-container");
-        console.log(this);
+        winbox.body.appendChild(container);
 
         // Create the GUI
         var gui = new guify({
@@ -70,7 +71,7 @@
             theme: 'dark', // dark, light, yorha, or theme object
             align: 'right', // left, right
             width: 300,
-            barMode: 'offset', // none, overlay, above, offset
+            barMode: 'none', // none, overlay, above, offset
             panelMode: 'inner',
             opacity: 0.95,
             root: container,
