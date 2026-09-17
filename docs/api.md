@@ -101,10 +101,19 @@ Represents true/false.
 ### Color
 `type: 'color'`
 
-Represents a color. Can show RGB or hex colors.
+Represents a color. The component's value is a string in the chosen `format` (or an array for `"array"`), so it can be passed straight to CSS, p5.js, three.js, and so on.
 
 Special options:
--  `format` (String): Can be either `"rgb"` or `"hex"`.
+- `format` (String, default=`"rgb"`): The representation used for the component's value. Can be:
+    - `"rgb"`: e.g. `"rgb(255, 0, 0)"`
+    - `"rgba"`: e.g. `"rgba(255, 0, 0, 0.5)"`. Adds an alpha slider beneath the picker.
+    - `"hex"`: e.g. `"#ff0000"`
+    - `"hsv"`: e.g. `"hsv(0, 100%, 100%)"`
+    - `"hsva"`: e.g. `"hsva(0, 100%, 100%, 0.5)"`. Adds an alpha slider beneath the picker.
+    - `"hsb"` / `"hsba"`: Identical to `"hsv"` / `"hsva"`, but written as `"hsb(...)"` / `"hsba(...)"`, which is the naming [p5.js](https://p5js.org/reference/#/p5/color) uses.
+    - `"array"`: `[r, g, b]`, with each component between 0 and 1.
+
+Whatever `format` you choose, the bound variable or `initial` value can be given in any of the string formats above (or as a named CSS color), and Guify will convert it.
 
 ### Display
 `type: 'display'`

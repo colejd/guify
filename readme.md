@@ -58,7 +58,7 @@ This adds a `guify` function at the global level, which you can use to construct
 </script>
 ```
 
-See the <a href="#Usage">Usage guide</a> below for more details. [example.html](/example/index.html) also demonstrates this pattern.
+See the <a href="#Usage">Usage guide</a> below for more details. [examples/basic/index.html](/examples/basic/index.html) also demonstrates this pattern.
 
 ### Quick Start (NPM)
 
@@ -135,7 +135,16 @@ gui.Register([
     },
 ```
 
-There are many points of customization here. See the docs at [/docs/api.md](/docs/api.md). A much more robust example can also be found at [example.html](/example/index.html).
+There are many points of customization here. See the docs at [/docs/api.md](/docs/api.md). A much more robust example can also be found at [examples/basic/index.html](/examples/basic/index.html).
+
+### Examples
+
+The [`/examples`](/examples) folder contains runnable examples:
+
+- [`basic`](/examples/basic): Every component type, bound to plain JS variables.
+- [`p5`](/examples/p5): A small [p5.js](https://p5js.org/) sketch controlled by Guify, including `rgba` and `hsb` color pickers.
+
+Run `npm run develop` to build Guify and serve them at `http://localhost:9000/examples/`.
 
 
 ### Building This Package
@@ -145,7 +154,7 @@ NPM commands:
 
 - `build:prod`: Creates `/lib/guify.min.js`, the default script used by this package.
 - `build:dev`: Creates `/lib/guify.js`.
-- `develop`: Runs `build:dev` and serves the `/example` directory as a static web page.
+- `develop`: Runs `build:dev` and serves the repository (including the `/examples` directory) as a static web page.
 
 ---
 

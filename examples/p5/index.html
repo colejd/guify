@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Guify + p5.js Example</title>
+    <link rel="icon" href="data:,">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #3e3e3e;
+            color: #dddddd;
+            font-family: monospace;
+        }
+
+        #sketch-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 4em;
+        }
+
+        #sketch-container p {
+            max-width: 600px;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+
+    <!-- Guify. This loads the development build from this repository (run `npm run develop` first).
+         In your own project, use the CDN build instead:
+         <script src="https://unpkg.com/guify@0.15.1/lib/guify.min.js"></script> -->
+    <script src="../../lib/guify.js"></script>
+
+    <!-- The sketch. The GUI is created inside p5's setup(), which runs once the page has loaded.
+         If you create the GUI outside of setup() from a script in <head>, the <body> doesn't exist
+         yet and Guify has nowhere to put itself. Adding `defer` to the script tag fixes that too. -->
+    <script src="sketch.js"></script>
+</head>
+
+<body>
+    <div id="sketch-container">
+        <p>Click and drag on the canvas to paint. Use the panel on the right to change what gets painted.</p>
+    </div>
+</body>
+
+</html>

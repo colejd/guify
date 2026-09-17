@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
         serveIndex: true,
       },
       open: {
-        target: ['/example'],
+        target: ['/examples'],
       }
     }
   }

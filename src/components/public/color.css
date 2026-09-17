@@ -1,5 +1,9 @@
 @import "../variables.css";
 
+.guify-color-popup {
+    z-index: 1000;
+}
+
 /* Styling for simple-color-picker */
 
 .guify-color .Scp {
@@ -52,6 +56,76 @@
     right: -3px;
     width: 10px;
     height: 2px;
+}
+
+/* Alpha slider (shown for `rgba`, `hsva` and `hsba` formats) */
+
+.guify-color-alpha {
+    position: relative;
+    box-sizing: border-box;
+    height: 16px;
+    margin: 0 5px 5px 5px; /* Matches the 5px padding simple-color-picker adds around the picker */
+    -webkit-user-select: none;
+        -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+}
+
+input[type=range].guify-color-alpha-input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    cursor: ew-resize;
+
+    /* The gradient/checkerboard is drawn on the parent row, so the track itself is transparent */
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+}
+input[type=range].guify-color-alpha-input:focus {
+    outline: none;
+}
+input[type=range].guify-color-alpha-input::-moz-focus-outer {
+    border: 0;
+}
+
+/* Webkit */
+input[type=range].guify-color-alpha-input::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
+}
+input[type=range].guify-color-alpha-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 6px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    box-sizing: border-box;
+    cursor: ew-resize;
+    margin-top: 0;
+}
+
+/* Gecko */
+input[type=range].guify-color-alpha-input::-moz-range-track {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
+}
+input[type=range].guify-color-alpha-input::-moz-range-thumb {
+    height: 16px;
+    width: 6px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    box-sizing: border-box;
+    cursor: ew-resize;
 }
 
 /* Disabled styles */
