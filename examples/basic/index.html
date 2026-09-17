@@ -43,7 +43,7 @@
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script> -->
 
     <!-- Inserts `guify` into the global namespace -->
-    <script src='../lib/guify.js'></script>
+    <script src='../../lib/guify.js'></script>
 
 </head>
 
@@ -213,6 +213,33 @@
             property: 'hexColor'
         })
 
+        var rgbaColor = 'rgba(0, 0, 255, 0.5)';
+        gui.Register({
+            type: 'color',
+            label: 'RGBA Color',
+            format: 'rgba', // Adds an alpha slider beneath the picker
+            object: this,
+            property: 'rgbaColor'
+        })
+
+        var hsvColor = 'hsv(300, 100%, 100%)';
+        gui.Register({
+            type: 'color',
+            label: 'HSV Color',
+            format: 'hsv',
+            object: this,
+            property: 'hsvColor'
+        })
+
+        var hsbaColor = 'hsba(60, 100%, 100%, 0.75)';
+        gui.Register({
+            type: 'color',
+            label: 'HSBA Color',
+            format: 'hsba', // Same as 'hsva', but named the way p5.js expects
+            object: this,
+            property: 'hsbaColor'
+        })
+
         var file = null;
         gui.Register({
             type: 'file',
@@ -295,6 +322,9 @@
                 rgbColor = 'rgb(' + Math.random() * 255 + ', 0, 0)';
                 hexColor = "#";
                 for (var i = 0; i < 6; i++) hexColor += Math.floor(Math.random() * 9).toString()
+                rgbaColor = 'rgba(0, 0, ' + Math.floor(Math.random() * 255) + ', ' + Math.random().toFixed(2) + ')';
+                hsvColor = 'hsv(' + Math.floor(Math.random() * 360) + ', 100%, 100%)';
+                hsbaColor = 'hsba(' + Math.floor(Math.random() * 360) + ', 100%, 100%, ' + Math.random().toFixed(2) + ')';
 
                 testSelection = "Option " + (Math.random() < 0.5 ? "1" : "2");
             }

@@ -1,3 +1,10 @@
+## Unreleased
+
+- Added `rgba`, `hsv`, `hsva`, `hsb` and `hsba` formats to the `color` component. Formats with an alpha channel get an alpha slider beneath the color picker, and the swatch shows the transparency over a checkerboard.
+- The `color` component now accepts its bound/initial value in any supported string format (including p5.js style `hsb(...)` / `hsba(...)` strings) regardless of its own `format`. Previously, setting a bound `rgb` color from your code didn't update the picker.
+- Moved `/example` to `/examples/basic` and added a p5.js example at `/examples/p5`.
+- Added unit tests for color parsing and formatting.
+
 ## 0.15.1
 
 - Fixed a bug preventing folders from being removed with `Remove()`.

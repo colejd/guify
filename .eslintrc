@@ -10,6 +10,7 @@
   "ignorePatterns": [
     "webpack.config.js",
     "lib",
+    "examples",
     "test/**/*.spec.js"
   ],
   "rules": {
